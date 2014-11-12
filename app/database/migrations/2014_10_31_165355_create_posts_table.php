@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreatePostsTable extends Migration {
+
+	const TABLE_NAME = 'posts';
+
+	public function up()
+	{
+		Schema::create(self::TABLE_NAME, function($t){
+			$t->increments('id');
+
+			$t->integer('user_posted')->unsigned();
+
+			$t->string('header',255);
+			$t->text('innertext');
+			$t->tinyInteger('mod_flag');
+			$t->timestamps();
+
+			$t->foreign('user_posted')->references('id')->on('users')
+											->onDelete('cascade')
+											->onUpdate('no action');
+		});
+	}
+
+	
+	public function down()
+	{
+		Schema::drop(self::TABLE_NAME);
+	}
+
+}
