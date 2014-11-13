@@ -32,10 +32,11 @@ $app = new Illuminate\Foundation\Application;
 // ));
 // 
 $env = $app->detectEnvironment(function(){
-	if(gethostname() == "hugo.beget.ru") return "production";
-    if($_SERVER['HTTP_HOST'] == "hugo.beget.ru") return "production";
-    if(getenv("APP_ENV")!="") return getenv("APP_ENV");
-    return "local";
+	// if(gethostname() == "hugo.beget.ru") return "production";
+ //    if($_SERVER['HTTP_HOST'] == "hugo.beget.ru") return "production";
+ //    if(getenv("APP_ENV")!="") return getenv("APP_ENV");
+ //    return "local";
+ 		return 'production';
 });
 
 /*
