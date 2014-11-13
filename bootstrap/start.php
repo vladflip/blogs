@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'production' => array('блоги.патриотки.рф'),
+	'production' => array('blogs.patriotki.ru'),
 	'local' 	 => array('FLIP-Thinkpad')
 
 ));
