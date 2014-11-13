@@ -36,7 +36,7 @@ $env = $app->detectEnvironment(function(){
  //    if($_SERVER['HTTP_HOST'] == "hugo.beget.ru") return "production";
  //    if(getenv("APP_ENV")!="") return getenv("APP_ENV");
  //    return "local";
- 		return 'local';
+ 		return 'production';
 });
 
 /*
