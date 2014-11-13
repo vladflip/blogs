@@ -54,6 +54,8 @@
 
 	{{ Form::close() }}
 
+
+<?php echo gethostname(); ?>
 @stop
 
 @section('footer')
