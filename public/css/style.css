@@ -113,7 +113,7 @@ body{
 	padding:5px;
 	display: inline-block;
 	cursor:pointer;
-	background-color:#FB3E3E;
+	background-color:red;
 	color:#fff;
 
 	-webkit-user-select: none;
