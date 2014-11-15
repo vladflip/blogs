@@ -76,7 +76,7 @@ function ajax(method, url, data, callback, headers){
 		} else if(method.toUpperCase() === 'POST') {
 			if(!headers)
 				var data = 'data=' + JSON.stringify(data);
-			
+
 			x.open(method, url, true);
 
 			x.onreadystatechange = function(){
@@ -84,10 +84,8 @@ function ajax(method, url, data, callback, headers){
 					callback(x.responseText);
 				}
 			}
-			// if(headers) 
-				// x.setRequestHeader('Content-Type', 'multipart/form-data');
-			// else
-				// x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			if(!headers) 
+				x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 			x.send(data);
 		}
