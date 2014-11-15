@@ -70,13 +70,17 @@ class UserController extends BaseController{
 	}
 
 	public function edit_me(){
+		header("Expires: Sat, 01 Jan 2005 00:00:00 GMT");
+		header("Last-Modified: ".gmdate( "D, d M Y H:i:s")."GMT");
+		header("Cache-Control: no-cache, must-revalidate");
+		header("Pragma: no-cache");
 		$validTypes = array('image/png', 'image/jpg', 'image/jpeg');
 		
 		$d = Input::file('avatar');
 
 		if($d->isValid()){
 			if(array_search($d->getMimeType(), $validTypes)!==false){
-				return $d->move('img/', Auth::id().'avatar.'.substr($d->getMimeType(), 6));
+				return $d->move('img/'.substr(md5('temp'),0,10), 'cs'.md5($d->getFileName().'avatar.').'.'.substr($d->getMimeType(), 6));
 			}
 		}
 	}

@@ -88,9 +88,9 @@ for(e in edit_me.f){
 
 var fileread = document.getElementById('pFileRead');
 var imgPar = document.getElementById('imgPar');
-var openAva = document.getElementById('openAva');
 var jcrop = document.getElementById('jCrop');
 var imgin = document.getElementById('imgIn');
+var openAva = document.getElementById('openAva');
 
 function panel(el,btn){
 	var self = this;
@@ -101,6 +101,8 @@ function panel(el,btn){
 		jcrop.innerHTML = '';
 		imgPar.style.display = 'block';
 		imgPar.innerHTML = 'Загрузить фото!';
+		cropimage = null;
+		openAva.value = '';
 	});
 
 	this.init = function(){
@@ -126,21 +128,21 @@ jcrop.onclick = function(e){
 }
 imgPar.onclick = function(e){
 	e.stopPropagation();
+	console.log(openAva.value);
 	openAva.click();
 
 	openAva.onchange = function(){
 		imgPar.innerHTML = 'Загрузка...';
-		
-		var file    = openAva.files[0];
 		var dataf = new FormData(imgin);
-		var img = new Image();
+		var cropimage = new Image();	
+
 
 		
 		ajax('post', 'edit', dataf, function(r){
 			imgPar.style.display = 'none';
-			img.src = r;
-			img.id = 'cropava';
-			jcrop.appendChild(img);
+			cropimage.src = r;
+			cropimage.id = 'cropava';
+			jcrop.appendChild(cropimage);
 
 			jQuery(function($) {
 		        $('#cropava').Jcrop();

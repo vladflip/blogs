@@ -81,7 +81,9 @@ function ajax(method, url, data, callback, headers){
 
 			x.onreadystatechange = function(){
 				if(x.readyState === 4){
-					callback(x.responseText);
+					if(x.status === 200){
+						callback(x.responseText);
+					}
 				}
 			}
 			if(!headers) 
