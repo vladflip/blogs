@@ -30,7 +30,7 @@ $app = new Illuminate\Foundation\Application;
 // 	'local' 	 => array('FLIP-Thinkpad')
 
 // ));
-// 
+
 $env = $app->detectEnvironment(function(){
 		if(gethostname() == "hugo.beget.ru") return "deploy";
 		if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == "hugo.beget.ru") return "deploy";

@@ -14,6 +14,25 @@ HTMLElement.prototype.fadeOut = function(){
 		},300);
 }
 
+function popUp(call){
+	var self = this;
+	
+	this.pop = document.getElementById('popUp');
+
+	this.open = function(){
+		self.pop.fadeIn();
+	}
+
+	this.close = function(){
+		self.pop.fadeOut();
+		self.pop.innerHTML = '';
+	}
+
+	this.pop.onclick = function(){
+		if(call) call();
+		self.close();
+	}
+}
 
 // **************************************************ajax
 
@@ -55,7 +74,9 @@ function ajax(method, url, data, callback, headers){
 			x.send(null);
 
 		} else if(method.toUpperCase() === 'POST') {
-			var data = 'data=' + JSON.stringify(data);
+			if(!headers)
+				var data = 'data=' + JSON.stringify(data);
+			
 			x.open(method, url, true);
 
 			x.onreadystatechange = function(){
@@ -63,8 +84,10 @@ function ajax(method, url, data, callback, headers){
 					callback(x.responseText);
 				}
 			}
-
-			x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			// if(headers) 
+				// x.setRequestHeader('Content-Type', 'multipart/form-data');
+			// else
+				// x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 			x.send(data);
 		}

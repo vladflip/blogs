@@ -1,20 +1,3 @@
-function popUp(){
-	var self = this;
-	
-	this.pop = document.getElementById('popUp');
-
-	this.animate = function(){
-		self.pop.fadeIn();
-	}
-
-	this.close = function(){
-		self.pop.fadeOut();
-		self.pop.innerHTML = '';
-	}
-
-	this.pop.onclick = this.close;
-}
-
 function loadAnim(path){
 	var self = this;
 	var el = document.querySelector(path + ' .load-icons');
@@ -68,13 +51,13 @@ function panel(form,btn){
 	this.form = form.form;
 	this.btn = document.getElementById(btn);
 	
-	this.popUp = new popUp(this.form);
+	this.popUp = new popUp();
 
 	this.init = function(){
 		var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 		self.popUp.pop.style.marginTop = scrollTop + 'px';
 		self.popUp.pop.appendChild(self.form);
-		self.popUp.animate();
+		self.popUp.open();
 
 		self.form.style.display = 'block';
 	}

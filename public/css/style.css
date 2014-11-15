@@ -207,18 +207,116 @@ body{
 /**********************************************profile*/
 
 .profile{
-	list-style: none;
-	margin:0;
-	padding:0;
+	height:500px;
 }
-.profile li{
-	height:200px;
-	background-color:#f1f1f2;
-	box-shadow: 2px 0 5px #ccc inset;
+
+.p_header{
+	background-color: #e0e0e0;
+	height:80px;
+	padding:20px 105px;
 }
-.profile li:nth-child(2n){
+/************** avatar*/
+.p_avatar{
+	border:1px solid #ccc;
+	border-radius: 5px;
+	float:left;
+	padding:5px;
 	background-color:#fff;
-	box-shadow: none;
+	cursor:pointer;
 }
+.p_avatar img{
+	min-height: 150px;
+	border-radius: 5px;
+	min-width: 150px;
+	width:150px;
+	display:block;
+}
+.p_file-read{
+	display:none;
+}
+.j-crop{
+	width:800px;
+	margin:100px auto;
+}
+.j-crop img{
+	width:inherit;
+}
+.img-par{
+	width:200px;
+	background-color:#3eade2;
+	margin:auto;
+	margin-top:300px;
+	cursor:pointer;
+	border-radius: 5px;
+	font-family: Century Gothic, sans-serif;
+	font-size: 20px;
+	color:#fff;
+	padding:30px 20px;
+}
+.img-in{
+	display:none;
+}
+/************** AVATAR*/
+
+/***************content*/
+
+.p_content{
+	display:inline-block;
+	margin:0 0 0 50px;
+}
+.p_login{
+	font-size: 26px;
+	font-weight: bold;
+	margin:30px 0 0 0;
+	color:#666;
+
+	letter-spacing: 3px;
+	font-style: italic;
+}
+
+.p_info-list{
+	margin:50px 0 0 0;
+	padding:0;
+	list-style:none;
+}
+.p_info-list li{
+	margin:0 0 15px 0;
+	height:35px;
+}
+.p_info-list li>div{
+	display:inline-block;
+}
+/***********************data-in*/
+.data-in{
+	/*font-size: 10px;*/
+	font-weight: bold;
+	color:#666;
+	padding:2px;
+	cursor:pointer;
+	height:35px;
+}
+.data-in input{
+	background-color: rgba(256,256,256,.97);
+	border:0;
+	margin:0;
+	font-size: 15px;
+	font-weight: bold;
+	color:#555;
+	padding:2px;
+	outline:none;
+}
+/***********************DATA-IN*/
+.p_label{
+	width:130px;
+	text-align: right;
+	color:#aaa;
+	font-weight: 600;
+}
+.p_spacer{
+	color:#666;
+	font-weight: bold;
+	margin:0 5px;
+}
+/***************CONTENT*/
 
 /**********************************************PROFILE*/

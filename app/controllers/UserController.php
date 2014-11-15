@@ -5,7 +5,6 @@ class UserController extends BaseController{
 	public function register() {
 
 		$data = Input::all();
-		var_dump($data);
 		$rules = [
 				'email' => 'required|unique:users',
 				'password' => 'required|min:8',
@@ -61,6 +60,7 @@ class UserController extends BaseController{
 	}
 
 	public function login(){
+		if(Auth::check()) return View::make('home');
 		$data = Input::all();
 		$cred = ['email' => $data['login'],
 							'password' => $data['password']];
@@ -70,6 +70,14 @@ class UserController extends BaseController{
 	}
 
 	public function edit_me(){
+		$validTypes = array('image/png', 'image/jpg', 'image/jpeg');
 		
+		$d = Input::file('avatar');
+
+		if($d->isValid()){
+			if(array_search($d->getMimeType(), $validTypes)!==false){
+				return $d->move('img/', Auth::id().'avatar.'.substr($d->getMimeType(), 6));
+			}
+		}
 	}
 }
