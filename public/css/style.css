@@ -233,10 +233,16 @@ body{
 }
 .p_file-read{
 	display:none;
+	position:relative;
 }
 .j-crop{
 	width:800px;
 	margin:100px auto;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
 }
 .j-crop img{
 	width:inherit;
@@ -252,9 +258,24 @@ body{
 	font-size: 20px;
 	color:#fff;
 	padding:30px 20px;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
 }
 .img-in{
 	display:none;
+}
+#previewDiv{
+	width:150px;
+	height:150px;
+	overflow:hidden;
+	position:absolute;
+	top:0px;
+	left:100px;
+	border-radius: 5px;
 }
 /************** AVATAR*/
 

@@ -14,3 +14,7 @@ Route::get('/', ['as' => 'home', function(){
 Route::post('/ajax-check-email', array('as'=>'ajax_check_email', 'uses' => 'UserController@ajax_check_email'));
 
 Route::post('/edit' ,['as' => 'edit_me', 'uses' => 'UserController@edit_me']);
+
+Route::get('/fuck', function(){
+	$img = Image::make('img/ex.jpg')->crop(382, 382, 205, 63)->save('img/fuck.jpg');
+});

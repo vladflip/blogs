@@ -80,7 +80,10 @@ class UserController extends BaseController{
 
 		if($d->isValid()){
 			if(array_search($d->getMimeType(), $validTypes)!==false){
-				return $d->move('img/'.substr(md5('temp'),0,10), 'cs'.md5($d->getFileName().'avatar.').'.'.substr($d->getMimeType(), 6));
+				$n = 'img/ex.jpg';
+				$img = Image::make($d)->widen(800)->save($n);
+				return $n;
+				// return $d->move('img/'.substr(md5('temp'),0,10), 'cs'.md5($d->getFileName()).'.'.substr($d->getMimeType(), 6));
 			}
 		}
 	}

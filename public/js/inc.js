@@ -16,6 +16,8 @@ HTMLElement.prototype.fadeOut = function(){
 
 function popUp(call){
 	var self = this;
+
+	var mup = false;
 	
 	this.pop = document.getElementById('popUp');
 
@@ -29,9 +31,21 @@ function popUp(call){
 	}
 
 	this.pop.onclick = function(){
-		if(call) call();
-		self.close();
+		if(!mup){
+			if(call) call();
+			self.close();
+		} 
 	}
+
+	this.pop.mousedown = function(){
+		
+	}
+
+	this.pop.onmouseup = function(){
+		console.log('sadf');
+	}
+
+
 }
 
 // **************************************************ajax

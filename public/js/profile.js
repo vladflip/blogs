@@ -103,6 +103,7 @@ function panel(el,btn){
 		imgPar.innerHTML = 'Загрузить фото!';
 		cropimage = null;
 		openAva.value = '';
+		imgPrev.src = '';
 	});
 
 	this.init = function(){
@@ -123,29 +124,56 @@ function panel(el,btn){
 
 new panel(fileread, 'pAvatar');
 
+
+var previewDiv = document.createElement('div');
+var imgPrev = new Image();
+
 jcrop.onclick = function(e){
+	e.stopPropagation();
+}
+imgPar.onmouseup = function(e){
 	e.stopPropagation();
 }
 imgPar.onclick = function(e){
 	e.stopPropagation();
-	console.log(openAva.value);
 	openAva.click();
 
 	openAva.onchange = function(){
 		imgPar.innerHTML = 'Загрузка...';
 		var dataf = new FormData(imgin);
-		var cropimage = new Image();	
+		var cropimage = new Image();
+		previewDiv.id = 'previewDiv';
+		imgPrev.id = 'previewThumb';
+		previewDiv.appendChild(imgPrev);
+		jcrop.appendChild(previewDiv);
 
+		function showPreview(c){
+			var rx = 150 / c.w;
+			var ry = 150 / c.h;
 
+			console.log(c.x + ' asdf ' + c.y + ' f ' + c.w + ' f ' + c.h);
+
+			$('#previewThumb').css({
+				width: Math.round(rx * 800) + 'px',
+				height: Math.round(ry * jcrop.clientHeight) + 'px',
+				marginLeft: '-' + Math.round(rx * c.x) + 'px',
+				marginTop: '-' + Math.round(ry * c.y) + 'px'
+			});
+		}
 		
 		ajax('post', 'edit', dataf, function(r){
+			imgPrev.src = r;
 			imgPar.style.display = 'none';
 			cropimage.src = r;
 			cropimage.id = 'cropava';
 			jcrop.appendChild(cropimage);
 
 			jQuery(function($) {
-		        $('#cropava').Jcrop();
+		        $('#cropava').Jcrop({
+		        	aspectRatio: 1,
+		        	onChange: showPreview,
+		        	onSelect: showPreview
+		        });
 		    });
 		},true);
 	}
