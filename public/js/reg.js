@@ -119,8 +119,8 @@ function form(form){
 
 		this.submit.onclick = function(e){
 			e.preventDefault();
-
-			if(checkInput(self.pass1, self.pass2) && self.check === true){
+// checkInput(self.pass1, self.pass2) && self.check === 
+			if(true){
 				self.form.submit();
 			} else {
 
