@@ -189,7 +189,7 @@ imgPar.onclick = function(e){
 			$('#previewThumb').css({
 				display : 'block',
 				width: Math.round(rx * imgW) + 'px',
-				height: Math.round(ry * jcrop.clientHeight) + 'px',
+				height: Math.round(ry * imgH) + 'px',
 				marginLeft: '-' + Math.round(rx * c.x) + 'px',
 				marginTop: '-' + Math.round(ry * c.y) + 'px'
 			});
