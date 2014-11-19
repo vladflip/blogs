@@ -14,14 +14,23 @@
 		<div class="j-crop" id="jCrop">
 			
 		</div>
+		<div class="p_ava-btns-par" id="pAvaBtns">
+			<div class="p_submit-ava" id="pSubmitAva">
+				Применить!
+			</div>
+			<div class="p_undo-ava" id="pUndoAva">
+				Отменить!
+			</div>
+		</div>
 	</div>
 	<div class="profile">
-			{{ Form::open(['files' => true, 'class' => 'img-in', 'id' => 'imgIn']) }}
+			{{ Form::open(['files' => true, 'route' => 'edit_ava', 'class' => 'img-in', 'id' => 'imgIn']) }}
 				{{ Form::file('avatar', ['id' => 'openAva']) }}
+				{{ Form::submit('asdf') }}
 			{{ Form::close() }}
 		<div class="p_header">
 			<div class="p_avatar" id="pAvatar">
-				<img src="img/flag.jpg" alt="">
+				<img id="avaEl" src="img/q_mark.png" alt="">
 			</div>
 
 			<div class="p_content">

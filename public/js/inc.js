@@ -1,17 +1,17 @@
-HTMLElement.prototype.fadeIn = function(){
+HTMLElement.prototype.fadeIn = function(sec){
 	var self = this;
 	this.style.display = 'block';
 		setTimeout(function(){
 			self.style.opacity = 1;
-		},50);
+		}, sec ? sec : 50);
 }
 
-HTMLElement.prototype.fadeOut = function(){
+HTMLElement.prototype.fadeOut = function(sec){
 	var self = this;
 	this.style.opacity = 0;
 		setTimeout(function(){
 			self.style.display = 'none';
-		},300);
+		}, sec ? sec : 200);
 }
 
 function popUp(call){
@@ -30,22 +30,12 @@ function popUp(call){
 		self.pop.innerHTML = '';
 	}
 
-	this.pop.onclick = function(){
+	this.pop.onmousedown = function(){
 		if(!mup){
 			if(call) call();
 			self.close();
-		} 
+		}
 	}
-
-	this.pop.mousedown = function(){
-		
-	}
-
-	this.pop.onmouseup = function(){
-		console.log('sadf');
-	}
-
-
 }
 
 // **************************************************ajax
@@ -89,18 +79,37 @@ function ajax(method, url, data, callback, headers){
 
 		} else if(method.toUpperCase() === 'POST') {
 			if(!headers)
-				var data = 'data=' + JSON.stringify(data);
+			var data = 'data=' + JSON.stringify(data);
 
 			x.open(method, url, true);
 
 			x.onreadystatechange = function(){
 				if(x.readyState === 4){
 					if(x.status === 200){
-						callback(x.responseText);
+						if(callback)
+							callback(x.responseText);
 					}
 				}
 			}
-			if(!headers) 
+			if(!headers)
+				x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+			x.send(data);
+		} else if(method.toUpperCase() === 'PUT') {
+			if(!headers)
+			var data = 'data=' + JSON.stringify(data);
+
+			x.open(method, url, true);
+
+			x.onreadystatechange = function(){
+				if(x.readyState === 4){
+					if(x.status === 200){
+						if(callback)
+							callback(x.responseText);
+					}
+				}
+			}
+			if(!headers)
 				x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
 			x.send(data);

@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/id{id}',['as' => 'profile', 'uses' => 'UserController@profile'])
-	->where('id','[1-9]+');
+	->where('id','[0-9]+');
 
 Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
 
@@ -13,8 +13,15 @@ Route::get('/', ['as' => 'home', function(){
 
 Route::post('/ajax-check-email', array('as'=>'ajax_check_email', 'uses' => 'UserController@ajax_check_email'));
 
-Route::post('/edit' ,['as' => 'edit_me', 'uses' => 'UserController@edit_me']);
+Route::post('/edit-ava' , ['as' => 'edit_ava', 'uses' => 'UserController@edit_ava']);
 
-Route::get('/fuck', function(){
-	$img = Image::make('img/ex.jpg')->crop(382, 382, 205, 63)->save('img/fuck.jpg');
+Route::post('/delete-ava', 'UserController@delete_temp_ava');
+
+Route::post('/submit-ava', ['as' => 'submit_ava', 'uses' => 'UserController@submit_ava']);
+
+Route::get('/exe', function(){
+	$path = 'img/' . 'id' . Auth::id() . '/';
+	if (!file_exists($path) && !is_dir($path)) {
+			$t = mkdir($path,0777,true);
+		}
 });

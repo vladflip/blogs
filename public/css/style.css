@@ -223,6 +223,8 @@ body{
 	padding:5px;
 	background-color:#fff;
 	cursor:pointer;
+	width:150px;
+	height:150px;
 }
 .p_avatar img{
 	min-height: 150px;
@@ -230,6 +232,12 @@ body{
 	min-width: 150px;
 	width:150px;
 	display:block;
+
+	-webkit-transition: opacity .3s ease;
+	   -moz-transition: opacity .3s ease;
+	    -ms-transition: opacity .3s ease;
+	     -o-transition: opacity .3s ease;
+	        transition: opacity .3s ease;
 }
 .p_file-read{
 	display:none;
@@ -237,7 +245,7 @@ body{
 }
 .j-crop{
 	width:800px;
-	margin:100px auto;
+	margin:100px auto 0;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -276,6 +284,34 @@ body{
 	top:0px;
 	left:100px;
 	border-radius: 5px;
+}
+
+.p_ava-btns-par{
+	margin:30px 0 0 0;
+	display:none;
+}
+.p_ava-btns-par div{
+	width:100px;
+	font-family: Century Gothic, sans-serif;
+	display:inline-block;
+	color:#fff;
+	font-size: 15px;
+	padding:10px;
+	border-radius: 5px;
+	cursor:pointer;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+.p_submit-ava{
+	margin:0 100px 0 0;
+	background-color:#3eade2;
+}
+.p_undo-ava{
+	background-color:#FB3E3E;
 }
 /************** AVATAR*/
 

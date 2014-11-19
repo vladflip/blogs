@@ -91,20 +91,43 @@ var imgPar = document.getElementById('imgPar');
 var jcrop = document.getElementById('jCrop');
 var imgin = document.getElementById('imgIn');
 var openAva = document.getElementById('openAva');
+var delete_ava_checker = false;
+var avabtns = document.getElementById('pAvaBtns');
+var sbmtava = document.getElementById('pSubmitAva');
+var undoava = document.getElementById('pUndoAva');
+var avacoords = {
+	x : null,
+	y : null,
+	w : null,
+	h : null
+};
+var avaEl = document.getElementById('avaEl');
+var loadGif = new Image();
+loadGif.src = 'img/load.gif';
+loadGif.style.width = '150px';
+loadGif.style.height = '150px';
+loadGif.style.display = 'block';
 
-function panel(el,btn){
-	var self = this;
-	this.el = el;
-	this.btn = document.getElementById(btn);
-	
-	this.popUp = new popUp(function(){
+function undo(){
 		jcrop.innerHTML = '';
 		imgPar.style.display = 'block';
 		imgPar.innerHTML = 'Загрузить фото!';
 		cropimage = null;
 		openAva.value = '';
 		imgPrev.src = '';
-	});
+		if(delete_ava_checker){
+			ajax('post', 'delete-ava', 'f');
+			delete_ava_checker = false;
+		}
+		avabtns.fadeOut();
+}
+
+function panel(el,btn){
+	var self = this;
+	this.el = el;
+	this.btn = document.getElementById(btn);
+	
+	this.popUp = new popUp(undo);
 
 	this.init = function(){
 		var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -122,16 +145,16 @@ function panel(el,btn){
 	this.btn.onclick = this.init;
 }
 
-new panel(fileread, 'pAvatar');
+var paneProfile = new panel(fileread, 'pAvatar');
 
 
 var previewDiv = document.createElement('div');
 var imgPrev = new Image();
 
-jcrop.onclick = function(e){
+jcrop.onmousedown = function(e){
 	e.stopPropagation();
 }
-imgPar.onmouseup = function(e){
+imgPar.onmousedown = function(e){
 	e.stopPropagation();
 }
 imgPar.onclick = function(e){
@@ -147,11 +170,19 @@ imgPar.onclick = function(e){
 		previewDiv.appendChild(imgPrev);
 		jcrop.appendChild(previewDiv);
 
+
 		function showPreview(c){
 			var rx = 150 / c.w;
 			var ry = 150 / c.h;
 
-			console.log(c.x + ' asdf ' + c.y + ' f ' + c.w + ' f ' + c.h);
+			// console.log(c.x + ' asdf ' + c.y + ' f ' + c.w + ' f ' + c.h);
+
+
+			avacoords.x = c.x;
+			avacoords.y = c.y;
+			avacoords.w = c.w;
+			avacoords.h = c.h;
+
 
 			$('#previewThumb').css({
 				width: Math.round(rx * 800) + 'px',
@@ -160,21 +191,60 @@ imgPar.onclick = function(e){
 				marginTop: '-' + Math.round(ry * c.y) + 'px'
 			});
 		}
-		
-		ajax('post', 'edit', dataf, function(r){
-			imgPrev.src = r;
-			imgPar.style.display = 'none';
-			cropimage.src = r;
-			cropimage.id = 'cropava';
-			jcrop.appendChild(cropimage);
+		ajax('post', 'edit-ava', dataf, function(r){
+			if(r !== 'non'){
+				pAvaBtns.fadeIn();
+				cropimage.src = r;
+				cropimage.id = 'cropava';
+			
+				cropimage.onload = function(){
+					imgPrev.src = r;
+					imgPar.style.display = 'none';
+					
+					jcrop.appendChild(cropimage);
+					// console.log(r);
+					jQuery(function($) {
+						$('#cropava').Jcrop({
+							aspectRatio: 1,
+							onChange: showPreview,
+							onSelect: showPreview,
+							setSelect: [jcrop.clientWidth*0.25, jcrop.clientHeight*0.07, jcrop.clientWidth*0.75, jcrop.clientHeight*0.75]
+						});
+					});
+					delete_ava_checker = true;
 
-			jQuery(function($) {
-		        $('#cropava').Jcrop({
-		        	aspectRatio: 1,
-		        	onChange: showPreview,
-		        	onSelect: showPreview
-		        });
-		    });
+				}
+			} else {
+				console.log('fuck');
+			}
 		},true);
 	}
+}
+
+sbmtava.onmousedown = function(e){
+	var parav = document.getElementById('pAvatar');
+
+	e.stopPropagation();
+	ajax('post', 'submit-ava', avacoords, function(r){
+		if(r !== 'non'){
+			undo();
+
+			paneProfile.popUp.close();
+			avaEl.style.display = 'none';
+			avaEl.style.opacity = 0;
+			parav.appendChild(loadGif);
+
+			setTimeout(function(){
+				avaEl.src = r;
+				avaEl.onload = function(){
+					parav.removeChild(loadGif);
+					avaEl.fadeIn();
+				}
+			} , 400)
+		}
+	});
+}
+undoava.onmousedown = function(e){
+	e.stopPropagation();
+	undo();
 }

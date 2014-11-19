@@ -19,7 +19,9 @@ class CreateUsersTable extends Migration {
 			$t->string('lastname',60);
 			$t->string('password',64);
 			$t->rememberToken();
-			$t->string('avatar',255);
+			$t->string('ava_xl',255);
+			$t->string('ava_sm',255);
+			$t->string('ava_xs', 255);
 
 			$t->tinyInteger('age')->unsigned();
 			$t->mediumInteger('rate')->unsigned();

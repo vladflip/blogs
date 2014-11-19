@@ -131,7 +131,7 @@ function form(form){
 
 
 
-	this.form.onclick = function(e){
+	this.form.onmousedown = function(e){
 		e.stopPropagation();
 	}
 }
