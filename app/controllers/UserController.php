@@ -88,8 +88,19 @@ class UserController extends BaseController{
 
 						$n = $src . $name;
 
-						$img = Image::make($f)->widen(800)->save($n);
+						$img = Image::make($f)
+						$w = $img->width();
+						$h = $img->height();
 
+						if($w>=$h){
+							$img->widen(800,function($c){
+								$c->upsize();
+							})->save($n);
+						} else {
+							$img->heighten(500,function($c){
+								$c->upsize();
+							})->save($n);
+						}
 						Session::put('ava_temp', $n);
 
 						return $n;
