@@ -93,7 +93,7 @@ class UserController extends BaseController{
 						$h = $img->height();
 
 						if($w>=$h){
-							$img->widen(800,function($c){
+							$img->widen(700,function($c){
 								$c->upsize();
 							})->save($n);
 						} else {
@@ -101,9 +101,10 @@ class UserController extends BaseController{
 								$c->upsize();
 							})->save($n);
 						}
+
 						Session::put('ava_temp', $n);
 
-						return $n;
+						return json_encode(array('h' => $img->height(), 'w' => $img->width(), 'path' => $n));
 						// return $f->move('img/'.substr(md5('temp'),0,10), 'cs'.md5($d->getFileName()).'.'.substr($d->getMimeType(), 6));
 					} else {
 						return 'non';

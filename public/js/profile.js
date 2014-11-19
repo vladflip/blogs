@@ -160,6 +160,7 @@ imgPar.onmousedown = function(e){
 imgPar.onclick = function(e){
 	e.stopPropagation();
 	openAva.click();
+	var imgH, imgW;
 
 	openAva.onchange = function(){
 		imgPar.innerHTML = 'Загрузка...';
@@ -167,6 +168,7 @@ imgPar.onclick = function(e){
 		var cropimage = new Image();
 		previewDiv.id = 'previewDiv';
 		imgPrev.id = 'previewThumb';
+		imgPrev.style.display = 'none';
 		previewDiv.appendChild(imgPrev);
 		jcrop.appendChild(previewDiv);
 
@@ -185,7 +187,8 @@ imgPar.onclick = function(e){
 
 
 			$('#previewThumb').css({
-				width: Math.round(rx * 800) + 'px',
+				display : 'block',
+				width: Math.round(rx * imgW) + 'px',
 				height: Math.round(ry * jcrop.clientHeight) + 'px',
 				marginLeft: '-' + Math.round(rx * c.x) + 'px',
 				marginTop: '-' + Math.round(ry * c.y) + 'px'
@@ -193,12 +196,15 @@ imgPar.onclick = function(e){
 		}
 		ajax('post', 'edit-ava', dataf, function(r){
 			if(r !== 'non'){
+				var res = JSON.parse(r);
+				imgH = res.h;
+				imgW = res.w;
 				pAvaBtns.fadeIn();
-				cropimage.src = r;
+				cropimage.src = res.path;
 				cropimage.id = 'cropava';
 			
 				cropimage.onload = function(){
-					imgPrev.src = r;
+					imgPrev.src = res.path;
 					imgPar.style.display = 'none';
 					
 					jcrop.appendChild(cropimage);
@@ -208,7 +214,7 @@ imgPar.onclick = function(e){
 							aspectRatio: 1,
 							onChange: showPreview,
 							onSelect: showPreview,
-							setSelect: [jcrop.clientWidth*0.25, jcrop.clientHeight*0.07, jcrop.clientWidth*0.75, jcrop.clientHeight*0.75]
+							setSelect: [imgW*0.25, imgH*0.07, imgW*0.75, imgH*0.75]
 						});
 					});
 					delete_ava_checker = true;
