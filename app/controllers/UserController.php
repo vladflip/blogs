@@ -88,7 +88,7 @@ class UserController extends BaseController{
 
 						$n = $src . $name;
 
-						$img = Image::make($f)
+						$img = Image::make($f);
 						$w = $img->width();
 						$h = $img->height();
 
