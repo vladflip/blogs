@@ -214,7 +214,8 @@ imgPar.onclick = function(e){
 							aspectRatio: 1,
 							onChange: showPreview,
 							onSelect: showPreview,
-							setSelect: [imgW*0.25, imgH*0.07, imgW*0.75, imgH*0.75]
+							setSelect: [imgW*0.25, imgH*0.07, imgW*0.75, imgH*0.75],
+							minSize: [150,150]
 						});
 					});
 					delete_ava_checker = true;
