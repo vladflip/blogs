@@ -14,6 +14,7 @@ Route::get('/', ['as' => 'home', function(){
 Route::get('/ajax-check-email', function(){
 echo 'good';
 });
+
 Route::post('/ajax-check-email', array('as'=>'ajax_check_email', 'uses' => 'UserController@ajax_check_email'));
 
 Route::post('/edit-ava' , ['as' => 'edit_ava', 'uses' => 'UserController@edit_ava']);
