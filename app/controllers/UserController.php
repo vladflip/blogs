@@ -126,10 +126,11 @@ class UserController extends BaseController{
 				return 'non';
 			}
 		}
-
-		if(!empty(Session::get('ava_temp')))
+		$tmp = Session::get('ava_temp');
+		if($tmp !== '')
 			$imgp = Session::get('ava_temp');
-		else return 'non';
+		else 
+			return 'non';
 
 		$img = Image::make($imgp);
 
