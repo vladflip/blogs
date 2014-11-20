@@ -1,90 +1,66 @@
 function el(id){
+	var self = this;
+	var timer;
+
+	this.load = new loadAnim('#' + id);
+	this.load.el.style.top = '-10px';
 	this.el = document.getElementById(id);
+	this.label = this.el.parentNode.getElementsByClassName('p_label')[0];
 	this.data = '';
+	this.input = this.el.getElementsByTagName('input')[0];
+	this.ph = self.input.placeholder;
+
+	function fails(){
+		self.label.style.color = 'red';
+	}
+
+	this.edit = function(){
+		clearInterval(timer);
+
+		var el = self.input;
+		var obj = {};
+		self.data = el.value;
+		self.load.load();
+		obj[id] = el.value;
+		timer = setTimeout(function(){
+			ajax('get', 'edit-profile', obj, function(r){
+				console.log(r);
+			});
+		}, 600);
+	}
+
+	self.input.onkeyup = self.edit;
+
+	self.input.onfocus = function(){
+		this.placeholder = '';
+	}
+	self.input.onblur = function(){
+		this.placeholder = self.ph;
+	}
 }
 
 var edit_me = new (function(){
 	
 	this.f = {};
 
-	/**
-	 * login
-	 */
 	this.f.pLogin = new el('pLogin');
 
-	/**
-	 * fullname
-	 */
-	this.f.pFullName = new el('pFullName');
+	this.f.pFirstName = new el('pFirstName');
 
-	/**
-	 * age
-	 */
+	this.f.pLastName = new el('pLastName');
+
 	this.f.pAge = new el('pAge');
 
-	/**
-	 * birthday
-	 */
-	this.f.pBDay = new el('pBDay');
+	// this.f.pBDay = new el('pBDay');
 
-	/**
-	 * town
-	 */
 	this.f.pTown = new el('pTown');
+
+	// this.pRate = new el('pRate');
+
+	// this.pAbout = new el('pAbout');
 })();
-
-var changer = new (function(){
-	var self = this;
-
-	/**
-	 * [edit description]
-	 * @return {void} [edits fields]
-	 */
-	this.edit = function(){
-		var el = this;
-		var timer;
-		el.innerHTML = '';
-
-		var input = document.createElement('input');
-		el.appendChild(input);
-		input.focus();
-
-		input.onclick = function(e){
-			e.stopPropagation();
-		}
-		input.onkeyup = function(){
-			clearInterval(timer);
-
-			edit_me.f[el.id].data = this.value;
-
-			timer = setTimeout(function(){
-				console.log('fuck');
-			}, 1000);
-		}
-
-		
-	}
-	/**
-	 * [release description]
-	 * @return {result of sending} releases editing effect
-	 */
-	this.release = function(el){
-		if(el){
-
-		} else {
-			for(e in edit_me.f){
-				edit_me.f[e].onclick = changer.edit;
-			}
-		}
-	}
-})();
-
 
 // ************************* mediator
-
-for(e in edit_me.f){
-	edit_me.f[e].el.onclick = changer.edit;
-}
 
 var fileread = document.getElementById('pFileRead');
 var imgPar = document.getElementById('imgPar');

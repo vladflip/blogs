@@ -32,53 +32,102 @@
 			{{ Form::close() }}
 		<div class="p_header">
 			<div class="p_avatar" id="pAvatar">
-				<img id="avaEl" src="img/q_mark.png" alt="">
+				<img id="avaEl" src="" alt="">
 			</div>
 
 			<div class="p_content">
-				<div class="p_login" id="pLogin">логин</div>
+				<div class="p_login" id="pLogin">
+					<input type="text" placeholder="логин">
+					<div class="load-icons">
+						<img src="img/load.gif" alt="" class="load">
+						<img src="" alt="" class="fail">
+						<img src="img/success.png" alt="" class="success">
+					</div>
+				</div>
 				<ul class="p_info-list">
 					<li>
 						<div class="p_label">
-							Полное имя
+							Имя
 						</div>
 						<div class="p_spacer">:</div>
-						<div class="p_full-name data-in" id="pFullName">_ _ _ _ _</div>
+						<div class="p_first-name data-in" id="pFirstName">
+							<input type="text" placeholder="имя">
+							<div class="load-icons">
+								<img src="img/load.gif" alt="" class="load">
+								<img src="" alt="" class="fail">
+								<img src="img/success.png" alt="" class="success">
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="p_label">
+							Фамилия
+						</div>
+						<div class="p_spacer">:</div>
+						<div class="p_last-name data-in" id="pLastName">
+							<input type="text" placeholder="фамилия">
+							<div class="load-icons">
+								<img src="img/load.gif" alt="" class="load">
+								<img src="" alt="" class="fail">
+								<img src="img/success.png" alt="" class="success">
+							</div>
+						</div>
 					</li>
 					<li>
 						<div class="p_label">
 							Возраст
 						</div>
 						<div class="p_spacer">:</div>
-						<div class="p_age data-in" id="pAge">_ _ _ _ _</div>
+						<div class="p_age data-in" id="pAge">
+							<input type="text" placeholder="возраст">
+							<div class="load-icons">
+								<img src="img/load.gif" alt="" class="load">
+								<img src="" alt="" class="fail">
+								<img src="img/success.png" alt="" class="success">
+							</div>
+						</div>
 					</li>
-					<li>
+					<!-- <li>
 						<div class="p_label">
 							День Рождения
 						</div>
 						<div class="p_spacer">:</div>
-						<div class="p_b-day data-in" id="pBDay">_ _ _ _ _</div>
-					</li>
+						<div class="p_b-day data-in" id="pBDay">
+							<input type="text" placeholder="др">
+							<div class="load-icons">
+								<img src="img/load.gif" alt="" class="load">
+								<img src="" alt="" class="fail">
+								<img src="img/success.png" alt="" class="success">
+							</div>
+						</div>
+					</li> -->
 					<li>
 						<div class="p_label">
 							Город
 						</div>
 						<div class="p_spacer">:</div>
-						<div class="p_town data-in" id="pTown">_ _ _ _ _</div>
+						<div class="p_town data-in" id="pTown">
+							<input type="text" placeholder="город">
+							<div class="load-icons">
+								<img src="img/load.gif" alt="" class="load">
+								<img src="" alt="" class="fail">
+								<img src="img/success.png" alt="" class="success">
+							</div>
+						</div>
 					</li>
 					<li>
 						<div class="p_label">
 							Рейтинг
 						</div>
 						<div class="p_spacer">:</div>
-						<div class="p_rate data-in" id="pRate">_ _ _ _ _</div>
+						<div class="p_rate data-in" id="pRate">0</div>
 					</li>
 					<li>
 						<div class="p_label">
 							О себе
 						</div>
 						<div class="p_spacer">:</div>
-						<div class="p_about data-in" id="pAbout">_ _ _ _ _</div>
+						<div class="p_about data-in" id="pAbout">о себе</div>
 					</li>
 				</ul>
 			</div>

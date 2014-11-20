@@ -29,3 +29,5 @@ Route::get('/exe', function(){
 			$t = mkdir($path,0777,true);
 		}
 });
+
+Route::get('edit-profile', ['as' => 'edit_profile', 'uses' => 'UserController@edit_profile']);

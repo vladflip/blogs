@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration {
 
 			$t->string('about');
 			$t->date('birthday');
-			$t->string('town',60);
+			// $t->string('town',60);
 
 			$t->tinyInteger('mod_flag');
 			$t->timestamps();

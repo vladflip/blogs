@@ -53,10 +53,13 @@ class UserController extends BaseController{
 
 
 	public function profile($id){
+		if(!User::find($id)){
+			return 404;
+		}
 		if(Auth::check())
-			return View::make('profile');
+			return View::make('profile')->with('id', $id);
 		else if(Auth::guest())
-			return 'View::make()';
+			return View::make('guest_profile')->with('id', $id);
 	}
 
 	public function login(){
@@ -208,5 +211,75 @@ class UserController extends BaseController{
 		} else {
 			return 'non';
 		}
+	}
+
+	public function edit_profile(){
+		if(Auth::check())
+			$user = User::find(Auth::id());
+		else return 'non';
+
+		$validTypes = array('pLogin', 'pFirstName', 'pLastName', 'pAge', 'pBDay', 'pTown');
+
+		$column = '';
+
+
+		$d =  Input::get('data') ? Input::get('data') : 'non';
+		$d = json_decode($d);
+
+		if($d === 'non') return '404';
+
+		if(count($d) === 1){
+			$data = array();
+			$key = '';
+			foreach ($d as $k => $v) {
+				if(array_search($k, $validTypes)===false){
+					return 'non';
+				} else {
+					$data['data'] = $v;
+					$key = $k;
+				}
+
+				switch ($key) {
+					case 'pLogin':
+						$column = 'login';
+						break;
+
+					case 'pFirstName':
+						$column = 'firstname';
+						break;
+					
+					case 'pLastName':
+						$column = 'lastname';
+						break;
+
+					case 'pAge':
+						$column = 'age';
+						break;
+
+					case 'pTown':
+						$column = 'town';
+						break;
+
+
+					default:
+						$column = 'non';
+						break;
+				}
+
+				if($column!=='non' && $column === 'login'){
+					$rules = [
+						'data' => "unique:users,login"
+					];
+
+					$val = Validator::make($data, $rules);
+
+					if($val->fails())
+						return 'login not unique';
+				}
+
+				$user[$column] = $data['data'];
+				$user->save();
+			}
+		} else return 'non';
 	}
 }

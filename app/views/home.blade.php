@@ -23,9 +23,9 @@
 				Form::text('email', null, ['placeholder' => 'Ваш email', 'class' => 'email-input']) 
 			}}
 			<div class="load-icons">
-				<img src="img/flag.jpg" alt="" class="load">
-				<img src="img/load.gif" alt="" class="fail">
-				<img src="img/logo.png" alt="" class="success">
+				<img src="img/load.gif" alt="" class="load">
+				<img src="img/fail.png" alt="" class="fail">
+				<img src="img/success.png" alt="" class="success">
 			</div>
 		</div>
 
@@ -34,9 +34,9 @@
 				Form::password('password', ['placeholder' => 'Введите пароль', 'class' => 'pass1-input']) 
 			}}
 			<div class="load-icons">
-				<img src="img/flag.jpg" alt="" class="load">
-				<img src="img/load.gif" alt="" class="fail">
-				<img src="img/logo.png" alt="" class="success">
+				<img src="img/load.gif" alt="" class="load">
+				<img src="img/fail.png" alt="" class="fail">
+				<img src="img/success.png" alt="" class="success">
 			</div>
 		</div>
 		<div class="pass2">
@@ -44,9 +44,9 @@
 				Form::password('repeat_password', ['placeholder' => 'Повторите пароль', 'class' => 'pass2-input'])
 			}}
 			<div class="load-icons">
-				<img src="img/flag.jpg" alt="" class="load">
-				<img src="img/load.gif" alt="" class="fail">
-				<img src="img/logo.png" alt="" class="success">
+				<img src="img/load.gif" alt="" class="load">
+				<img src="img/fail.png" alt="" class="fail">
+				<img src="img/success.png" alt="" class="success">
 			</div>
 		</div>
 

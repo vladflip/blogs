@@ -1,44 +1,3 @@
-function loadAnim(path){
-	var self = this;
-	var el = document.querySelector(path + ' .load-icons');
-	var id;
-
-	this.pics = {'load' : el.getElementsByClassName('load')[0], 
-				'fail' : el.getElementsByClassName('fail')[0], 
-				'success' : el.getElementsByClassName('success')[0]};
-
-	this.active = 'load';
-
-	this.displ = function(dis){
-		// if(self.active === dis && dis !== 'load') return;
-		self.pics[self.active].style.display = 'none';
-
-		self.pics[dis].style.display = 'block';
-		self.active = dis;
-	}
-
-	this.load = function(){
-		clearInterval(id);
-
-		self.displ('load');
-
-		id = setTimeout(function(){
-			self.fail();
-		}, 1500);
-	}
-
-	this.fail = function(){
-		self.displ('fail');
-	}
-
-	this.success = function(){
-		clearInterval(id);
-		self.displ('success');
-	}
-}
-
-
-
 
 // ************************************************reg
 
@@ -51,7 +10,13 @@ function panel(form,btn){
 	this.form = form.form;
 	this.btn = document.getElementById(btn);
 	
-	this.popUp = new popUp();
+	var undo = (function(form){
+		return function undo(){
+			console.log(form);
+			form.reset();
+		}
+	})(self.form);
+	this.popUp = new popUp(undo);
 
 	this.init = function(){
 		var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -77,6 +42,8 @@ function form(form){
 
 	this.submit = this.form.getElementsByClassName('submit')[0];
 
+	var timer;
+
 	if(form === 'sign-up-form'){
 
 		this.email = document.getElementsByClassName('email-input')[0];
@@ -88,12 +55,12 @@ function form(form){
 		this.pass2_anim = new loadAnim('.pass2');
 
 		this.email.onkeyup = function(){
+					self.email_anim.load();
 			ajax('post', 'ajax-check-email', this.value, function(msg){
 				// console.log(JSON.parse(msg));
 
 				var res = JSON.parse(msg);
 				if(res.type === 'fail'){
-					self.email_anim.load();
 				} else if(res.type === 'good'){
 					self.email_anim.success();
 					self.check = true;
@@ -102,18 +69,26 @@ function form(form){
 		}
 
 		this.pass1.onkeyup = function(){
+			clearInterval(timer);
+			if(self.pass2.value === '') return;
 			if(self.pass2.value === this.value){
 				self.pass2_anim.success();
 			} else {
-				self.pass2_anim.fail();
+				timer = setTimeout(function(){
+					self.pass2_anim.fail();
+				}, 800);
 			} 
 		}
 
 		this.pass2.onkeyup = function(){ /* _____TO DO load func while not matching passwords, then force fail or success*/
+			clearInterval(timer);
+			if(this.value === '') return;
 			if(self.pass1.value === this.value){
 				self.pass2_anim.success();
 			} else {
-				self.pass2_anim.fail();
+				timer = setTimeout(function(){
+					self.pass2_anim.fail();
+				}, 800);
 			}              
 		}
 

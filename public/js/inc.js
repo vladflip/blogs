@@ -38,6 +38,40 @@ function popUp(call){
 	}
 }
 
+function loadAnim(path){
+	var self = this;
+	this.el = document.querySelector(path + ' .load-icons');
+	var el = this.el;
+	var id;
+
+	this.pics = {'load' : el.getElementsByClassName('load')[0], 
+				'fail' : el.getElementsByClassName('fail')[0], 
+				'success' : el.getElementsByClassName('success')[0]};
+
+	this.active = 'load';
+
+	this.displ = function(dis){
+		// if(self.active === dis && dis !== 'load') return;
+		self.pics[self.active].style.display = 'none';
+
+		self.pics[dis].style.display = 'block';
+		self.active = dis;
+	}
+
+	this.load = function(){
+		self.displ('load');
+	}
+
+	this.fail = function(){
+		self.displ('fail');
+	}
+
+	this.success = function(){
+		self.displ('success');
+	}
+}
+
+
 // **************************************************ajax
 
 function ajax(method, url, data, callback, headers){
