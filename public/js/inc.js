@@ -16,16 +16,17 @@ HTMLElement.prototype.fadeOut = function(sec){
 
 function popUp(call){
 	var self = this;
-
 	var mup = false;
 	
 	this.pop = document.getElementById('popUp');
 
 	this.open = function(){
 		self.pop.fadeIn();
+		document.getElementsByClassName('container')[0].fadeOut();
 	}
 
 	this.close = function(){
+		document.getElementsByClassName('container')[0].fadeIn();
 		self.pop.fadeOut();
 		self.pop.innerHTML = '';
 	}
