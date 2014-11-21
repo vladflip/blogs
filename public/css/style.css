@@ -382,6 +382,7 @@ body{
 }
 .p_login span{
 	margin:30px 0 0 0;
+	display:block;
 }
 .p_login span,
 .p_login input{
