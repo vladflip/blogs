@@ -60,10 +60,12 @@ class UserController extends BaseController{
 		if(Auth::check()){
 			if(Auth::id()===$user->id){
 				return View::make('owners_profile')->with('user', Auth::user());
+			} else {
+				return View::make('guest_profile')->with('user', $user);
 			}
 		}
 		else if(Auth::guest())
-			return View::make('guest_profile')->with('id', $id);
+			return View::make('guest_profile')->with('user', $user);
 	}
 
 	public function login(){

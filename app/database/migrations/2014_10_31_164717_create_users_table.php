@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration {
 
 			$t->string('login',45)->nullable();
 			$t->string('email',100);
-			$t->string('firstname',60);
-			$t->string('lastname',60);
+			$t->string('firstname',60)->nullable();
+			$t->string('lastname',60)->nullable();
 			$t->string('password',64);
 			$t->rememberToken();
 			$t->string('ava_xl',255);
@@ -26,9 +26,9 @@ class CreateUsersTable extends Migration {
 			$t->tinyInteger('age')->unsigned();
 			$t->mediumInteger('rate')->unsigned();
 
-			$t->string('about');
-			$t->date('birthday');
-			// $t->string('town',60);
+			$t->string('about')->nullable();
+			// $t->date('birthday');
+			$t->string('town',60)->nullable();
 
 			$t->tinyInteger('mod_flag');
 			$t->timestamps();

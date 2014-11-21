@@ -9,5 +9,28 @@
 @stop
 
 @section('login')
-	{{ $user->login or 'логин' }}
+	<input type="text" placeholder="{{ $user->login or 'логин' }}">
+@stop
+
+@section('fname')
+	<input type="text" placeholder="{{ $user->firstname or 'имя' }}">
+@stop
+
+@section('lname')
+	<input type="text" placeholder="{{ $user->lastname or 'фамилия' }}">
+@stop
+
+@section('age')
+	<input type="text" placeholder="{{ $user->age or '0' }}">
+@stop
+
+@section('town')
+	<input type="text" placeholder="{{ $user->town or 'город' }}">
+@stop
+
+
+@section('profile.js')
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.Jcrop.min.js"></script>
+	<script src="js/profile.js"></script>
 @stop

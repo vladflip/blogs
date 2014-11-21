@@ -37,7 +37,7 @@
 
 			<div class="p_content">
 				<div class="p_login" id="pLogin">
-					<input type="text" placeholder=" @yield('login') " value="">
+					@yield('login')
 					<div class="load-icons">
 						<img src="img/load.gif" alt="" class="load">
 						<img src="" alt="" class="fail">
@@ -51,7 +51,7 @@
 						</div>
 						<div class="p_spacer">:</div>
 						<div class="p_first-name data-in" id="pFirstName">
-							<input type="text" placeholder="имя">
+							@yield('fname')
 							<div class="load-icons">
 								<img src="img/load.gif" alt="" class="load">
 								<img src="" alt="" class="fail">
@@ -65,7 +65,7 @@
 						</div>
 						<div class="p_spacer">:</div>
 						<div class="p_last-name data-in" id="pLastName">
-							<input type="text" placeholder="фамилия">
+							@yield('lname')
 							<div class="load-icons">
 								<img src="img/load.gif" alt="" class="load">
 								<img src="" alt="" class="fail">
@@ -79,7 +79,7 @@
 						</div>
 						<div class="p_spacer">:</div>
 						<div class="p_age data-in" id="pAge">
-							<input type="text" placeholder="возраст">
+							@yield('age')
 							<div class="load-icons">
 								<img src="img/load.gif" alt="" class="load">
 								<img src="" alt="" class="fail">
@@ -107,7 +107,7 @@
 						</div>
 						<div class="p_spacer">:</div>
 						<div class="p_town data-in" id="pTown">
-							<input type="text" placeholder="город">
+							@yield('town')
 							<div class="load-icons">
 								<img src="img/load.gif" alt="" class="load">
 								<img src="" alt="" class="fail">
@@ -138,7 +138,5 @@
 
 @section('footer')
 	@parent
-	<script src="js/jquery.js"></script>
-	<script src="js/jquery.Jcrop.min.js"></script>
-	<script src="js/profile.js"></script>
+	@yield('profile.js')
 @stop
