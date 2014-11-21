@@ -69,12 +69,14 @@ class UserController extends BaseController{
 	}
 
 	public function login(){
-		if(Auth::check()) return View::make('home');
+		// if(Auth::check()) return View::make('home');
+
 		$data = Input::all();
 		$cred = ['email' => $data['login'],
 							'password' => $data['password']];
+
 		if(Auth::attempt($cred, true)){
-			echo 'ok';
+			return Redirect::to('id' . Auth::id());
 		}
 	}
 
@@ -287,7 +289,8 @@ class UserController extends BaseController{
 					$val = Validator::make($data, $rules);
 
 					if($val->fails())
-						return 'login not unique';
+						// return 'login not unique';
+						return 'non';
 				}
 				if($column!=='non' && $column === 'age'){
 					if(!is_numeric($data['data']))
