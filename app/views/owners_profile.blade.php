@@ -24,8 +24,11 @@
 	<input type="text" placeholder="{{ $user->age or '0' }}">
 @stop
 
-@section('town')
-	<input type="text" placeholder="{{ $user->town or 'город' }}">
+@section('town')<input type="text" placeholder="{{$user->town or 'город'}}">
+@stop
+
+@section('about')
+	<textarea name="" id="" cols="40" rows="5">{{ $user->about or 'о себе' }}</textarea>
 @stop
 
 

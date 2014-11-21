@@ -66,6 +66,58 @@ var edit_me = new (function(){
 
 // ************************* mediator
 
+
+// **************************about
+
+var about = (function(){
+	var self = this;
+	var id = 'pAbout';
+	var timer;
+
+	this.load = new loadAnim('#' + id);
+	this.load.el.style.right = '-50px';
+	this.el = document.getElementById(id);
+	this.label = this.el.parentNode.getElementsByClassName('p_label')[0];
+	this.data = '';
+
+	this.input = this.el.getElementsByTagName('textarea')[0];
+
+	function fails(){
+		self.label.style.color = 'red';
+	}
+
+	this.edit = function(){
+		clearInterval(timer);
+		var el = self.input;
+
+		var obj = {};
+		self.data = el.value;
+
+		self.load.load();
+		obj[id] = el.value;
+		timer = setTimeout(function(){
+			ajax('get', 'edit-profile', obj, function(r){
+				if(r!=='non')
+					self.load.success();
+				else 
+					self.load.fail();
+			});
+		}, 600);
+	}
+
+	self.input.onkeyup = self.edit;
+
+	self.input.onfocus = function(){
+		self.input.innerHTML = '';
+	}
+})();
+
+// **************************ABOUT
+
+
+
+// ************************* avatar
+
 var fileread = document.getElementById('pFileRead');
 var imgPar = document.getElementById('imgPar');
 var jcrop = document.getElementById('jCrop');

@@ -127,7 +127,14 @@
 							О себе
 						</div>
 						<div class="p_spacer">:</div>
-						<div class="p_about data-in" id="pAbout">о себе</div>
+						<div class="p_about data-in" id="pAbout">
+							@yield('about')
+							<div class="load-icons">
+								<img src="img/load.gif" alt="" class="load">
+								<img src="img/fail.png" alt="" class="fail">
+								<img src="img/success.png" alt="" class="success">
+							</div>
+						</div>
 					</li>
 				</ul>
 			</div>

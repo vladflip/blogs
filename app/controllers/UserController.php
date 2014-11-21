@@ -224,10 +224,9 @@ class UserController extends BaseController{
 			$user = User::find(Auth::id());
 		else return 'non';
 
-		$validTypes = array('pLogin', 'pFirstName', 'pLastName', 'pAge', 'pBDay', 'pTown');
+		$validTypes = array('pLogin', 'pFirstName', 'pLastName', 'pAge', 'pBDay', 'pTown', 'pAbout');
 
 		$column = '';
-
 
 		$d =  Input::get('data') ? Input::get('data') : 'non';
 		$d = json_decode($d);
@@ -247,6 +246,7 @@ class UserController extends BaseController{
 			}
 				if($data['data']===''||$data['data']===0)
 					return 'non';
+
 				switch ($key) {
 					case 'pLogin':
 						$column = 'login';
@@ -268,11 +268,16 @@ class UserController extends BaseController{
 						$column = 'town';
 						break;
 
+					case 'pAbout':
+						$column = 'about';
+						break;
 
 					default:
 						$column = 'non';
 						break;
 				}
+
+				if($column === 'non') return 'non';
 
 				if($column!=='non' && $column === 'login'){
 					$rules = [
