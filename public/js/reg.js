@@ -61,6 +61,7 @@ function form(form){
 
 				var res = JSON.parse(msg);
 				if(res.type === 'fail'){
+					self.email_anim.fail();
 				} else if(res.type === 'good'){
 					self.email_anim.success();
 					self.check = true;
