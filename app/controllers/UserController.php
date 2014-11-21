@@ -154,7 +154,7 @@ class UserController extends BaseController{
 			return 'non';
 
 		$img = Image::make($imgp);
-
+		if($d->w < 150 && $d->h < 150) return 'fuckyoufool';
 		if($d->x>$img->width() && $d->w>$img->width())
 			return 'non';
 		if($d->y>$img->height() && $d->h>$img->height())
@@ -244,7 +244,9 @@ class UserController extends BaseController{
 					$data['data'] = $v;
 					$key = $k;
 				}
-
+			}
+				if($data['data']===''||$data['data']===0)
+					return 'non';
 				switch ($key) {
 					case 'pLogin':
 						$column = 'login';
@@ -282,10 +284,14 @@ class UserController extends BaseController{
 					if($val->fails())
 						return 'login not unique';
 				}
+				if($column!=='non' && $column === 'age'){
+					if(!is_numeric($data['data']))
+						return 'non';
+				}
 
 				$user[$column] = $data['data'];
 				$user->save();
-			}
+
 		} else return 'non';
 	}
 }

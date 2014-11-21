@@ -21,13 +21,11 @@ function popUp(call){
 	this.pop = document.getElementById('popUp');
 
 	this.open = function(){
-		console.log('open');
 		self.pop.fadeIn();
 		document.getElementsByClassName('container')[0].fadeOut();
 	}
 
 	this.close = function(){
-		console.log('close');
 		document.getElementsByClassName('container')[0].fadeIn();
 		self.pop.fadeOut();
 		self.pop.innerHTML = '';

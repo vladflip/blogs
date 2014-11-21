@@ -40,7 +40,7 @@
 					@yield('login')
 					<div class="load-icons">
 						<img src="img/load.gif" alt="" class="load">
-						<img src="" alt="" class="fail">
+						<img src="img/fail.png" alt="" class="fail">
 						<img src="img/success.png" alt="" class="success">
 					</div>
 				</div>
@@ -54,7 +54,7 @@
 							@yield('fname')
 							<div class="load-icons">
 								<img src="img/load.gif" alt="" class="load">
-								<img src="" alt="" class="fail">
+								<img src="img/fail.png" alt="" class="fail">
 								<img src="img/success.png" alt="" class="success">
 							</div>
 						</div>
@@ -68,7 +68,7 @@
 							@yield('lname')
 							<div class="load-icons">
 								<img src="img/load.gif" alt="" class="load">
-								<img src="" alt="" class="fail">
+								<img src="img/fail.png" alt="" class="fail">
 								<img src="img/success.png" alt="" class="success">
 							</div>
 						</div>
@@ -82,7 +82,7 @@
 							@yield('age')
 							<div class="load-icons">
 								<img src="img/load.gif" alt="" class="load">
-								<img src="" alt="" class="fail">
+								<img src="img/fail.png" alt="" class="fail">
 								<img src="img/success.png" alt="" class="success">
 							</div>
 						</div>
@@ -110,7 +110,7 @@
 							@yield('town')
 							<div class="load-icons">
 								<img src="img/load.gif" alt="" class="load">
-								<img src="" alt="" class="fail">
+								<img src="img/fail.png" alt="" class="fail">
 								<img src="img/success.png" alt="" class="success">
 							</div>
 						</div>

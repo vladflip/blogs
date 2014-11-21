@@ -16,15 +16,19 @@ function el(id){
 
 	this.edit = function(){
 		clearInterval(timer);
-
 		var el = self.input;
+
 		var obj = {};
 		self.data = el.value;
+
 		self.load.load();
 		obj[id] = el.value;
 		timer = setTimeout(function(){
 			ajax('get', 'edit-profile', obj, function(r){
-				console.log(r);
+				if(r!=='non')
+					self.load.success();
+				else 
+					self.load.fail();
 			});
 		}, 600);
 	}

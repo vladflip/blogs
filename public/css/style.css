@@ -340,7 +340,7 @@ body{
 	margin:0 0 0 50px;
 }
 .p_login{
-	padding:30px 0 0 0;
+	position:relative;
 }
 
 .p_info-list{
@@ -380,8 +380,12 @@ body{
 .data-in span{
 	cursor:auto;
 }
+.p_login span{
+	margin:30px 0 0 0;
+}
 .p_login span,
 .p_login input{
+	margin:30px 0 0 0;
 	background-color:transparent;
 	font-size: 26px;
 	font-weight: bold;
