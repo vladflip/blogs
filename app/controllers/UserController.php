@@ -53,11 +53,15 @@ class UserController extends BaseController{
 
 
 	public function profile($id){
-		if(!User::find($id)){
+		$user = User::find($id);
+		if(!$user){
 			return 404;
 		}
-		if(Auth::check())
-			return View::make('profile')->with('id', $id);
+		if(Auth::check()){
+			if(Auth::id()===$user->id){
+				return View::make('owners_profile')->with('user', Auth::user());
+			}
+		}
 		else if(Auth::guest())
 			return View::make('guest_profile')->with('id', $id);
 	}

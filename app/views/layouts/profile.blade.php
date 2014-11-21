@@ -32,12 +32,12 @@
 			{{ Form::close() }}
 		<div class="p_header">
 			<div class="p_avatar" id="pAvatar">
-				<img id="avaEl" src="" alt="">
+				@yield('ava_xl')
 			</div>
 
 			<div class="p_content">
 				<div class="p_login" id="pLogin">
-					<input type="text" placeholder="логин">
+					<input type="text" placeholder=" @yield('login') " value="">
 					<div class="load-icons">
 						<img src="img/load.gif" alt="" class="load">
 						<img src="" alt="" class="fail">

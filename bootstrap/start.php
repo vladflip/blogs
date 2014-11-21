@@ -32,8 +32,8 @@ $app = new Illuminate\Foundation\Application;
 // ));
 
 $env = $app->detectEnvironment(function(){
-		if(gethostname() == "hugo.beget.ru") return "deploy";
-		if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == "hugo.beget.ru") return "deploy";
+		if(gethostname() == "hugo.beget.ru") return "production";
+		if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == "hugo.beget.ru") return "production";
 		if(getenv("APP_ENV")!="") return getenv("APP_ENV");
 		return "local";
 });
