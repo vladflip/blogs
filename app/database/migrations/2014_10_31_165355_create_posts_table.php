@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration {
 			$t->integer('user_posted')->unsigned();
 
 			$t->string('header',255);
-			$t->text('innertext');
+			$t->text('content');
 			$t->tinyInteger('mod_flag');
 			$t->timestamps();
 

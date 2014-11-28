@@ -29,4 +29,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 								'avatar', 'age', 'rate', 'about', 'birthday',
 								'town');
 
+	public function posts(){
+		return $this->hasMany('Post', 'user_posted');
+	}
+
+	public function comments(){
+		return $this->hasMany('Comment', 'user');
+	}
 }

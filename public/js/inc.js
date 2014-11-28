@@ -152,3 +152,9 @@ function ajax(method, url, data, callback, headers){
 }
 
 // **************************************************AJAX
+
+if(document.getElementById('logOut')){
+	document.getElementById('logOut').onclick = function(){
+		document.getElementById('logOutForm').submit();
+	}
+}

@@ -141,6 +141,14 @@
 
 		</div>
 	</div>
+
+	<div class="add-post">
+		{{ Form::open(['route' => 'add_post', 'method' => 'post']) }}
+			{{ Form::text('header', null, ['class' => 'add-post-header']) }}
+			{{ Form::textArea('content', null, ['class' => 'add-post-content']) }}
+			{{ Form::submit('Отправить!', ['class' => 'add-post-btn']) }}
+		{{ Form::close() }}
+	</div>
 @stop
 
 @section('footer')

@@ -80,6 +80,11 @@ class UserController extends BaseController{
 		}
 	}
 
+	public function forget(){
+		Auth::logout();
+		return Redirect::route('home');
+	}
+
 	public function edit_ava(){
 		$validTypes = array('image/png', 'image/jpg', 'image/jpeg');
 		if(Input::hasFile('avatar')){

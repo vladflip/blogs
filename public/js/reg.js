@@ -12,8 +12,17 @@ function panel(form,btn){
 	
 	var undo = (function(form){
 		return function undo(){
-			console.log(form);
-			form.reset();
+			if(document.getElementsByClassName('sign-up-form')[0])
+				document.getElementsByClassName('sign-up-form')[0].reset();
+			if(document.getElementsByClassName('login-form')[0])
+				document.getElementsByClassName('login-form')[0].reset();
+			var a = document.getElementsByClassName('load-icons');
+			for(i=0;i<a.length;i++){
+				var imgs = a[i].getElementsByTagName('img');
+				for(j=0;j<imgs.length;j++){
+					imgs[j].style.display = 'none';
+				}
+			}
 		}
 	})(self.form);
 	this.popUp = new popUp(undo);

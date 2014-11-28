@@ -13,7 +13,7 @@ class CreateCommentsTable extends Migration {
 			$t->increments('id');
 			$t->integer('post')->unsigned();
 			$t->integer('user')->unsigned();
-			$t->timestamp('date');
+			$t->text('content');
 			$t->tinyInteger('mod_flag');
 
 			$t->foreign('post')->references('id')->on('posts')
@@ -22,6 +22,7 @@ class CreateCommentsTable extends Migration {
 			$t->foreign('user')->references('id')->on('users')
 											->onDelete('cascade')
 											->onUpdate('no action');
+			$t->timestamps();
 		});
 	}
 

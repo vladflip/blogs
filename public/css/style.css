@@ -427,3 +427,119 @@ body{
 /***************CONTENT*/
 
 /**********************************************PROFILE*/
+
+
+/*********************************************main-posts*/
+
+.main-posts{
+	list-style:none;
+	margin:0;
+	padding:0 110px;
+}
+.main-post{
+	clear:both;
+}
+.m-p_header{
+	font-weight: 100;
+	margin:0 0 20px 0;
+}
+.m-p_header a{
+	text-decoration: none;
+	color:#3eade2;
+
+	-webkit-transition: all .3s ease;
+	   -moz-transition: all .3s ease;
+	    -ms-transition: all .3s ease;
+	     -o-transition: all .3s ease;
+	        transition: all .3s ease;
+}
+.m-p_header a:hover{
+	color:#7eddff;
+}
+.m-p_c-block div{
+	display:inline;
+	margin:0 20px 20px 0;
+}
+.m-p_ava{
+	float:left;
+	font-size: 0;
+}
+.m-p_excerpt{
+	
+}
+.m-p_excerpt a{
+	text-decoration: none;
+	color:#3eade2;
+
+	-webkit-transition: all .3s ease;
+	   -moz-transition: all .3s ease;
+	    -ms-transition: all .3s ease;
+	     -o-transition: all .3s ease;
+	        transition: all .3s ease;
+}
+.m-p_excerpt a:hover{
+	color:#7eddff;
+}
+
+.m-p_info{
+	clear:both;
+	height:25px;
+	color:#666;
+}
+/****************info*/
+.m-p_author{
+	float:left;
+	width:200px;
+}
+.m-p_author a{
+	text-decoration: none;
+	color:#666;
+	font-size: 18px;
+}
+.m-p_author:before{
+	content:'';
+	background-image: url(../img/profile_ico.png);
+	display:inline-block;
+	float:left;
+	margin:0 5px 0 0;
+	height:15px;
+	width:9px;
+}
+
+.my_like{
+}
+.no_like{
+
+}
+
+.m-p_date{
+	float:left;
+	width:300px;
+	text-align: center;
+}
+.m-p_comments{
+	float:left;
+	width:100px;
+}
+.m-p_comments:before{
+	content:'';
+	display:inline-block;
+	float:left;
+	height:20px;
+	width:29px;
+	background-image: url(../img/comments_ico.png);
+}
+.m-p_comments a{
+	text-decoration: none;
+	color:#666;
+}
+.m-p_likes{
+	float:right;
+	cursor:pointer;
+}
+.m-p_likes img{
+	float:left;
+	margin:0 3px 0 0;
+}
+/******************info/
+/*********************************************MAIN-POSTS*/
