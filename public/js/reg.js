@@ -64,7 +64,7 @@ function form(form){
 		this.pass2_anim = new loadAnim('.pass2');
 
 		this.email.onkeyup = function(){
-					self.email_anim.load();
+				self.email_anim.load();
 			ajax('post', 'ajax-check-email', this.value, function(msg){
 				// console.log(JSON.parse(msg));
 
@@ -82,7 +82,13 @@ function form(form){
 			clearInterval(timer);
 			if(self.pass2.value === '') return;
 			if(self.pass2.value === this.value){
-				self.pass2_anim.success();
+
+				if(this.value.length<5){
+					self.pass2_anim.fail();
+				} else {
+					self.pass2_anim.success();
+				}
+
 			} else {
 				timer = setTimeout(function(){
 					self.pass2_anim.fail();
@@ -94,7 +100,13 @@ function form(form){
 			clearInterval(timer);
 			if(this.value === '') return;
 			if(self.pass1.value === this.value){
-				self.pass2_anim.success();
+
+				if(this.value.length<5){
+					self.pass2_anim.fail();
+				} else {
+					self.pass2_anim.success();
+				}
+				
 			} else {
 				timer = setTimeout(function(){
 					self.pass2_anim.fail();

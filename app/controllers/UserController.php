@@ -7,7 +7,7 @@ class UserController extends BaseController{
 		$data = Input::all();
 		$rules = [
 				'email' => 'required|unique:users',
-				'password' => 'required|min:8',
+				'password' => 'required|min:5',
 				'repeat_password' => 'same:password'
 		];
 

@@ -14,5 +14,6 @@
 @stop
 
 @section('footer')
+	@parent
 	<script src="js/main_post.js"></script>
 @stop

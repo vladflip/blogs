@@ -36,7 +36,7 @@ Route::post('/submit-ava', ['as' => 'submit_ava', 'uses' => 'UserController@subm
 // 		}
 // });
 
-Route::get('edit-profile', ['as' => 'edit_profile', 'uses' => 'UserController@edit_profile']);
+Route::get('/edit-profile', ['as' => 'edit_profile', 'uses' => 'UserController@edit_profile']);
 
 // *********************************************** POSTs
 
@@ -61,6 +61,11 @@ Route::get('/p', function(){
 
 	// dd( $p->likes[0]->pivot );
 	
+	// $u = User::find(1);
+
+	// echo $u->isReady();
+	
+	// echo md5('25'.csrf_token());
 });
 
 // Event::listen('illuminate.query', function($query)
@@ -72,3 +77,14 @@ Route::post('/add-post', ['before' => 'csrf', 'as' => 'add_post', 'uses' => 'Pos
 
 Route::get('/post{id}',['as' => 'post', 'uses' => 'PostController@get_post'])
 	->where('id','[0-9]+');
+
+Route::get('/like-post', ['as' => 'like_post', 'uses' => 'PostController@like']);
+Route::get('/dislike-post', ['as' => 'dislike_post', 'uses' => 'PostController@dislike']);
+
+
+// *********************************************COMMENTS
+
+Route::post('/add-comment', ['as' => 'add_comment', 'uses' => 'CommentController@create']);
+
+Route::get('/like-comment', ['as' => 'like_comment', 'uses' => 'CommentController@like']);
+Route::get('/dislike-comment', ['as' => 'dislike_comment', 'uses' => 'CommentController@dislike']);

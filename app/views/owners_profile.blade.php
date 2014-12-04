@@ -1,10 +1,10 @@
 @extends('layouts.profile')
 
 @section('ava_xl')
-	@if(empty($user->ava_xl))
-		<img id="avaEl" src="{{ 'img/q_mark.png' }}" alt="">
-	@else
+	@if(!empty($user->ava_xl)&&file_exists($user->ava_xl))
 		<img id="avaEl" src="{{ $user->ava_xl }}" alt="">
+	@else
+		<img id="avaEl" src="{{ 'img/q_mark.png' }}" alt="">	
 	@endif
 @stop
 
@@ -29,6 +29,17 @@
 
 @section('about')
 	<textarea name="" id="" cols="40" rows="5">{{ $user->about or 'о себе' }}</textarea>
+@stop
+
+
+@section('add-post')
+<div class="add-post">
+	{{ Form::open(['route' => 'add_post', 'method' => 'post']) }}
+		{{ Form::text('header', null, ['class' => 'add-post-header']) }}
+		{{ Form::textArea('content', null, ['class' => 'add-post-content']) }}
+		{{ Form::submit('Отправить!', ['class' => 'add-post-btn']) }}
+	{{ Form::close() }}
+</div>
 @stop
 
 

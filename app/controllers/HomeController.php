@@ -9,4 +9,5 @@ class HomeController extends BaseController {
 		else 
 			return View::make('guest_home')->with('posts', Post::all());
 	}
+	
 }

@@ -19,7 +19,8 @@
 
 		<div class="email">
 			{{ 
-				Form::text('email', null, ['placeholder' => 'Ваш email', 'class' => 'email-input']) 
+				Form::text('email', null, ['placeholder' => 'Ваш email', 'class' => 'email-input',
+					'autocomplete' => 'off']) 
 			}}
 			<div class="load-icons">
 				<img src="img/load.gif" alt="" class="load">
@@ -49,7 +50,7 @@
 			</div>
 		</div>
 
-	{{ Form::submit('Зарегистрироваться!',['class' => 'submit']) }}
+		{{ Form::submit('Зарегистрироваться!',['class' => 'submit']) }}
 
 	{{ Form::close() }}
 

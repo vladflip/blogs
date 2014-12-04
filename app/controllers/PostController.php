@@ -23,6 +23,35 @@ class PostController extends BaseController {
 	}
 
 	public function get_post($id){
-		return View::make('post')->with('post', Post::with('comments')->find($id));
+		return View::make('post')->with('post', 
+			Post::with(array('comments'=>function($q){
+
+				$q->with('user')
+					->with('likes')
+					->orderBy('id', 'DESC');
+
+			}))->find($id));
+	}
+
+	public function like(){
+		$d = json_decode(Input::get('data'));
+		
+		if(md5($d->id.$d->id)===$d->hash){
+			echo 'ok';
+		} else return 'non';
+
+		$post = Post::find($d->id);
+		$post->likes()->attach(Auth::id());
+	}
+
+	public function dislike(){
+		$d = json_decode(Input::get('data'));
+		
+		if(md5($d->id.$d->id)===$d->hash){
+			echo 'ok';
+		} else return 'non';
+
+		$post = Post::find($d->id);
+		$post->likes()->detach(Auth::id());
 	}
 }

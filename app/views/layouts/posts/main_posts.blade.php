@@ -10,7 +10,11 @@
 		<div class="m-p_c-block">
 			<div class="m-p_ava">
 				<a href="{{ route('profile', $v->user->id) }}">
-					<img src="{{ $v->user->ava_xl }}" alt="">
+					@if(!empty($v->user->ava_xl)/*&&file_exists($v->user->ava_xl)*/)
+						<img id="avaEl" src="{{ $v->user->ava_xl }}" alt="">
+					@else
+						<img id="avaEl" src="{{ 'img/q_mark.png' }}" alt="">	
+					@endif
 				</a>
 			</div>
 			<div class="m-p_excerpt">
@@ -34,14 +38,14 @@
 					{{ '('.count($v->comments).')' }}	
 				</a>
 			</div>
-			<div class="m-p_likes">
+			<div class="m-p_likes" onclick="like('{{ md5($v->id.$v->id) }}', {{ $v->id }}, this)">
 				@if($v->likes->contains(Auth::id()))
-					<img src="img/liked.png" alt="">
+					<img src="img/liked.png" alt="" onclick="return false;">
 				@else
-					<img src="img/not_liked.png" alt="">
+					<img src="img/not_liked.png" alt="" onclick="return false;">
 				@endif
 
-				{{ count($v->likes) }}
+				<span class="cnt_likes">{{ count($v->likes) }}</span>
 			</div>
 		</div>
 	</li>
