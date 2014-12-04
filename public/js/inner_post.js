@@ -26,14 +26,14 @@ function like(h, id, e){
 		e.getElementsByClassName('cnt_likes')[0].innerHTML = cnt + 1;
 
 		ajax('get', 'like-comment', {hash:h, id:id}, function(r){
-			
+			console.log(r);
 		});
 	} else {
 		img.src = 'img/not_liked.png';
 		e.getElementsByClassName('cnt_likes')[0].innerHTML = cnt - 1;
 
 		ajax('get', 'dislike-comment', {hash:h, id:id}, function(r){
-			
+			console.log(r);
 		});
 	}
 	

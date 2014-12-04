@@ -39,7 +39,7 @@
 						{{ $e['content'] }}
 					</div>
 					<div class="m-p_likes" 
-					onclick="like('{{ md5($e->id,$e->id) }}', {{ $e->id }}, this)">
+					onclick="like('{{ md5($e->id.$e->id) }}', {{ $e->id }}, this)">
 
 						@if($e->likes->contains(Auth::id()))
 							<img src="img/liked.png" alt="" onclick="return false;">
