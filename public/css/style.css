@@ -613,14 +613,23 @@ body{
 
 .comment{
 	position:relative;
-	margin:20px 0 0 0;
-	min-height:100px;
+	margin:30px 0 0 70px;
+	min-height:80px;
+
+	-webkit-transition: height .3s ease;
+	   -moz-transition: height .3s ease;
+	    -ms-transition: height .3s ease;
+	     -o-transition: height .3s ease;
+	        transition: height .3s ease;
 }
 
 .c_c{
 	margin:0 0 0 70px;
 }
 
+.c_c-content{
+	white-space: pre;
+}
 /************************************comments*/
 
 /********************************************INNER-POST*/

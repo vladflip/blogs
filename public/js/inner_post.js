@@ -2,14 +2,24 @@ $('#add-com-input').autosize();
 
 var submitComment = document.getElementById('submitComment');
 var textCmt = document.getElementById('add-com-input');
+var cmtItems = document.getElementById('commentItems');
+
 
 function submit_comment(h, id){
 
 	if(textCmt.value === '') return;
+
 	console.log('FUCTION CALLED');
 	ajax('post', 'add-comment', {id: id, hash : h, val: textCmt.value}, function(r){
-		console.log(r);
+		var n = document.createElement('div');
+		n.className = 'comment';
+		n.innerHTML = r;
+		cmtItems.insertBefore(n, cmtItems.children[0]);
+		textCmt.value = '';
+		textCmt.style.height = '38px';
 	});
+
+
 }
 
 // ***** LIKES
@@ -41,8 +51,3 @@ function like(h, id, e){
 
 // ***** LIKES
 
-var Wall = new function(){
-
-	this.comments = [];
-
-}

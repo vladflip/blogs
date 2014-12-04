@@ -7,14 +7,17 @@ class CommentController extends BaseController {
 		$d = json_decode(Input::get('data'));
 		
 		if(md5($d->id.csrf_token())===$d->hash){
-			echo 'adsf';
+			// echo 'adsf';
 		}
 		
-		Comment::create([
+		$comment = Comment::create([
 				'content' => $d->val,
 				'user' => Auth::id(),
 				'post' => $d->id
 			]);
+
+		return View::make('create_comment')->with('cmt', $comment)
+										->with('user', Auth::user());
 	}
 
 	public function like(){
