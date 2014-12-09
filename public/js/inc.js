@@ -39,17 +39,24 @@ function popUp(call){
 	}
 }
 
-function loadAnim(path){
+function loadAnim(path, pen){
 	var self = this;
 	this.el = document.querySelector(path + ' .load-icons');
 	var el = this.el;
 	var id;
 
+
 	this.pics = {'load' : el.getElementsByClassName('load')[0], 
 				'fail' : el.getElementsByClassName('fail')[0], 
 				'success' : el.getElementsByClassName('success')[0]};
-
 	this.active = 'load';
+
+	if(pen){
+		this.pen = self.el.getElementsByClassName('edit-pen')[0];
+	}
+	this.reset = function(){
+		self.pics[self.active].style.display = 'none';
+	}
 
 	this.displ = function(dis){
 		// if(self.active === dis && dis !== 'load') return;
@@ -60,6 +67,7 @@ function loadAnim(path){
 	}
 
 	this.load = function(){
+		if(pen) self.pen.style.display = 'none';
 		self.displ('load');
 	}
 
@@ -68,6 +76,15 @@ function loadAnim(path){
 	}
 
 	this.success = function(){
+		clearInterval(id);
+		if(pen){
+			id = setTimeout(function(){
+				self.pics[self.active].style.display = 'none';
+				setTimeout(function(){
+					self.pen.fadeIn();
+				},100);
+			},1000);
+		}
 		self.displ('success');
 	}
 }

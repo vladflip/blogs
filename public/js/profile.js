@@ -2,12 +2,22 @@ function el(id){
 	var self = this;
 	var timer;
 
-	this.load = new loadAnim('#' + id);
+	this.load = new loadAnim('#' + id, true);
 	this.load.el.style.top = '-10px';
+
+
 	this.el = document.getElementById(id);
 	this.label = this.el.parentNode.getElementsByClassName('p_label')[0];
 	this.data = '';
 	this.input = this.el.getElementsByTagName('input')[0];
+
+	this.load.pen.onclick = function(){
+		self.input.select();
+	}
+
+    Plugins.AutosizeInput.getDefaultOptions().space = 5;
+	$(this.input).autosizeInput();
+
 	this.ph = self.input.placeholder;
 
 	function fails(){
@@ -24,10 +34,10 @@ function el(id){
 		self.load.load();
 		obj[id] = el.value;
 		timer = setTimeout(function(){
-			ajax('get', 'edit-profile', obj, function(r){
+			ajax('post', 'edit-profile', obj, function(r){
 				if(r!=='non')
 					self.load.success();
-				else 
+				else
 					self.load.fail();
 			});
 		}, 600);
@@ -47,11 +57,7 @@ var edit_me = new (function(){
 	
 	this.f = {};
 
-	this.f.pLogin = new el('pLogin');
-
-	this.f.pFirstName = new el('pFirstName');
-
-	this.f.pLastName = new el('pLastName');
+	this.f.pName = new el('pName');
 
 	this.f.pAge = new el('pAge');
 
@@ -66,7 +72,76 @@ var edit_me = new (function(){
 
 // ************************* mediator
 
+// ************************** login
 
+(function(){
+	var el = document.getElementById('pLogin');
+	var pen = el.getElementsByClassName('edit-pen')[0];
+
+
+	var load = new loadAnim('#pLoginPopUp');
+	var lpop = document.getElementById('pLoginPopUp');
+	var input = lpop.getElementsByTagName('input')[1];
+	var form = document.getElementById('editLoginForm');
+	var submit = document.getElementById('sbmtLogin');
+
+	var timer;
+
+	pen.onclick = function(){
+		var pop = new popUp(function(){
+			input.value = '';
+			load.reset();
+		});
+
+		pop.pop.appendChild(lpop);
+		lpop.style.display = 'block';
+		pop.open();
+		input.focus();
+	}
+
+	lpop.onmousedown = function(e){
+		e.stopPropagation();
+	}
+
+	var edit = function(){
+		clearInterval(timer);
+		submit.onclick = function(){
+			return false;
+		}
+		var el = input;
+		if(el.value === ''){
+			load.reset();
+			return;
+		}
+
+		var obj = {};
+
+		load.load();
+		obj['login'] = el.value;
+		timer = setTimeout(function(){
+			ajax('post', 'edit-login', obj, function(r){
+				if(r==='non'){
+					load.fail();
+					submit.classList.remove('enabled');
+					submit.classList.add('disabled');
+				}
+				else{
+					submit.onclick = function(){
+						form.submit();	
+					}
+					submit.classList.remove('disabled');
+					submit.classList.add('enabled');
+					load.success();
+				}
+			});
+		}, 600);
+	}
+
+	input.onkeyup = edit;
+})();
+
+// ************************** LOGIN
+// 
 // **************************about
 
 var about = (function(){

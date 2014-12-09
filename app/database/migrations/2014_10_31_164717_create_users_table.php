@@ -15,13 +15,11 @@ class CreateUsersTable extends Migration {
 
 			$t->string('login',45)->nullable();
 			$t->string('email',100);
-			$t->string('firstname',60)->nullable();
-			$t->string('lastname',60)->nullable();
+			$t->string('name')->nullable();
 			$t->string('password',64);
 			$t->rememberToken();
 			$t->string('ava_xl',255);
 			$t->string('ava_sm',255);
-			$t->string('ava_xs', 255);
 
 			$t->tinyInteger('age')->unsigned();
 			$t->mediumInteger('rate')->unsigned();

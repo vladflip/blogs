@@ -1,11 +1,20 @@
 @extends('layouts.main')
 
-
 @section('body')
-	<div class="btns">
-		<div class="sign-up" id="signUp">Регистрация</div>
-		<div class="login" id="login">Войти</div>
-	</div>
+	@if(!isset($auth))
+		<div class="btns">
+			<div class="sign-up" id="signUp">Регистрация</div>
+			<div class="login" id="login">Войти</div>
+		</div>
+	@else
+		<div class="btns">
+			<div class="sign-up" id="logOut">Выйти</div>
+		</div>
+		{{ Form::open(['action' => 'UserController@forget', 'method' => 'post', 'id' => 'logOutForm']) }}
+			
+		{{ Form::close() }}
+	@endif
+
 	{{ Form::open(array('route' => 'login', 'method' => 'post','class' => 'login-form')) }}
 
 		{{ Form::text('login', null, ['placeholder' => 'Логин']) }}
@@ -54,16 +63,27 @@
 
 	{{ Form::close() }}
 
+	<ul class="main-posts guest-home">
+		@include('layouts.posts.guest_main_posts')
+	</ul>
 
 @stop
 
 @section('footer')
 	@parent
+	@if(!isset($auth))
+		<script src="js/reg.js"></script>
+		<script>
+			new panel(new form('sign-up-form'),'signUp');
 
-	<script src="js/reg.js"></script>
+			new panel(new form('login-form'),'login');
+		</script>
+	@endif
 	<script>
-		new panel(new form('sign-up-form'),'signUp');
-
-		new panel(new form('login-form'),'login');
+		if(document.getElementById('logOut')){
+			document.getElementById('logOut').onclick = function(){
+				document.getElementById('logOutForm').submit();
+			}
+		}
 	</script>
 @stop

@@ -24,8 +24,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token');
 
 
-	protected $fillable = array('login', 'email', 'firstname',
-								'lastname', 'password', 'remember_token',
+	protected $fillable = array('login', 'email', 'name', 'password', 'remember_token',
 								'avatar', 'age', 'rate', 'about', 'birthday',
 								'town');
 
@@ -38,7 +37,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function isReady(){
-		if($this->firstname && $this->lastname && $this->login && $this->age && $this->town)
+		if($this->name && $this->login 
+				&& $this->age && $this->town && $this->ava_xl && $this->ava_sm)
 			return true;
 		else return false;
 	}

@@ -27,7 +27,7 @@ class UserController extends BaseController{
 				];
 			Auth::attempt($cred);
 
-			return Redirect::to('id' . Auth::id());
+			return Redirect::to('id'.$user->id);
 		}
 	}
 
@@ -52,14 +52,32 @@ class UserController extends BaseController{
 	}
 
 
-	public function profile($id){
-		$user = User::find($id);
-		if(!$user){
+	public function reg_profile($id){
+		if(!$user = User::find($id))
 			return 404;
+
+		if(Auth::id()===$user->id){
+			if(Auth::user()->isReady()){
+				return View::make('owners_profile')->with('user', Auth::user());	
+			} else {
+				return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
+			}
+		} else {
+			return View::make('guest_profile')->with('user', $user);
 		}
+	}
+
+	public function profile($login){
+		if(!$user = User::whereLogin($login)->first()){
+				App::abort(404);
+			}
 		if(Auth::check()){
-			if(Auth::id()===$user->id){
-				return View::make('owners_profile')->with('user', Auth::user());
+			if(intval(Auth::id())===$user->id){
+				if(Auth::user()->isReady()){
+					return View::make('owners_profile')->with('user', Auth::user());	
+				} else {
+					return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
+				}
 			} else {
 				return View::make('guest_profile')->with('user', $user);
 			}
@@ -70,7 +88,6 @@ class UserController extends BaseController{
 
 	public function login(){
 		// if(Auth::check()) return View::make('home');
-
 		$data = Input::all();
 		$cred = ['email' => $data['login'],
 							'password' => $data['password']];
@@ -178,41 +195,33 @@ class UserController extends BaseController{
 			try{
 				$name_xl = md5(Auth::id() . time() . $imgp . 'xl') . '.jpg';
 				$name_sm = md5(Auth::id() . time() . $imgp . 'sm') . '.jpg';
-				$name_xs = md5(Auth::id() . time() . $imgp . 'xs') . '.jpg';
 
 				$nxl = $path.$name_xl;
 				$nsm = $path.$name_sm;
-				$nxs = $path.$name_xs;
 
 				$ava_xl = $user->ava_xl;
 				$ava_sm = $user->ava_sm;
-				$ava_xs = $user->ava_xs;
 
-				if(empty($ava_xl)&&empty($ava_sm)&&empty($ava_xs)){
-					$img->crop($d->w,$d->h,$d->x,$d->y)->resize(150,150)->save($nxl, 70)
-													->resize(50,50)->save($nsm, 70)
-													->resize(32,32)->save($nxs, 70);
+				if(empty($ava_xl)&&empty($ava_sm)){
+					$img->crop($d->w,$d->h,$d->x,$d->y)->resize(200,200)->save($nxl, 100)
+													->resize(50,50)->save($nsm, 80);
 
 					$user->ava_xl = $nxl;									
-					$user->ava_sm = $nsm;									
-					$user->ava_xs = $nxs;
+					$user->ava_sm = $nsm;
 					$user->save();
 
 					return $nxl;						
 				} else {
-					if(file_exists($ava_xl)||file_exists($ava_sm)||file_exists($ava_xs)){
+					if(file_exists($ava_xl)||file_exists($ava_sm)){
 						unlink($ava_xl);
 						unlink($ava_sm);
-						unlink($ava_xs);
 					}
 
-					$img->crop($d->w,$d->h,$d->x,$d->y)->resize(150,150)->save($nxl, 100)
-													->resize(50,50)->save($nsm, 80)
-													->resize(32,32)->save($nxs, 70);
+					$img->crop($d->w,$d->h,$d->x,$d->y)->resize(200,200)->save($nxl, 100)
+													->resize(50,50)->save($nsm, 80);
 
 					$user->ava_xl = $nxl;									
-					$user->ava_sm = $nsm;									
-					$user->ava_xs = $nxs;
+					$user->ava_sm = $nsm;
 					$user->save();
 
 					return $nxl;
@@ -231,7 +240,7 @@ class UserController extends BaseController{
 			$user = User::find(Auth::id());
 		else return 'non';
 
-		$validTypes = array('pLogin', 'pFirstName', 'pLastName', 'pAge', 'pBDay', 'pTown', 'pAbout');
+		$validTypes = array('pLogin', 'pName', 'pAge', 'pBDay', 'pTown', 'pAbout');
 
 		$column = '';
 
@@ -259,12 +268,8 @@ class UserController extends BaseController{
 						$column = 'login';
 						break;
 
-					case 'pFirstName':
-						$column = 'firstname';
-						break;
-					
-					case 'pLastName':
-						$column = 'lastname';
+					case 'pName':
+						$column = 'name';
 						break;
 
 					case 'pAge':
@@ -286,19 +291,11 @@ class UserController extends BaseController{
 
 				if($column === 'non') return 'non';
 
-				if($column!=='non' && $column === 'login'){
-					$rules = [
-						'data' => "unique:users,login"
-					];
-
-					$val = Validator::make($data, $rules);
-
-					if($val->fails())
-						// return 'login not unique';
-						return 'non';
-				}
+				
 				if($column!=='non' && $column === 'age'){
 					if(!is_numeric($data['data']))
+						return 'non';
+					if($data['data']>80)
 						return 'non';
 				}
 
@@ -306,5 +303,60 @@ class UserController extends BaseController{
 				$user->save();
 
 		} else return 'non';
+	}
+
+	public function edit_login(){
+
+		$d = json_decode(Input::get('data'));
+
+		if(isset($d->login)){
+			$data = array('data' => $d->login);
+
+			if(preg_match_all('/[^0-9a-zа-я\.\_]|^[^0-9a-zа-я]|[^0-9a-zа-я]$/u', $data['data'])){
+				return 'non';
+			}
+
+			$rules = [
+				'data' => "required|unique:users,login"
+			];
+
+			$val = Validator::make($data, $rules);
+
+			if($val->fails())
+				// return 'login not unique';
+				return 'non';
+			return 'ok';
+		} else {
+			return 'fuck';
+		}
+	}
+
+	public function submit_login(){
+		$d = Input::all();
+		if(isset($d['login'])){
+			$data = array('data' => $d['login']);
+
+			if(preg_match_all('/[^0-9a-zа-я\.\_]|^[^0-9a-zа-я]|[^0-9a-zа-я]$/u', $data['data'])){
+				return 'non';
+			}
+
+			$rules = [
+				'data' => "required|unique:users,login"
+			];
+
+			$val = Validator::make($data, $rules);
+
+			if($val->fails())
+				// return 'login not unique';
+				return 'non';
+			
+			
+			Auth::user()->login = $d['login'];
+			Auth::user()->save();
+			// return Auth::user()->login;
+			return Redirect::to('/'.$d['login']);
+		} else {
+			return 'fuck';
+		}
 	}
 }

@@ -4,13 +4,13 @@
 // ******************************************* USERs
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
 
-Route::get('/ex', function(){
-	print_r(Session::all());
-});
+// Route::get('/ex', function(){
+// 	print_r(Session::all());
+// });
 
 Route::post('/forget', ['as' => 'forget', 'before' => 'csrf', 'uses' => 'UserController@forget']);
 
-Route::get('/id{id}',['as' => 'profile', 'uses' => 'UserController@profile'])
+Route::get('/id{id}',['as' => 'reg_profile', 'uses' => 'UserController@reg_profile'])
 	->where('id','[0-9]+');
 
 Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
@@ -36,7 +36,11 @@ Route::post('/submit-ava', ['as' => 'submit_ava', 'uses' => 'UserController@subm
 // 		}
 // });
 
-Route::get('/edit-profile', ['as' => 'edit_profile', 'uses' => 'UserController@edit_profile']);
+Route::post('/edit-profile', ['as' => 'edit_profile', 'uses' => 'UserController@edit_profile']);
+Route::post('/edit-login', ['as' => 'edit_login', 'uses' => 'UserController@edit_login']);
+Route::post('/submit-login', ['before' => 'csrf','as' => 'submit_login', 'uses' => 'UserController@submit_login']);
+
+
 
 // *********************************************** POSTs
 
@@ -66,6 +70,7 @@ Route::get('/p', function(){
 	// echo $u->isReady();
 	
 	// echo md5('25'.csrf_token());
+	echo preg_match_all('/[^а-я\.]/u', 'привет');
 });
 
 // Event::listen('illuminate.query', function($query)
@@ -88,3 +93,6 @@ Route::post('/add-comment', ['as' => 'add_comment', 'uses' => 'CommentController
 
 Route::get('/like-comment', ['as' => 'like_comment', 'uses' => 'CommentController@like']);
 Route::get('/dislike-comment', ['as' => 'dislike_comment', 'uses' => 'CommentController@dislike']);
+
+Route::get('/{login}', ['as' => 'profile', 'uses' => 'UserController@profile'])
+->where('login', '[^-]+');

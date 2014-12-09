@@ -11,9 +11,10 @@ body{
 }
 
 .container{
-	width: 900px;
+	width: 860px;
 	/*height:10000px;*/
 	margin: auto;
+	padding:0 20px;
 	position: relative;
 	font-family: Century Gothic, sans-serif;
 	background-color: rgba(256,256,256,.97);
@@ -34,7 +35,7 @@ body{
 	font-size: 14px;
 }
 .h_logo{
-	margin: 0 10px 0 29px;
+	margin: 0 10px 0 0;
 	float: left;
 }
 .h_menu{
@@ -46,12 +47,12 @@ body{
 }
 .h_menu li{
 	float:left;
-	margin: 0 0 0 35px;
+	margin: 0 35px 0 0;
 	cursor: pointer;
 	position: relative;
 }
 .h_menu li:last-child{
-	margin: 0 28px 0 35px;
+	margin: 0 0 0 0;
 }
 .h_menu li a{
 	text-decoration: none;
@@ -182,20 +183,6 @@ body{
 .sign-up-form>div{
 	position:relative;
 }
-.load-icons{
-	position:absolute;
-	height:42px;
-	width:42px;
-
-	z-index:2;
-
-	top:0;
-	right:0px;
-}
-.load-icons img{
-	max-height:42px;
-	display: none;
-}
 .sign-up-form .submit,
 .login-form .submit{
 	width:100%;
@@ -216,27 +203,52 @@ body{
 	height:500px;
 }
 
-.p_header{
-	background-color: #e0e0e0;
-	height:80px;
-	padding:20px 0 20px 105px;
+.load-icons{
+	height:20px;
+	width:20px;
+
+	z-index:2;
+
+	top:0;
+	right:0px;
+
+	overflow:hidden;
+	display:inline-block;
 }
-/************** avatar*/
-.p_avatar{
-	border:1px solid #ccc;
-	border-radius: 5px;
-	float:left;
-	padding:5px;
-	background-color:#fff;
+.load-icons img{
+	max-height:20px;
+	display: none;
+
+	-webkit-transition: opacity .3s ease;
+	   -moz-transition: opacity .3s ease;
+	    -ms-transition: opacity .3s ease;
+	     -o-transition: opacity .3s ease;
+	        transition: opacity .3s ease;
+}
+.edit-pen{
+	width:20px;
+	height:20px;
+	display:inline-block;
 	cursor:pointer;
-	width:150px;
-	height:150px;
+	background:#e5edef url(../img/edit_pen.png) no-repeat center;
+}
+
+/************** ava block*/
+.p_user-ava-block{
+	float:left;
+	width:25%;
+}
+.p_avatar{
+	border-radius: 5px;
+	cursor:pointer;
+	width:200px;
+	height:200px;
 }
 .p_avatar img{
-	min-height: 150px;
+	min-height: 200px;
 	border-radius: 5px;
-	min-width: 150px;
-	width:150px;
+	min-width: 200px;
+	width:200px;
 	display:block;
 
 	-webkit-transition: opacity .3s ease;
@@ -331,100 +343,133 @@ body{
 .p_undo-ava{
 	background-color:#FB3E3E;
 }
-/************** AVATAR*/
+/************** AVA BLOCK*/
 
-/***************content*/
+/*********************************info*/
 
-.p_content{
-	display:inline-block;
-	margin:0 0 0 50px;
+.p_user-info{
+	float:right;
+	width:74%;
 }
-.p_login{
-	position:relative;
-}
-
 .p_info-list{
-	margin:50px 0 0 0;
 	padding:0;
-	list-style:none;
+	margin:0;
+	list-style: none;
 }
-.p_info-list li{
-	margin:0 0 15px 0;
-	height:35px;
-}
-.p_info-list li>div{
-	display:inline-block;
-}
-.p_info-list li:last-child{
-	height:auto;
-}
-.p_info-list li:last-child .p_label,
-.p_info-list li:last-child .p_spacer{
-	position:relative;
-	top:-86px;
-}
-/***********************data-in*/
 .data-in{
 	/*font-size: 10px;*/
 	font-weight: bold;
-	color:#666;
 	padding:2px;
 	position:relative;
 }
 .data-in input,
-.p_login input,
-.data-in span,
 .p_about textarea{
-	background-color: rgba(256,256,256,.97);
+	background-color: rgba(256,256,256,.0);
 	border:0;
 	margin:0;
 	font-size: 15px;
 	font-weight: bold;
 	font-family: Century Gothic, sans-serif;
-	color:#555;
 	padding:2px;
 	outline:none;
+}
+.data-in input::selection{
+	background-color:#5b8199;
+	color:#fff;
+}
+.data-in input::-moz-selection{
+	background-color:#00ACE4;
+}
+/*************************************login-block*/
+/*******************************change-block*/
+
+.p_login-pop-up{
+	display:none;
+	background-color:#eee;
+	width:300px;
+	height:150px;
+	margin:200px auto;
+	border-radius: 15px;
+	font-family: Century Gothic, sans-serif;
+}
+.p_submit-login{
+	padding:5px;
+	font-family: Century Gothic, sans-serif;
+	width:100px;
+	margin:20px auto;
+	border-radius: 5px;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+
+	-webkit-transition: all .3s ease;
+	   -moz-transition: all .3s ease;
+	    -ms-transition: all .3s ease;
+	     -o-transition: all .3s ease;
+	        transition: all .3s ease;
+}
+.p_submit-login.enabled{
+	background-color:#7eddff;
+	color:#fff;
 	cursor:pointer;
 }
-.data-in span{
+.p_submit-login.disabled{
+	background-color:#aaa;
+	color:#fff;
 	cursor:auto;
 }
-.p_login span{
-	margin:30px 0 0 0;
-	display:block;
+/********************************CHANGE-BLOCK*/
+.p_login{
+	position:relative;
 }
-.p_login span,
-.p_login input{
-	margin:30px 0 0 0;
+.p_login span{
 	background-color:transparent;
 	font-size: 26px;
 	font-weight: bold;
-	color:#666;
+	color:#5b8199;
 
 	letter-spacing: 3px;
-	font-style: italic;
+}
+/**************************************LOGIN-BLOCK*/
+
+/****************************************name age block*/
+
+.p_info-list li{
+	margin:0 0 10px 0;
+}
+.p_info-list li:nth-child(2)>div{
+	display:inline-block;
+}
+.p_age-block input{
+	color:#bbb;
+}
+
+/******************************************NAME AGE BLOCK*/
+.p_town input{
+	color:#bbb;
+}
+.p_about-block{
+	height:80px;
+}
+.p_about-cap{
+	background-color:#e7ecef;
+	padding:30px 10px;
+	height:20px;
+	text-align: center;
+	border-radius: 5px;
+	color:#5b8199;
+	cursor:pointer;
 }
 .p_about textarea{
 	resize:none;
 	background-color: transparent;
+	display:none;
 	overflow:hidden;
-	border-top:1px solid #999;
-	border-bottom:1px solid #999;
 }
-
-/***********************DATA-IN*/
-.p_label{
-	width:130px;
-	text-align: right;
-	color:#aaa;
-	font-weight: 600;
-}
-.p_spacer{
-	color:#666;
-	font-weight: bold;
-	margin:0 5px;
-}
-/***************CONTENT*/
+/***************INFO*/
 
 /**********************************************PROFILE*/
 
@@ -543,6 +588,9 @@ body{
 	-o-user-select: none;
 	user-select: none;
 }
+.guest-home .m-p_likes{
+	cursor:auto;
+}
 .m-p_likes img{
 	float:left;
 	margin:0 3px 0 0;
@@ -566,6 +614,12 @@ body{
 
 .add-comment{
 	position:relative;
+}
+.restriction-comment{
+	padding:20px 0;
+	text-align: center;
+	background-color:#e0e0e0;
+	color:#666;
 }
 
 .c-ava,
@@ -610,7 +664,6 @@ body{
 	margin:7px 0 0 0;
 	color:#fff;
 }
-
 .comment{
 	position:relative;
 	margin:30px 0 0 70px;
@@ -622,7 +675,9 @@ body{
 	     -o-transition: height .3s ease;
 	        transition: height .3s ease;
 }
-
+.guest-post .comment{
+	margin:30px 0 0 0;
+}
 .c_c{
 	margin:0 0 0 70px;
 }

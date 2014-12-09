@@ -23,14 +23,36 @@ class PostController extends BaseController {
 	}
 
 	public function get_post($id){
-		return View::make('post')->with('post', 
-			Post::with(array('comments'=>function($q){
 
-				$q->with('user')
-					->with('likes')
-					->orderBy('id', 'DESC');
+		if(Auth::check()){
+			if(Auth::user()->isReady())
+				return View::make('post')->with('post', 
+								Post::with(array('comments'=>function($q){
 
-			}))->find($id));
+									$q->with('user')
+										->with('likes')
+										->orderBy('id', 'DESC');
+
+								}))->find($id));
+			else
+				return View::make('guest_post')->with('post', 
+								Post::with(array('comments'=>function($q){
+
+									$q->with('user')
+										->with('likes')
+										->orderBy('id', 'DESC');
+
+								}))->find($id))->with('auth', true);
+		} else
+			return View::make('guest_post')->with('post', 
+									Post::with(array('comments'=>function($q){
+
+										$q->with('user')
+											->with('likes')
+											->orderBy('id', 'DESC');
+
+									}))->find($id));
+
 	}
 
 	public function like(){

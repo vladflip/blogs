@@ -89,3 +89,15 @@ Route::filter('csrf', function()
 	}
 });
 
+/**
+ * -------------------------------------------------------------------------
+ * Login name Filter
+ * -------------------------------------------------------------------------
+ */
+
+// Route::filter('login', function($route){
+// 	$login = $route->getParameter('login');
+// 	if(!User::whereLogin($login)->pluck('login')){
+// 		App::abort('404');
+// 	}
+// });

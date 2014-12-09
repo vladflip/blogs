@@ -31,3 +31,4 @@
 @section('about')
 	<textarea name="" id="" disabled cols="40" rows="5">{{ $user->about or 'о себе' }}</textarea>
 @stop
+asdflkjasdfkljasdf
