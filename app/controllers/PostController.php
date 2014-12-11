@@ -15,8 +15,8 @@ class PostController extends BaseController {
 		} else {
 			$p = Post::create([
 					'user_posted' => Auth::id(),
-					'header' => $d['header'],
-					'content' => $d['content']
+					'header' => htmlentities($d['header']),
+					'content' => htmlentities($d['content'])
 				]);
 			return Redirect::to('id'.Auth::id());
 		}

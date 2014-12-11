@@ -343,6 +343,25 @@ body{
 .p_undo-ava{
 	background-color:#FB3E3E;
 }
+
+/************************rate*/
+.p_rate-block{
+	background-color:#e7ecef;
+	color:#5b8199;
+	width:200px;
+	margin:5px 0 0 0;
+	padding:5px 0;
+	text-align: center;
+	border-radius: 5px;
+}
+.p_rate-label{
+	font-size: 14px;
+}
+.p_rate{
+	font-weight: bold;
+	font-size: 20px;
+}
+/************************RATE*/
 /************** AVA BLOCK*/
 
 /*********************************info*/
@@ -362,8 +381,7 @@ body{
 	padding:2px;
 	position:relative;
 }
-.data-in input,
-.p_about textarea{
+.data-in input{
 	background-color: rgba(256,256,256,.0);
 	border:0;
 	margin:0;
@@ -452,22 +470,47 @@ body{
 	color:#bbb;
 }
 .p_about-block{
-	height:80px;
+	position:relative;
 }
 .p_about-cap{
 	background-color:#e7ecef;
 	padding:30px 10px;
-	height:20px;
 	text-align: center;
 	border-radius: 5px;
 	color:#5b8199;
 	cursor:pointer;
+	color:#5b8199;
+	font-size: 15px;
+	font-weight: bold;
+}
+.p_about-cap.ready{
+	text-align: left;
+	padding:5px;
+	min-height:70px;
+	word-wrap:break-word;
+	overflow:hidden;
 }
 .p_about textarea{
 	resize:none;
-	background-color: transparent;
+	background-color:#e7ecef;
+	border-radius: 5px;
+	width:626px;
+	min-height:70px;
+	color:#5b8199;
 	display:none;
-	overflow:hidden;
+
+	border:0;
+	margin:0;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: Century Gothic, sans-serif;
+	padding:5px;
+	outline:none;
+}
+.p_about .load-icons{
+	position:absolute;
+	top:-10px;
+	right:-10px;
 }
 /***************INFO*/
 

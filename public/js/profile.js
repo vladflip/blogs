@@ -144,47 +144,59 @@ var edit_me = new (function(){
 // 
 // **************************about
 
-var about = (function(){
-	var self = this;
-	var id = 'pAbout';
+(function(){
+	var el = document.getElementById('pAbout');
+	var txt = el.getElementsByTagName('textarea')[0];
+	$(txt).autosize();
+
+	var cap = document.getElementsByClassName('p_about-cap')[0];
 	var timer;
+	var load = new loadAnim('#pAbout');
 
-	this.load = new loadAnim('#' + id);
-	this.load.el.style.right = '-50px';
-	this.el = document.getElementById(id);
-	this.label = this.el.parentNode.getElementsByClassName('p_label')[0];
-	this.data = '';
+	var blur = false;
 
-	this.input = this.el.getElementsByTagName('textarea')[0];
+	cap.onclick = function(){
+		this.style.display = 'none';
+		txt.style.display = 'block';
 
-	function fails(){
-		self.label.style.color = 'red';
+		txt.value = txt.value.replace(/<br>/g, '\r\n');
+		$(txt).trigger('autosize.resize');
+		txt.focus();
 	}
 
-	this.edit = function(){
+	txt.onblur = function(){
+		cap.style.display = 'block';
+		txt.style.display = 'none';
+
+		// cap.innerHTML = txt.value;
+		// txt.value = txt.value.replace(/\s{2,}/g, ' ');
+		// txt.value = txt.value.replace(/<br>/, '\r\n');
+		load.reset();
+	}
+
+	var edit = function(){
 		clearInterval(timer);
-		var el = self.input;
 
 		var obj = {};
-		self.data = el.value;
-
-		self.load.load();
-		obj[id] = el.value;
+		load.load();
+		obj['pAbout'] = txt.value;
 		timer = setTimeout(function(){
-			ajax('get', 'edit-profile', obj, function(r){
-				if(r!=='non')
-					self.load.success();
+			ajax('post', 'edit-profile', obj, function(r){
+				if(r!=='non'){
+					load.success();
+					setTimeout(function(){
+						load.reset();
+					}, 1000);
+				}
 				else 
-					self.load.fail();
+					load.fail();
+
+				cap.innerHTML = r;
 			});
 		}, 600);
 	}
 
-	self.input.onkeyup = self.edit;
-
-	self.input.onfocus = function(){
-		self.input.innerHTML = '';
-	}
+	txt.onkeyup = edit;
 })();
 
 // **************************ABOUT

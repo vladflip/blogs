@@ -24,7 +24,19 @@
 @stop
 
 @section('about')
-	<textarea name="" id="" cols="40" rows="4">{{ $user->about or 'о себе' }}</textarea>
+	<textarea name="" id="" cols="40" rows="4">{{ $user->about}}</textarea>
+@stop
+
+@section('cap')
+	@if($user->about)
+		<div class="p_about-cap ready">
+			{{ $user->about}}
+		</div>
+	@else
+		<div class="p_about-cap">
+			{{ 'Напишите о себе' }}
+		</div>
+	@endif
 @stop
 
 
@@ -47,5 +59,6 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.Jcrop.min.js"></script>
 	<script src="js/jquery.autosize.input.js"></script>
+	<script src="js/jquery.autosize.min.js"></script>
 	<script src="js/profile.js"></script>
 @stop

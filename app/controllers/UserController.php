@@ -299,7 +299,18 @@ class UserController extends BaseController{
 						return 'non';
 				}
 
-				$user[$column] = $data['data'];
+				if($column!=='non' && $column === 'about'){
+					$d = htmlentities(trim($data['data']));
+					$d = preg_replace('/[\n]{2,}/mu', '<br>', $d);
+					$d = preg_replace('/[\n]{1}/mu', '<br>', $d);
+					$d = preg_replace('/[\s]{2,}/mu', ' ', $d);
+
+					$user[$column] = $d;
+					$user->save();
+					return $d;
+				}
+
+				$user[$column] = htmlentities($data['data']);
 				$user->save();
 
 		} else return 'non';

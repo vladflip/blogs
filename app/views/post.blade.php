@@ -31,7 +31,7 @@
 				</div>
 				<div class="c_c">
 					<div class="c-c_header">
-						{{ $e->toArray()['user']['firstname'].' '.$e->toArray()['user']['lastname'] }}
+						{{ $e->toArray()['user']['name']}}
 					</div>
 					<div class="c-c_date">
 						{{ $e['created_at'] }}

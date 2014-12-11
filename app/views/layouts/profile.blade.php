@@ -52,10 +52,7 @@
 			</div>
 
 			<div class="p_rate-block">
-				<div class="p_label">
-					Рейтинг
-				</div>
-				<div class="p_spacer">:</div>
+				<div class="p_rate-label">Рейтинг активности</div>
 				<div class="p_rate data-in" id="pRate">0</div>
 			</div>
 
@@ -114,8 +111,8 @@
 				
 				<li>
 					<div class="p_about-block">
-						<div class="p_about-cap">Напишите о себе</div>
-						<div class="p_about data-in" id="pAbout">
+						@yield('cap')
+						<div class="p_about" id="pAbout">
 							@yield('about')
 							<div class="load-icons">
 								<img src="img/load.gif" alt="" class="load">

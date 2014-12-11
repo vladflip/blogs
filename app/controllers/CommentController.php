@@ -11,7 +11,7 @@ class CommentController extends BaseController {
 		}
 		
 		$comment = Comment::create([
-				'content' => $d->val,
+				'content' => htmlentities($d->val),
 				'user' => Auth::id(),
 				'post' => $d->id
 			]);
