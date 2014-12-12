@@ -123,11 +123,12 @@
 					</div>
 				</li>
 			</ul>
-
+			
+			<div class="p_wall">
+				@include('layouts.posts.wall')
+			</div>
 		</div>
 	</div>
-
-	@yield('add-post')
 @stop
 
 

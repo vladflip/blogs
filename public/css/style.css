@@ -314,6 +314,12 @@ body{
 	top:0px;
 	left:-170px;
 	border-radius: 5px;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
 }
 
 .p_ava-btns-par{
@@ -515,6 +521,46 @@ body{
 /***************INFO*/
 
 /**********************************************PROFILE*/
+
+/*****************************************wall*/
+
+.add-post{
+	background-color:#bfced6;
+	min-height:150px;
+	border-radius: 5px;
+}
+.a-p_cap{
+	margin:auto;
+	cursor:pointer;
+	padding:50px 0;
+}
+.a-p_plus{
+	text-align: center;
+	color:#fff;
+	font-size: 14px;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+.a-p_form{
+	display:none;
+}
+.add-post-header{
+	display:block;
+	margin:0 0 10px 0;
+}
+.add-post-content{
+	display:block;
+	margin:0 0 10px 0;
+}
+.add-post-btn{
+	display:block;
+}
+
+/*****************************************WALL*/
 
 
 /*********************************************main-posts*/

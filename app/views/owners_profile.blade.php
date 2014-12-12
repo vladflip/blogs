@@ -39,26 +39,11 @@
 	@endif
 @stop
 
-
-@section('add-post')
-	@if(!isset($not_ready))
-		<div class="add-post">
-			{{ Form::open(['route' => 'add_post', 'method' => 'post']) }}
-				{{ Form::text('header', null, ['class' => 'add-post-header']) }}
-				{{ Form::textArea('content', null, ['class' => 'add-post-content']) }}
-				{{ Form::submit('Отправить!', ['class' => 'add-post-btn']) }}
-			{{ Form::close() }}
-		</div>
-	@else
-		<span>Вы не можете писать посты</span>
-	@endif
-@stop
-
-
 @section('profile.js')
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.Jcrop.min.js"></script>
 	<script src="js/jquery.autosize.input.js"></script>
 	<script src="js/jquery.autosize.min.js"></script>
 	<script src="js/profile.js"></script>
+	<script src="js/wall.js"></script>
 @stop
