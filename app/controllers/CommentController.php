@@ -9,11 +9,16 @@ class CommentController extends BaseController {
 		if(md5($d->id.csrf_token())===$d->hash){
 			// echo 'adsf';
 		}
+
+		$r = htmlentities(trim($d->val));
+		$r = preg_replace('/[\n]{2,}/mu', '<br><br>', $r);
+		$r = preg_replace('/[\n]{1}/mu', '<br>', $r);
+		$r = preg_replace('/[\s]{2,}/mu', ' ', $r);
 		
 		$comment = Comment::create([
-				'content' => htmlentities($d->val),
-				'user' => Auth::id(),
-				'post' => $d->id
+				'content' => $r,
+				'user_id' => Auth::id(),
+				'post_id' => $d->id
 			]);
 
 		return View::make('create_comment')->with('cmt', $comment)

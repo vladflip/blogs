@@ -14,11 +14,11 @@ class PostController extends BaseController {
 			return Redirect::to('id'.Auth::id());
 		} else {
 			$p = Post::create([
-					'user_posted' => Auth::id(),
+					'user_id' => Auth::id(),
 					'header' => htmlentities($d['header']),
 					'content' => htmlentities($d['content'])
 				]);
-			return Redirect::to('id'.Auth::id());
+			return Redirect::to(Auth::user()->login);
 		}
 	}
 

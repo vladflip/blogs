@@ -10,7 +10,7 @@
 		<div class="m-p_c-block">
 			<div class="m-p_ava">
 				<a href="{{ route('profile', $v->user->login) }}">
-					@if(!empty($v->user->ava_xl)/*&&file_exists($v->user->ava_xl)*/)
+					@if(!empty($v->user->ava_xl)&&file_exists($v->user->ava_xl))
 						<img id="avaEl" src="{{ $v->user->ava_xl }}" alt="">
 					@else
 						<img id="avaEl" src="{{ 'img/q_mark.png' }}" alt="">	

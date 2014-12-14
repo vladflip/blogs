@@ -229,6 +229,7 @@ body{
 	width:20px;
 	height:20px;
 	display:inline-block;
+	border-radius: 5px;
 	cursor:pointer;
 	background:#e5edef url(../img/edit_pen.png) no-repeat center;
 }
@@ -548,17 +549,128 @@ body{
 .a-p_form{
 	display:none;
 }
-.add-post-header{
+.a-p-header{
 	display:block;
 	margin:0 0 10px 0;
 }
-.add-post-content{
+.a-p-content{
 	display:block;
 	margin:0 0 10px 0;
 }
-.add-post-btn{
+.a-p-btn{
 	display:block;
 }
+
+/*---------------------------------------*/
+/*-------------------- wall posts*/
+
+/*--------------------post*/
+
+.w-post{
+	margin:20px 0 0 0;
+	background-color:#f3f5f6;
+	padding:15px 20px;
+}
+.w-p_user-block{
+	position:relative;
+}
+.w-p_user-ava{
+	position:absolute;
+	top:-15px;
+	left:-95px;
+}
+.w-p_user-ava::after{
+	content:'';
+	display:block;
+	position:absolute;
+	top:20px;
+	left:59px;
+	border-style: solid;
+	border-width: 8px 8px 8px 8px;
+	border-color: transparent #f3f5f6 transparent transparent;
+}
+.w-p_user-name{
+	color:#5b8199;
+	font-size: 14px;
+	margin:0 0 5px 0;
+}
+.w-p_date{
+	color:#b2bbbf;
+	font-size: 12px;
+	margin:0 0 5px 0;
+}
+.w-p_header{
+	color:#5b8199;
+	font-weight: bold;
+	font-size: 18px;
+	letter-spacing: 2px;
+	margin:0 0 5px 0;
+}
+.w-p_content{
+	font-size: 15px;
+	margin:0 0 5px 0;
+}
+/*--------------------POST*/
+
+/*****************comment*/
+
+.w-p_a-c-input{
+	padding:10px;
+	border-radius: 5px;
+	width:577px;
+	height:55px;
+	resize:none;
+	outline:none;
+	margin:0 0 3px 0;
+}
+.w-p_c-block hr{
+	border:1px solid #ddd;
+	border-top:0;
+	margin:10px 0;
+}
+
+.w-p_c_ava{
+	float:left;
+	overflow:hidden;
+	border-radius: 5px;
+	height:60px;
+	margin:0 10px 0 0;
+}
+.w-p_c-c{
+	float:left;
+}
+.w-p_c_header{
+	color:#5b8199;
+	margin:0 0 2px 0;
+	font-size: 14px;
+}
+.w-p_c_date{
+	color:#b2bbbf;
+	font-size: 12px;
+	margin:0 0 6px 0;
+}
+.w-p_c_content{
+	font-size: 15px;
+}
+.w-p_c_like{
+	text-align: right;
+	cursor:pointer;
+	clear:both;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+.clear-fix{
+	clear:both;
+}
+/*****************COMMENT*/
+
+/*-------------------- wall posts*/
+/*---------------------------------------*/
 
 /*****************************************WALL*/
 
@@ -744,14 +856,14 @@ body{
 }
 
 .submit-comment{
-	width:100px;
+	width:90px;
 	text-align: center;
-	padding:5px 10px;
-	background-color:#7eddff;
+	padding:8px 15px;
+	background-color:#5b8199;
 	cursor:pointer;
 	border-radius: 5px;
-	margin:7px 0 0 0;
-	color:#fff;
+	font-size: 13px;
+	color:#ddd;
 }
 .comment{
 	position:relative;

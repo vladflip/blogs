@@ -3,7 +3,7 @@
 </div>
 <div class="c_c">
 	<div class="c-c_header">
-		{{ $user->firstname.' '.$user->lastname }}
+		{{ $user->name }}
 	</div>
 	<div class="c-c_date">
 		{{ $cmt->created_at }}

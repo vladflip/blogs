@@ -74,7 +74,20 @@ class UserController extends BaseController{
 		if(Auth::check()){
 			if(intval(Auth::id())===$user->id){
 				if(Auth::user()->isReady()){
-					return View::make('owners_profile')->with('user', Auth::user());	
+					return View::make('owners_profile')
+					->with('user', User::with(['posts'=>function($q){
+
+									$q->with('likes')
+
+										->with(['comments' => function($q2){
+											$q2->with('likes')
+												->with('user')
+												->orderBy('id', 'DESC');
+										}])
+
+										->orderBy('id', 'DESC');
+
+								}])->find($user->id));
 				} else {
 					return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
 				}
@@ -204,7 +217,7 @@ class UserController extends BaseController{
 
 				if(empty($ava_xl)&&empty($ava_sm)){
 					$img->crop($d->w,$d->h,$d->x,$d->y)->resize(200,200)->save($nxl, 100)
-													->resize(50,50)->save($nsm, 80);
+													->resize(60,60)->save($nsm, 80);
 
 					$user->ava_xl = $nxl;									
 					$user->ava_sm = $nsm;
@@ -218,7 +231,7 @@ class UserController extends BaseController{
 					}
 
 					$img->crop($d->w,$d->h,$d->x,$d->y)->resize(200,200)->save($nxl, 100)
-													->resize(50,50)->save($nsm, 80);
+													->resize(60,60)->save($nsm, 80);
 
 					$user->ava_xl = $nxl;									
 					$user->ava_sm = $nsm;
@@ -301,11 +314,11 @@ class UserController extends BaseController{
 
 				if($column!=='non' && $column === 'about'){
 					$d = htmlentities(trim($data['data']));
-					$d = preg_replace('/[\n]{2,}/mu', '<br>', $d);
+					$d = preg_replace('/[\n]{2,}/mu', '<br><br>', $d);
 					$d = preg_replace('/[\n]{1}/mu', '<br>', $d);
 					$d = preg_replace('/[\s]{2,}/mu', ' ', $d);
 
-					$user[$column] = $d;
+					$user->about = $d;
 					$user->save();
 					return $d;
 				}

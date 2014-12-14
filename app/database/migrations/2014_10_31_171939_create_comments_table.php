@@ -11,15 +11,15 @@ class CreateCommentsTable extends Migration {
 	{
 		Schema::create(self::TABLE_NAME, function($t){
 			$t->increments('id');
-			$t->integer('post')->unsigned();
-			$t->integer('user')->unsigned();
+			$t->integer('post_id')->unsigned();
+			$t->integer('user_id')->unsigned();
 			$t->text('content');
 			$t->tinyInteger('mod_flag');
 
-			$t->foreign('post')->references('id')->on('posts')
+			$t->foreign('post_id')->references('id')->on('posts')
 											->onDelete('cascade')
 											->onUpdate('no action');
-			$t->foreign('user')->references('id')->on('users')
+			$t->foreign('user_id')->references('id')->on('users')
 											->onDelete('cascade')
 											->onUpdate('no action');
 			$t->timestamps();
