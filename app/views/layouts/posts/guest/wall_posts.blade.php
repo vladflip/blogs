@@ -23,7 +23,7 @@
 		</div>
 
 		<div class="w-p_content">
-			{{ substr($v->content, 0, 100) }}
+			{{ $v->content }}
 		</div>
 		
 		<div class="w-p_images"></div>
