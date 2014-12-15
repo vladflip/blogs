@@ -119,7 +119,7 @@ class UserController extends BaseController{
 							'password' => $data['password']];
 
 		if(Auth::attempt($cred, true)){
-			return Redirect::to('id' . Auth::id());
+			return Redirect::to(Auth::user()->login);
 		}
 	}
 
