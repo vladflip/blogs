@@ -11,12 +11,23 @@ class PostController extends BaseController {
 		$val = Validator::make($d, $r);
 
 		if($val->fails()){
-			return Redirect::to('id'.Auth::id());
+			return Redirect::to(Auth::user()->login);
 		} else {
+
+			$head = htmlentities(trim($d['header']));
+			$head = preg_replace('/[\n]{2,}/mu', '<br><br>', $head);
+			$head = preg_replace('/[\n]{1}/mu', '<br>', $head);
+			$head = preg_replace('/[\s]{2,}/mu', ' ', $head);
+
+			$con = htmlentities(trim($d['content']));
+			$con = preg_replace('/[\n]{2,}/mu', '<br><br>', $con);
+			$con = preg_replace('/[\n]{1}/mu', '<br>', $con);
+			$con = preg_replace('/[\s]{2,}/mu', ' ', $con);
+
 			$p = Post::create([
 					'user_id' => Auth::id(),
-					'header' => htmlentities($d['header']),
-					'content' => htmlentities($d['content'])
+					'header' => $head,
+					'content' => $con
 				]);
 			return Redirect::to(Auth::user()->login);
 		}
