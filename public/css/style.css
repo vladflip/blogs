@@ -553,6 +553,7 @@ body{
 .a-p-content{
 	display:block;
 	margin:0 0 10px 0;
+	min-height:80px;
 }
 .a-p-btn{
 	display:block;
@@ -563,6 +564,11 @@ body{
 
 /*--------------------post*/
 
+.readmore_post{
+	cursor:pointer;
+	color:#5b8199;
+	font-size: 14px;
+}
 .w-post{
 	margin:20px 0 0 0;
 	background-color:#f3f5f6;
@@ -606,6 +612,7 @@ body{
 .w-p_content{
 	font-size: 15px;
 	margin:0 0 5px 0;
+	word-wrap:break-word;
 }
 /*--------------------POST*/
 

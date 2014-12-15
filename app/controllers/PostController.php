@@ -14,15 +14,21 @@ class PostController extends BaseController {
 			return Redirect::to(Auth::user()->login);
 		} else {
 
+
+			// return nl2br($d['content']);
+
 			$head = htmlentities(trim($d['header']));
 			$head = preg_replace('/[\n]{2,}/mu', '<br><br>', $head);
 			$head = preg_replace('/[\n]{1}/mu', '<br>', $head);
 			$head = preg_replace('/[\s]{2,}/mu', ' ', $head);
 
+
 			$con = htmlentities(trim($d['content']));
-			$con = preg_replace('/[\n]{2,}/mu', '<br><br>', $con);
-			$con = preg_replace('/[\n]{1}/mu', '<br>', $con);
+			$con = preg_replace("/[\r\n]{2,}/mu", '<br><br>', $con);
+			// $con = preg_replace("/[\r\n]{1}/mu", '<br>', $con);
 			$con = preg_replace('/[\s]{2,}/mu', ' ', $con);
+
+			// return explode(" ",$con);
 
 			$p = Post::create([
 					'user_id' => Auth::id(),

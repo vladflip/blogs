@@ -59,6 +59,7 @@
 //	wall module
 // -------------------------------------------
 
+$('.a-p-content').autosize();
 
 function comment(el){
 	var self = this;
@@ -87,14 +88,34 @@ function comment(el){
 
 }
 
+function readmore_post(el){
+	el.style.display = 'none';
+	el.parentNode.getElementsByClassName('s2')[0].style.display = '';
+}
+
+function post(el){
+	var self = this;
+	this.content = el.getElementsByClassName('w-p_content')[0];
+
+	if(self.content.clientHeight > 200){
+		// self.content.style.height = '200px';
+	}
+
+}
+
 var wall = (function(){
 	var c = document.getElementsByClassName('w-p_comments-block');
 	var comments = [];
 	for(i=0;i<c.length;i++){
 		comments.push(new comment(c[i]));
 	}
-	console.log(comments);
 
+	var p = document.getElementsByClassName('w-post');
+	var posts = [];
+	for(i=0;i<p.length;i++){
+		posts.push(new post(p[i]));
+	}
+	console.log(posts);
 	function add(h, id, el){
 		var target;
 		for(a in comments){
