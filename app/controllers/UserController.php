@@ -96,7 +96,20 @@ class UserController extends BaseController{
 			}
 		}
 		else if(Auth::guest())
-			return View::make('guest_profile')->with('user', $user);
+			return View::make('guest_profile')
+					->with('user', User::with(['posts'=>function($q){
+
+									$q->with('likes')
+
+										->with(['comments' => function($q2){
+											$q2->with('likes')
+												->with('user')
+												->orderBy('id', 'DESC');
+										}])
+
+										->orderBy('id', 'DESC');
+
+								}])->find($user->id));
 	}
 
 	public function login(){

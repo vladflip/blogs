@@ -11,7 +11,7 @@
 
 		<div class="p_user-ava-block">
 
-			<div class="p_avatar" id="pAvatar">
+			<div class="p_avatar disabled" id="pAvatar">
 
 				@if(!empty($user->ava_xl)&&file_exists($user->ava_xl))
 					<img id="avaEl" src="{{ $user->ava_xl }}" alt="">
@@ -84,7 +84,7 @@
 								{{ $user->about}}
 							</div>
 						@else
-							<div class="p_about-cap">
+							<div class="p_about-cap disabled">
 								{{ 'Нет инфо о пользователе' }}
 							</div>
 						@endif
@@ -92,6 +92,10 @@
 					</div>
 				</li>
 			</ul>
+
+			<div class="p_wall">
+				@include('layouts.posts.guest.wall')
+			</div>
 
 		</div>
 	</div>

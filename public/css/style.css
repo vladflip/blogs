@@ -444,7 +444,6 @@ body{
 .p_submit-login.disabled{
 	background-color:#aaa;
 	color:#fff;
-	cursor:auto;
 }
 /********************************CHANGE-BLOCK*/
 .p_login{
@@ -889,3 +888,7 @@ body{
 /************************************comments*/
 
 /********************************************INNER-POST*/
+
+.disabled{
+	cursor:auto;
+}
