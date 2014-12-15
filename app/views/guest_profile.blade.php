@@ -100,3 +100,15 @@
 		</div>
 	</div>
 @stop
+
+@section('footer')
+	@parent
+
+	<script>
+		
+		function readmore_post(el){
+			el.style.display = 'none';
+			el.parentNode.getElementsByClassName('s2')[0].style.display = '';
+		}
+	</script>
+@stop
