@@ -13,7 +13,7 @@
 			</div>
 
 		</div>
-
+   
 		<div class="w-p_date">
 			{{ $v->created_at->day.'.'.$v->created_at->month.'.'.$v->created_at->year }}
 		</div>
