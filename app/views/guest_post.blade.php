@@ -21,19 +21,19 @@
 		@foreach ($post->comments as $e)
 			<div class="comment">
 				<div class="c-ava">
-					<img src="{{ $e->toArray()['user']['ava_sm'] }}" alt=""> 
+					<img src="{{ $e->user->ava_sm }}" alt=""> 
 				</div>
 				<div class="c_c">
 					<div class="c-c_header">
-						{{ $e->toArray()['user']['firstname'].' '.$e->toArray()['user']['lastname'] }}
+						{{ $e->user->name }}
 					</div>
 					<div class="c-c_date">
-						{{ $e['created_at'] }}
+						{{ $e->created_at->day.'.'.$e->created_at->month.'.'.$e->created_at->year  }}
 					</div>
 					<div class="c-c_content">
-						{{ $e['content'] }}
+						{{ $e->content }}
 					</div>
-					<div class="m-p_likes">
+					<div class="m-p_likes disabled">
 			
 						<img src="img/not_liked.png" alt="" onclick="return false;">
 						<span class="cnt_likes">{{ count($e->likes) }}</span>
