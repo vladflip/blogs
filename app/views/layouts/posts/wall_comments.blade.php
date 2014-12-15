@@ -4,7 +4,7 @@
 <div class="w-p_add-comment">
 	<div class="w-p_a-c_in">
 		<textarea name="" class="w-p_a-c-input" placeholder="Напишите комментарий"></textarea>
-		<div class="submit-comment">
+		<div class="submit-comment" onclick="wall.add('{{ md5($v->id.csrf_token()) }}', {{ $v->id }}, this)">
 			Отправить
 		</div>
 	</div>
@@ -22,11 +22,11 @@
 <div class="w-p_c-block">
 <hr>
 	<div class="w-p_c_ava">
-		<img src="{{ $user->ava_sm }}" alt="">
+		<img src="{{ $val->user->ava_sm }}" alt="">
 	</div>
 	<div class="w-p_c-c">
 		<div class="w-p_c_header">
-			{{ var_dump($val) }}
+			{{ $val->user->name }}
 		</div>
 		<div class="w-p_c_date">
 			{{ $val->created_at->day.'.'.$val->created_at->month.'.'.$val->created_at->year }}
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 
-	<div class="w-p_c_like">
+	<div class="w-p_c_like" onclick="like('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this)">
 		@if($val->likes->contains(Auth::id()))
 			<img src="img/liked.png" alt="" onclick="return false;">
 		@else

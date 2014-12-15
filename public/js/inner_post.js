@@ -9,7 +9,6 @@ function submit_comment(h, id){
 
 	if(textCmt.value === '') return;
 
-	console.log('FUCTION CALLED');
 	ajax('post', 'add-comment', {id: id, hash : h, val: textCmt.value}, function(r){
 		var n = document.createElement('div');
 		n.className = 'comment';
