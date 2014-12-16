@@ -45,5 +45,6 @@
 	<script src="js/jquery.autosize.input.js"></script>
 	<script src="js/jquery.autosize.min.js"></script>
 	<script src="js/profile.js"></script>
-	<script src="js/wall.js"></script>
+	<script src="js/add_post.js"></script>
+	<script src="js/wall.js"></script>u
 @stop

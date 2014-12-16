@@ -12,7 +12,7 @@
 		<div class="add-comment">
 			<div class="c-ava" id="authAva">
 				<a href="{{ route('profile', $post->user->id) }}">
-					<img src="{{ $post->user->ava_sm }}" alt="">
+					<img src="{{ $authUser->ava_sm }}" alt="">
 				</a>
 			</div>
 			<div class="a-c_in">
@@ -51,7 +51,7 @@
 						<span class="cnt_likes">{{ count($e->likes) }}</span>
 					</div>
 				</div>
-			<hr>
+				<hr>
 			</div>
 		@endforeach
 		</div>

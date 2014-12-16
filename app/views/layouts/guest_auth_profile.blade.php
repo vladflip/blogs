@@ -94,7 +94,7 @@
 			</ul>
 
 			<div class="p_wall">
-				@include('layouts.posts.guest.wall')
+				@include('layouts.posts.guest_auth.wall')
 			</div>
 
 		</div>
@@ -112,29 +112,9 @@
 		}
 	</script>
 
-	<script>
-
-		var postsToLoad = 5;
-		var main = document.getElementsByClassName('w_posts')[0];
-		var loadMore = document.getElementsByClassName('loadmore_post')[0];
-		if(loadMore)
-		var userId = loadMore.getElementsByTagName('input')[0].value;
-
-			function load_more_posts(){
-			ajax('post', 'load-more-posts', {cnt:postsToLoad,id:userId}, function(r){
-				if(r.indexOf('no posts')!==-1){	
-					loadMore.classList.add('no-posts');
-					loadMore.onclick = null;
-				} else {
-					var span = document.createElement('span');
-					span.innerHTML = r;
-					main.appendChild(span);
-				}
-			});
-			postsToLoad+=5;
-		}
-
-		if(loadMore)
-		loadMore.onclick = load_more_posts;
-	</script>
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.Jcrop.min.js"></script>
+	<script src="js/jquery.autosize.input.js"></script>
+	<script src="js/jquery.autosize.min.js"></script>
+	<script src="js/wall.js"></script>
 @stop

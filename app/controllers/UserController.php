@@ -72,8 +72,9 @@ class UserController extends BaseController{
 				App::abort(404);
 			}
 		if(Auth::check()){
-			if(intval(Auth::id())===$user->id){
-				if(Auth::user()->isReady()){
+			$authUser = Auth::user();
+			if(intval($authUser->id)===$user->id){
+				if($authUser->isReady()){
 					return View::make('owners_profile')
 					->with('user', User::with(['posts'=>function($q){
 
@@ -92,7 +93,20 @@ class UserController extends BaseController{
 					return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
 				}
 			} else {
-				return View::make('guest_profile')->with('user', $user);
+				return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
+				->with('user', User::with(['posts'=>function($q){
+
+									$q->with('likes')
+
+										->with(['comments' => function($q2){
+											$q2->with('likes')
+												->with('user')
+												->orderBy('id', 'DESC');
+										}])
+										->orderBy('id', 'DESC')
+										->take(5);
+
+								}])->find($user->id));
 			}
 		}
 		else if(Auth::guest())
@@ -106,8 +120,8 @@ class UserController extends BaseController{
 												->with('user')
 												->orderBy('id', 'DESC');
 										}])
-
-										->orderBy('id', 'DESC');
+										->orderBy('id', 'DESC')
+										->take(5);
 
 								}])->find($user->id));
 	}

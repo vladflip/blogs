@@ -1,59 +1,4 @@
-// -------------------------------------------
-//	add - post
-// -------------------------------------------
 
-(function(){
-	var cap = document.getElementsByClassName('a-p_cap')[0];
-	var form = document.getElementById('a_pForm');
-	var head = form.getElementsByClassName('a-p-header')[0];
-	var content = form.getElementsByClassName('a-p-content')[0];
-	var submit = document.getElementById('submitNewPost');
-
-	var hf = false,
-		cf = false;
-
-
-	cap.onclick = function(e){
-		e.stopPropagation();
-		this.style.display = 'none';
-		form.style.display = 'block';
-		head.focus();
-
-		document.onclick = function(){
-			form.style.display = 'none';
-			cap.style.display = 'block';
-			form.reset();
-			document.onclick = null;
-		}
-	}
-
-	head.onclick = function(e){
-		e.stopPropagation();
-	}
-	content.onclick = function(e){
-		e.stopPropagation();
-	}
-	submit.onclick = function(e){
-		e.stopPropagation();
-	}
-	head.onfocus = function(){
-		hf = true;
-	}
-	// head.onblur = function(){
-	// 	hf = false;
-	// 	if(!cf){
-	// 		form.style.display = 'none';
-	// 		cap.style.display = 'block';
-	// 	}
-	// }
-
-	content.onfocus = function(){
-		cf = true;
-	}
-	content.onblur = function(){
-		cf = false
-	}
-})()
 
 // -------------------------------------------
 //	wall module
@@ -110,7 +55,9 @@ var wall = (function(){
 
 
 	var postsToLoad = 5;
+
 	var loadMore = document.getElementsByClassName('loadmore_post')[0];
+	if(loadMore)
 	var userId = loadMore.getElementsByTagName('input')[0].value;
 
 	for(i=0;i<c.length;i++){
@@ -144,13 +91,19 @@ var wall = (function(){
 
 	function load_more_posts(){
 		ajax('post', 'load-more-posts', {cnt:postsToLoad,id:userId}, function(r){
-			var span = document.createElement('span');
-			span.innerHTML = r;
-			main.appendChild(span);
+			if(r.indexOf('no posts')!==-1){	
+				loadMore.classList.add('no-posts');
+				loadMore.onclick = null;
+			} else {
+				var span = document.createElement('span');
+				span.innerHTML = r;
+				main.appendChild(span);
+			}
 		});
 		postsToLoad+=5;
 	}
 
+	if(loadMore)
 	loadMore.onclick = load_more_posts;
 
 	return {

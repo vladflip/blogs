@@ -42,9 +42,9 @@ class PostController extends BaseController {
 	}
 
 	public function get_post($id){
-
 		if(Auth::check()){
-			if(Auth::user()->isReady())
+			$authUser = Auth::user();
+			if($authUser->isReady())
 				return View::make('post')->with('post', 
 								Post::with(array('comments'=>function($q){
 
@@ -52,7 +52,7 @@ class PostController extends BaseController {
 										->with('likes')
 										->orderBy('id', 'DESC');
 
-								}))->find($id));
+								}))->find($id))->with('authUser', $authUser);
 			else
 				return View::make('guest_post')->with('post', 
 								Post::with(array('comments'=>function($q){
@@ -79,22 +79,39 @@ class PostController extends BaseController {
 		$cnt = $d->cnt;
 		// return $cnt;
 		if(!is_numeric($d->cnt)&&!is_numeric($d->id)) return 'fuck';
+		if(Auth::check())
+			return View::make('layouts.posts.wall_posts')->with('user',
+				User::with(['posts'=>function($q) use ($cnt){
 
-		return View::make('layouts.posts.wall_posts')->with('user',
-			User::with(['posts'=>function($q) use ($cnt){
+										$q->with('likes')
 
-									$q->with('likes')
+											->with(['comments' => function($q2){
+												$q2->with('likes')
+													->with('user')
+													->orderBy('id', 'DESC');
+											}])
+											->orderBy('id', 'DESC')
+											->skip($cnt)
+											->take(5);
 
-										->with(['comments' => function($q2){
-											$q2->with('likes')
-												->with('user')
-												->orderBy('id', 'DESC');
-										}])
-										->orderBy('id', 'DESC')
-										->skip($cnt)
-										->take(5);
+									}])->find($d->id));
+		else{
+			return View::make('layouts.posts.guest.wall_posts')->with('user',
+				User::with(['posts'=>function($q) use ($cnt){
 
-								}])->find($d->id));
+										$q->with('likes')
+
+											->with(['comments' => function($q2){
+												$q2->with('likes')
+													->with('user')
+													->orderBy('id', 'DESC');
+											}])
+											->orderBy('id', 'DESC')
+											->skip($cnt)
+											->take(5);
+
+									}])->find($d->id));
+		}
 
 	}
 
