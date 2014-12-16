@@ -104,8 +104,15 @@ function post(el){
 }
 
 var wall = (function(){
+	var main = document.getElementsByClassName('w_posts')[0];
 	var c = document.getElementsByClassName('w-p_comments-block');
 	var comments = [];
+
+
+	var postsToLoad = 5;
+	var loadMore = document.getElementsByClassName('loadmore_post')[0];
+	var userId = loadMore.getElementsByTagName('input')[0].value;
+
 	for(i=0;i<c.length;i++){
 		comments.push(new comment(c[i]));
 	}
@@ -115,7 +122,9 @@ var wall = (function(){
 	for(i=0;i<p.length;i++){
 		posts.push(new post(p[i]));
 	}
-	console.log(posts);
+
+
+	
 	function add(h, id, el){
 		var target;
 		for(a in comments){
@@ -132,6 +141,17 @@ var wall = (function(){
 			
 		});
 	}
+
+	function load_more_posts(){
+		ajax('post', 'load-more-posts', {cnt:postsToLoad,id:userId}, function(r){
+			var span = document.createElement('span');
+			span.innerHTML = r;
+			main.appendChild(span);
+		});
+		postsToLoad+=5;
+	}
+
+	loadMore.onclick = load_more_posts;
 
 	return {
 		add:add,

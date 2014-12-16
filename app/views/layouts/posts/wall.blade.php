@@ -29,4 +29,9 @@
 	@include('layouts.posts.wall_posts')
 </div>
 
+<div class="loadmore_post">
+	<input type="hidden" value="{{ $user->id }}">
+	Загрузить еще
+</div>
+
 @endif

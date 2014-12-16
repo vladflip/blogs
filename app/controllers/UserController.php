@@ -84,8 +84,8 @@ class UserController extends BaseController{
 												->with('user')
 												->orderBy('id', 'DESC');
 										}])
-
-										->orderBy('id', 'DESC');
+										->orderBy('id', 'DESC')
+										->take(5);
 
 								}])->find($user->id));
 				} else {

@@ -86,6 +86,8 @@ Route::get('/post{id}',['as' => 'post', 'uses' => 'PostController@get_post'])
 Route::get('/like-post', ['as' => 'like_post', 'uses' => 'PostController@like']);
 Route::get('/dislike-post', ['as' => 'dislike_post', 'uses' => 'PostController@dislike']);
 
+Route::post('/load-more-posts', ['as' => 'load_more_posts', 'uses' => 'PostController@load_more']);
+
 
 // *********************************************COMMENTS
 

@@ -15,7 +15,9 @@ class PostController extends BaseController {
 		} else {
 
 
-			// return nl2br($d['content']);
+			$str =  nl2br($d['content']);
+
+			// return preg_replace('/[<br \/>]{3,}/mu', '<br>', $str);
 
 			$head = htmlentities(trim($d['header']));
 			$head = preg_replace('/[\n]{2,}/mu', '<br><br>', $head);
@@ -69,6 +71,30 @@ class PostController extends BaseController {
 											->orderBy('id', 'DESC');
 
 									}))->find($id));
+
+	}
+
+	public function load_more(){
+		$d = json_decode(Input::get('data'));
+		$cnt = $d->cnt;
+		// return $cnt;
+		if(!is_numeric($d->cnt)&&!is_numeric($d->id)) return 'fuck';
+
+		return View::make('layouts.posts.wall_posts')->with('user',
+			User::with(['posts'=>function($q) use ($cnt){
+
+									$q->with('likes')
+
+										->with(['comments' => function($q2){
+											$q2->with('likes')
+												->with('user')
+												->orderBy('id', 'DESC');
+										}])
+										->orderBy('id', 'DESC')
+										->skip($cnt)
+										->take(5);
+
+								}])->find($d->id));
 
 	}
 
