@@ -1,14 +1,17 @@
+@if(count($user->posts)>0)
 
-<br>
 <h4 class="p_w_header">
 	Новости
 </h4>
 
-@if(count($user->posts)>0)
+<br>
+
 <div class="w_posts">
 	@include('layouts.posts.guest.wall_posts')
 </div>
+
 @endif
+
 @if(count($user->posts)===5)
 
 <div class="loadmore_post">

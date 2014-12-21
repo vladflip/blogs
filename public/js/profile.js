@@ -1,3 +1,26 @@
+function check_for_allow(){
+	ajax('get', 'check-for-allow-posting', null, function(r){
+		if(r.indexOf('not ready') !== -1){
+
+		} else {
+			var wall = document.getElementById('pWall');
+			wall.innerHTML = '';
+			var div = document.createElement('div');
+			div.innerHTML = r;
+			wall.appendChild(div);
+
+			var script = document.createElement('script');
+			script.src = 'js/add_post.js';
+
+			document.body.appendChild(script);
+
+			script.onload = function(){
+				alert();
+			}
+		}
+	})
+}
+
 function el(id){
 	var self = this;
 	var timer;
@@ -35,8 +58,10 @@ function el(id){
 		obj[id] = el.value;
 		timer = setTimeout(function(){
 			ajax('post', 'edit-profile', obj, function(r){
-				if(r!=='non')
+				if(r!=='non'){
 					self.load.success();
+					check_for_allow();
+				}
 				else
 					self.load.fail();
 			});
@@ -187,6 +212,7 @@ var edit_me = new (function(){
 					setTimeout(function(){
 						load.reset();
 					}, 1000);
+					check_for_allow();
 				}
 				else 
 					load.fail();
@@ -365,6 +391,8 @@ sbmtava.onmousedown = function(e){
 				avaEl.onload = function(){
 					parav.removeChild(loadGif);
 					avaEl.fadeIn();
+
+					check_for_allow();
 				}
 			} , 400)
 		}
