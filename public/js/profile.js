@@ -13,6 +13,10 @@ function check_for_allow(){
 			script.src = 'js/add_post.js';
 
 			document.body.appendChild(script);
+
+			script.onload = function(){
+				alert();
+			}
 		}
 	})
 }
