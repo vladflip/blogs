@@ -26,6 +26,10 @@ body{
 	     -o-transition: all .3s ease;
 	        transition: all .3s ease;
 }
+
+.no-posts{
+	color:red;
+}
 /******************************************HEADER*/
 
 .header{
@@ -639,9 +643,6 @@ body{
 	border-radius: 5px;
 	height:60px;
 	margin:0 10px 0 0;
-}
-.w-p_c-c{
-	float:left;
 }
 .w-p_c_header{
 	color:#5b8199;

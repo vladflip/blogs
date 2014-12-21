@@ -36,6 +36,7 @@ Route::post('/submit-ava', ['as' => 'submit_ava', 'uses' => 'UserController@subm
 // 		}
 // });
 
+Route::get('/check-for-allow-posting', ['as' => 'check_for_allow', 'uses' => 'UserController@check_for_allow']);
 Route::post('/edit-profile', ['as' => 'edit_profile', 'uses' => 'UserController@edit_profile']);
 Route::post('/edit-login', ['as' => 'edit_login', 'uses' => 'UserController@edit_login']);
 Route::post('/submit-login', ['before' => 'csrf','as' => 'submit_login', 'uses' => 'UserController@submit_login']);

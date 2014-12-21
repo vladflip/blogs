@@ -67,6 +67,14 @@ class UserController extends BaseController{
 		}
 	}
 
+	public function check_for_allow(){
+		if(Auth::user()->isReady() && count(Auth::user()->posts)===0){
+			return View::make('layouts.posts.add_post');
+		} else {
+			return 'not ready';
+		}
+	}
+
 	public function profile($login){
 		if(!$user = User::whereLogin($login)->first()){
 				App::abort(404);
@@ -74,6 +82,7 @@ class UserController extends BaseController{
 		if(Auth::check()){
 			$authUser = Auth::user();
 			if(intval($authUser->id)===$user->id){
+
 				if($authUser->isReady()){
 					return View::make('owners_profile')
 					->with('user', User::with(['posts'=>function($q){
@@ -92,6 +101,7 @@ class UserController extends BaseController{
 				} else {
 					return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
 				}
+				
 			} else {
 				return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
 				->with('user', User::with(['posts'=>function($q){
@@ -106,7 +116,7 @@ class UserController extends BaseController{
 										->orderBy('id', 'DESC')
 										->take(5);
 
-								}])->find($user->id));
+								}])->find($user->id))->with('not_ready', true);
 			}
 		}
 		else if(Auth::guest())

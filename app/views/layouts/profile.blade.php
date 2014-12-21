@@ -124,7 +124,7 @@
 				</li>
 			</ul>
 			
-			<div class="p_wall">
+			<div class="p_wall" id="pWall">
 				@include('layouts.posts.wall')
 			</div>
 		</div>
