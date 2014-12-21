@@ -14,9 +14,6 @@ function check_for_allow(){
 
 			document.body.appendChild(script);
 
-			script.onload = function(){
-				alert();
-			}
 		}
 	})
 }
