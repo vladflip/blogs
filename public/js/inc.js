@@ -23,10 +23,12 @@ function popUp(call){
 	this.open = function(){
 		self.pop.fadeIn();
 		document.getElementsByClassName('container')[0].fadeOut();
+		document.getElementsByClassName('container')[1].fadeOut();
 	}
 
 	this.close = function(){
 		document.getElementsByClassName('container')[0].fadeIn();
+		document.getElementsByClassName('container')[1].fadeIn();
 		self.pop.fadeOut();
 		self.pop.innerHTML = '';
 	}
