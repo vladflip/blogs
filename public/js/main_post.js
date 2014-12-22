@@ -1,9 +1,3 @@
-if(document.getElementById('logOut')){
-	document.getElementById('logOut').onclick = function(){
-		document.getElementById('logOutForm').submit();
-	}
-}
-
 // ***** LIKES
 
 function like(h, id, e){

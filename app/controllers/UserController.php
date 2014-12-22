@@ -102,21 +102,40 @@ class UserController extends BaseController{
 					return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
 				}
 				
-			} else {
-				return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
-				->with('user', User::with(['posts'=>function($q){
+			} else {	
+				$authUser = Auth::user();
 
-									$q->with('likes')
+				if($authUser->isReady()){
+					return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
+						->with('user', User::with(['posts'=>function($q){
 
-										->with(['comments' => function($q2){
-											$q2->with('likes')
-												->with('user')
-												->orderBy('id', 'DESC');
-										}])
-										->orderBy('id', 'DESC')
-										->take(5);
+											$q->with('likes')
 
-								}])->find($user->id))->with('not_ready', true);
+												->with(['comments' => function($q2){
+													$q2->with('likes')
+														->with('user')
+														->orderBy('id', 'DESC');
+												}])
+												->orderBy('id', 'DESC')
+												->take(5);
+
+										}])->find($user->id));
+				} else {
+					return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
+						->with('user', User::with(['posts'=>function($q){
+
+											$q->with('likes')
+
+												->with(['comments' => function($q2){
+													$q2->with('likes')
+														->with('user')
+														->orderBy('id', 'DESC');
+												}])
+												->orderBy('id', 'DESC')
+												->take(5);
+
+										}])->find($user->id))->with('not_ready', true);
+				}
 			}
 		}
 		else if(Auth::guest())

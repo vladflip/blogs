@@ -65,13 +65,16 @@
 			
 			<div class="w-p_images"></div>
 
-			<div class="w-p_like">
+			<div class="w-p_like" 
+			onclick="like_post('{{ md5($v->id.$v->id) }}', {{ $v->id }}, this)">
+
 				@if($v->likes->contains(Auth::id()))
 					<img src="img/liked.png" alt="" onclick="return false;">
 				@else
 					<img src="img/not_liked.png" alt="" onclick="return false;">
 				@endif
 				<span class="cnt_likes">{{ count($v->likes) }}</span>
+
 			</div>
 
 			{{-- ----------------------------------------------- --}}

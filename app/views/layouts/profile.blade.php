@@ -128,6 +128,7 @@
 				@include('layouts.posts.wall')
 			</div>
 		</div>
+		<div class="clear-fix"></div>
 	</div>
 @stop
 

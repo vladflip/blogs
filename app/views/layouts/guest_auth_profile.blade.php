@@ -98,6 +98,7 @@
 			</div>
 
 		</div>
+		<div class="clear-fix"></div>
 	</div>
 @stop
 

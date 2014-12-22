@@ -1,5 +1,3 @@
-
-
 // -------------------------------------------
 //	wall module
 // -------------------------------------------
@@ -40,12 +38,19 @@ function readmore_post(el){
 
 function post(el){
 	var self = this;
+	var cmtToLoad;
 	this.content = el.getElementsByClassName('w-p_content')[0];
 
-	if(self.content.clientHeight > 200){
-		// self.content.style.height = '200px';
-	}
+	if(el.getElementsByClassName('load-more-comments')[0]){
+		this.load_more_comments = el.getElementsByClassName('load-more-comments')[0];
 
+		function load_more_comments(){
+			
+		}
+
+		this.load_more_comments.onclick = load_more_comments;
+	}
+		
 }
 
 var wall = (function(){
@@ -113,7 +118,7 @@ var wall = (function(){
 })();
 
 
-function like(h, id, e){
+function like_comment(h, id, e){
 
 	var img = e.getElementsByTagName('img')[0];
 	var cnt = parseInt(e.getElementsByClassName('cnt_likes')[0].innerHTML);
@@ -134,6 +139,31 @@ function like(h, id, e){
 		ajax('get', 'dislike-comment', {hash:h, id:id}, function(r){
 			console.log(r);
 		});
+	}
+	
+}
+
+
+function like_post(h, id, e){
+
+	var img = e.getElementsByTagName('img')[0];
+	var cnt = parseInt(e.getElementsByClassName('cnt_likes')[0].innerHTML);
+		if(isNaN(cnt)) return;
+
+	if(img.src.indexOf('not_liked')!==-1){
+		img.src = 'img/liked.png';
+		e.getElementsByClassName('cnt_likes')[0].innerHTML = cnt + 1;
+
+		ajax('get', 'like-post', {hash:h, id:id}, function(r){
+			console.log(r);
+		})
+	} else {
+		img.src = 'img/not_liked.png';
+		e.getElementsByClassName('cnt_likes')[0].innerHTML = cnt - 1;
+
+		ajax('get', 'dislike-post', {hash:h, id:id}, function(r){
+			console.log(r);
+		})
 	}
 	
 }

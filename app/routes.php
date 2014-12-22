@@ -97,6 +97,7 @@ Route::post('/add-comment', ['as' => 'add_comment', 'uses' => 'CommentController
 Route::get('/like-comment', ['as' => 'like_comment', 'uses' => 'CommentController@like']);
 Route::get('/dislike-comment', ['as' => 'dislike_comment', 'uses' => 'CommentController@dislike']);
 Route::post('/create-wall-comment', ['as' => 'create_wall_comment', 'uses' => 'CommentController@create_wall_comment']);
+Route::post('/load-more-comments', ['as' => 'load_more_comments', 'uses' => 'CommentController@load_more']);
 
 Route::get('/{login}', ['as' => 'profile', 'uses' => 'UserController@profile'])
 ->where('login', '[^-]+');
