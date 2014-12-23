@@ -115,6 +115,37 @@ class PostController extends BaseController {
 
 	}
 
+	public function load_more_main(){
+		$d = json_decode(Input::get('data'));
+		$cnt = $d->cnt;
+		if(!is_numeric($d->cnt)) return 'fuck';
+		if(Auth::check())
+			return View::make('layouts.posts.main.wall_posts')
+			->with('posts', Post::with(['comments' => function($r) use($cnt){
+						$r->orderBy('id', 'DESC')
+						->with('likes')
+						->with('user');
+				}])
+
+				->orderBy('id','DESC')
+				->with('likes')
+				->skip($cnt)
+				->take(5)->get());
+		else{
+			return View::make('layouts.posts.main.guest.wall_posts')
+			->with('posts', Post::with(['comments' => function($r) use($cnt){
+						$r->orderBy('id', 'DESC')
+						->with('likes')
+						->with('user');
+				}])
+
+				->orderBy('id','DESC')
+				->with('likes')
+				->skip($cnt)
+				->take(5)->get());
+		}
+	}
+
 	public function like(){
 		$d = json_decode(Input::get('data'));
 		

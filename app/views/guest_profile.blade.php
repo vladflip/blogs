@@ -137,5 +137,10 @@
 
 		if(loadMore)
 		loadMore.onclick = load_more_posts;
+
+		function load_more_comments(el){
+				el.parentNode.getElementsByClassName('load-more-comments-block')[0].style.display = 'block';
+				el.style.display = 'none';
+			}
 	</script>
 @stop

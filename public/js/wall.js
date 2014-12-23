@@ -45,7 +45,8 @@ function post(el){
 		this.load_more_comments = el.getElementsByClassName('load-more-comments')[0];
 
 		function load_more_comments(){
-			
+			this.parentNode.getElementsByClassName('load-more-comments-block')[0].style.display = 'block';
+			this.style.display = 'none';
 		}
 
 		this.load_more_comments.onclick = load_more_comments;
@@ -78,17 +79,27 @@ var wall = (function(){
 
 	
 	function add(h, id, el){
-		var target;
-		for(a in comments){
-			if(comments[a].submit === el){
-				target = comments[a];
-			}
-		}
+		var input = el.parentNode.getElementsByTagName('textarea')[0];
+		var target = input.value
+		if(target === '') return;
 
-		ajax('post', 'create-wall-comment', {id: id, hash : h, val: target.input.value}, function(r){
+		var cmt = el.parentNode.parentNode.parentNode;
+		
+		var n = document.createElement('div');
+			n.className = 'w-p_c-block';
+			
+		ajax('post', 'create-wall-comment', {id: id, hash : h, val: target}, function(r){
 
 			if(r!=='non'){
-				target.append(r);
+				n.innerHTML = r;
+				if(cmt.children[1])
+					cmt.insertBefore(n, cmt.children[1]);
+				else
+					cmt.appendChild(n);
+
+
+				input.value = '';
+				$(input).trigger('autosize.resize');
 			}
 			
 		});
@@ -103,6 +114,10 @@ var wall = (function(){
 				var span = document.createElement('span');
 				span.innerHTML = r;
 				main.appendChild(span);
+				var txts = span.getElementsByTagName('textarea');
+				for(var i=0; i<txts.length; i++){
+					$(txts[i]).autosize();
+				}
 			}
 		});
 		postsToLoad+=5;
@@ -113,7 +128,9 @@ var wall = (function(){
 
 	return {
 		add:add,
-		comments: comments
+		comments: comments,
+		postsToLoad : postsToLoad,
+		main : main
 	};
 })();
 
@@ -166,4 +183,23 @@ function like_post(h, id, e){
 		})
 	}
 	
+}
+function load_more_main(el){
+	var loadMore = el;
+	var main = document.getElementsByClassName('w-posts-main')[0];
+	ajax('post', 'load-more-posts-main', {cnt:wall.postsToLoad}, function(r){
+			if(r.indexOf('no posts')!==-1){	
+				loadMore.classList.add('no-posts');
+				loadMore.onclick = null;
+			} else {
+				var span = document.createElement('span');
+				span.innerHTML = r;
+				main.appendChild(span);
+				var txts = span.getElementsByTagName('textarea');
+				for(var i=0; i<txts.length; i++){
+					$(txts[i]).autosize();
+				}
+			}
+		});
+		wall.postsToLoad+=5;
 }

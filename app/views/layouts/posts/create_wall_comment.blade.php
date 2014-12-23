@@ -14,7 +14,8 @@
 	</div>
 </div>
 
-<div class="w-p_c_like" onclick="like('{{ md5($comment->id.$comment->id) }}', {{ $comment->id }}, this)">
+<div class="w-p_c_like" 
+onclick="like_comment('{{ md5($comment->id.$comment->id) }}', {{ $comment->id }}, this)">
 	@if($comment->likes->contains(Auth::id()))
 		<img src="img/liked.png" alt="" onclick="return false;">
 	@else

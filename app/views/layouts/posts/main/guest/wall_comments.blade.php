@@ -1,20 +1,4 @@
 {{-- ------------------------------------ --}}
-{{-- add form --}}
-
-<div class="w-p_add-comment">
-	<div class="w-p_a-c_in">
-		<textarea name="" class="w-p_a-c-input" placeholder="Напишите комментарий"></textarea>
-		<div class="submit-comment" onclick="wall.add('{{ md5($v->id.csrf_token()) }}', {{ $v->id }}, this)">
-			Отправить
-		</div>
-	</div>
-</div>
-
-{{-- add form --}}
-{{-- ------------------------------------ --}}
-
-
-{{-- ------------------------------------ --}}
 {{-- comment block --}}
 <?php
 	$i = 0;
@@ -26,13 +10,9 @@
 		<div class="w-p_c-block">
 			<hr>
 			<div class="w-p_c_ava">
-				@if($user->id===$val->user->id)
+				<a href="{{ route('profile', $val->user->login) }}">
 					<img src="{{ $val->user->ava_sm }}" alt="">
-				@else
-					<a href="{{ route('profile', $val->user->login) }}">
-						<img src="{{ $val->user->ava_sm }}" alt="">
-					</a>
-				@endif
+				</a>
 			</div>
 			<div class="w-p_c-c">
 				<div class="w-p_c_header">
@@ -46,7 +26,7 @@
 				</div>
 			</div>
 
-			<div class="w-p_c_like" onclick="like_comment('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this)">
+			<div class="w-p_c_like disabled">
 				@if($val->likes->contains(Auth::id()))
 					<img src="img/liked.png" alt="" onclick="return false;">
 				@else
@@ -63,10 +43,10 @@
 ?>
 @endforeach
 
-<?php
-	$i = 0;
-?>
 <div class="load-more-comments-block" style="display:none">
+	<?php
+		$i = 0;
+	?>
 	@foreach ($v->comments as $key => $val)
 
 		@if($i>=3)
@@ -74,13 +54,9 @@
 			<div class="w-p_c-block">
 				<hr>
 				<div class="w-p_c_ava">
-					@if($user->id===$val->user->id)
+					<a href="{{ route('profile', $val->user->login) }}">
 						<img src="{{ $val->user->ava_sm }}" alt="">
-					@else
-						<a href="{{ route('profile', $val->user->login) }}">
-							<img src="{{ $val->user->ava_sm }}" alt="">
-						</a>
-					@endif
+					</a>
 				</div>
 				<div class="w-p_c-c">
 					<div class="w-p_c_header">
@@ -94,7 +70,7 @@
 					</div>
 				</div>
 
-				<div class="w-p_c_like" onclick="like_comment('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this)">
+				<div class="w-p_c_like disabled">
 					@if($val->likes->contains(Auth::id()))
 						<img src="img/liked.png" alt="" onclick="return false;">
 					@else
@@ -112,9 +88,9 @@
 	@endforeach
 </div>
 
+@if(count($v->comments)>3)
+	<div class="load-more-comments" onclick="load_more_comments(this)">Загрузить коменты</div>
+@endif
+
 {{-- comment block --}}
 {{-- ------------------------------------ --}}
-
-@if(count($v->comments)>3)
-	<div class="load-more-comments">Загрузить коменты</div>
-@endif
