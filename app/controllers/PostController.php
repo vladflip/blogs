@@ -37,6 +37,9 @@ class PostController extends BaseController {
 					'header' => $head,
 					'content' => $con
 				]);
+
+			$p->user->rate += 3;
+			$p->user->save();
 			return Redirect::to(Auth::user()->login);
 		}
 	}
@@ -155,6 +158,11 @@ class PostController extends BaseController {
 
 		$post = Post::find($d->id);
 		$post->likes()->attach(Auth::id());
+
+		if($post->user->id!=Auth::id()){
+			$post->user->rate += 1;
+			$post->user->save();
+		}
 	}
 
 	public function dislike(){
@@ -166,5 +174,10 @@ class PostController extends BaseController {
 
 		$post = Post::find($d->id);
 		$post->likes()->detach(Auth::id());
+
+		if($post->user->id!=Auth::id()){
+			$post->user->rate -= 1;
+			$post->user->save();
+		}
 	}
 }

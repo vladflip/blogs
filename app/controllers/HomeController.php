@@ -14,7 +14,9 @@ class HomeController extends BaseController {
 
 				->orderBy('id','DESC')
 				->with('likes')
-				->take(5)->get());
+				->take(5)->get())
+				->with('u_rate', User::take(5)->orderBy('rate', 'DESC')->get())
+				->with('popular', Post::getByLikes(5));
 			}
 			else
 				return View::make('guest_home')->with('posts', Post::with(['comments' => function($r){
@@ -25,7 +27,9 @@ class HomeController extends BaseController {
 
 				->orderBy('id','DESC')
 				->with('likes')
-				->take(5)->get());
+				->take(5)->get())
+				->with('u_rate', User::take(5)->orderBy('rate', 'DESC')->get())
+				->with('popular', Post::getByLikes(5));
 		}
 		else 
 			return View::make('guest_home')->with('posts', Post::with(['comments' => function($r){
@@ -36,7 +40,9 @@ class HomeController extends BaseController {
 
 				->orderBy('id','DESC')
 				->with('likes')
-				->take(5)->get());
+				->take(5)->get())
+				->with('u_rate', User::take(5)->orderBy('rate', 'DESC')->get())
+				->with('popular', Post::getByLikes(5));
 	}
 	
 }

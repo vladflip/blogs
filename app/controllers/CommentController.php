@@ -22,6 +22,9 @@ class CommentController extends BaseController {
 				'post_id' => $d->id
 			]);
 
+		$comment->user->rate += 2;
+		$comment->user->save();
+
 		return View::make('create_comment')->with('cmt', $comment)
 										->with('user', Auth::user());
 	}
@@ -49,6 +52,9 @@ class CommentController extends BaseController {
 				'post_id' => $d->id
 			]);
 
+		$comment->user->rate += 2;
+		$comment->user->save();
+
 		return View::make('layouts.posts.create_wall_comment')->with('comment', $comment)
 										->with('user', Auth::user());
 	}
@@ -62,6 +68,11 @@ class CommentController extends BaseController {
 
 		$cmt = Comment::find($d->id);
 		$cmt->likes()->attach(Auth::id());
+
+		if($cmt->user->id!=Auth::id()){
+			$cmt->user->rate += 1;
+			$cmt->user->save();
+		}
 	}
 
 	public function dislike(){
@@ -73,6 +84,11 @@ class CommentController extends BaseController {
 
 		$cmt = Comment::find($d->id);
 		$cmt->likes()->detach(Auth::id());
+
+		if($cmt->user->id!=Auth::id()){
+			$cmt->user->rate -= 1;
+			$cmt->user->save();
+		}
 	}
 
 }

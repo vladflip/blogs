@@ -184,7 +184,9 @@ body{
 
 /**********************************************profile*/
 
-
+.loadmore_post_main{
+	clear:both;
+}
 
 .load-icons{
 	height:20px;
@@ -503,6 +505,70 @@ body{
 }
 /***************INFO*/
 
+/*--------------------------rate*/
+
+.r-b_header h2{
+	display:inline-block;
+	margin:0;
+}
+.rate-block{
+	float:right;
+}
+.r-b_content,
+.p-n_content{
+	background-color:#f7f9fb;
+}
+.rate-table,
+.popular-table{
+	width:245px;
+	border-collapse:collapse;
+}
+.rate-table td,
+.popular-table td{
+	padding:10px;
+}
+
+.r-t_ava img{
+	width:45px;
+}
+.r-t_name{
+	color:#5b8199;
+}
+.r-t_rate{
+	border-left:1px solid #f2f4f6;
+	text-align: center;
+	font-size: 12px;
+	color:#c5d3e1;
+	font-weight: bold;
+}
+
+
+/*--------------------------RATE*/
+
+/*----------------------------popular news block*/
+
+.popular-news-block{
+	margin:20px 0 0 0;
+	float:right;
+}
+.p-n_header h2{
+	display:inline-block;
+	margin:0;
+}
+.p-t_count{
+	text-align: center;
+	font-size: 14px;
+	color:#5b8199;
+	font-weight: bold;
+}
+.p-t_head{
+	font-size: 15px;
+	color:#5b8199;
+}
+
+
+/*----------------------------POPULAR NEWS BLOCK*/
+
 /**********************************************PROFILE*/
 
 /*****************************************wall*/
@@ -555,7 +621,7 @@ body{
 	font-size: 14px;
 }
 .w-post{
-	margin:20px 0 0 0;
+	margin:0 0 20px 0;
 	background-color:#fff;
 	padding:15px 20px;
 }
@@ -575,7 +641,7 @@ body{
 	left:59px;
 	border-style: solid;
 	border-width: 8px 8px 8px 8px;
-	border-color: transparent #f3f5f6 transparent transparent;
+	border-color: transparent #fff transparent transparent;
 }
 .w-p_user-name{
 	color:#5b8199;
@@ -677,6 +743,7 @@ body{
 
 .w-posts-main{
 	width:640px;
+	float:left;
 }
 /*****************************************WALL*/
 
