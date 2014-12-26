@@ -23,7 +23,9 @@
 
 			<div class="p_rate-block">
 				<div class="p_rate-label">Рейтинг активности</div>
-				<div class="p_rate data-in" id="pRate">0</div>
+				<div class="p_rate data-in" id="pRate">
+					<span>{{ $user->rate }}</span>
+				</div>
 			</div>
 
 		</div>
