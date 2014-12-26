@@ -38,9 +38,14 @@ $app = new Illuminate\Foundation\Application;
 // 		return "local";
 // });
 
-$env = $app->detectEnvironment([
-	'local' => 'FLIP-Thinkpad'
-]);
+// $env = $app->detectEnvironment([
+// 	'local' => 'FLIP-Thinkpad'
+// ]);
+
+$env = $app->detectEnvironment(function(){
+	return 'local';
+});
+
 
 /*
 |--------------------------------------------------------------------------
