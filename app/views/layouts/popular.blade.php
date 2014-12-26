@@ -1,14 +1,22 @@
 <table class="popular-table">
-	@for($i=0;$i<5;$i++)
-		<tr>
-			<td class="p-t_head">
-				<span>{{ $popular[$i]['header'] }}</span>
-			</td>
+	<?php
+		$i=0;
+	?>
+	@foreach($popular as $k => $v)
+		@if($i<5)
+			<tr>
+				<td class="p-t_head">
+					<span>{{ $v['header'] }}</span>
+				</td>
 
-			<td class="p-t_count">
-				<span>{{ $popular[$i]['cnt'] }}</span>
-				<img src="img/not_liked.png" alt="">
-			</td>
-		</tr>
-	@endfor
+				<td class="p-t_count">
+					<span>{{ $v['cnt'] }}</span>
+					<img src="img/not_liked.png" alt="">
+				</td>
+			</tr>
+		@endif
+	<?php
+		$i++;
+	?>
+	@endforeach
 </table>
