@@ -8,6 +8,10 @@
 	@endif
 @stop
 
+@section('rate')
+	<span>{{ $user->rate or 0 }}</span>
+@stop
+
 @section('login')
 	<span>{{{ $user->login or 'логин' }}}</span>
 @stop

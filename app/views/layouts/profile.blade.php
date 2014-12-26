@@ -53,7 +53,9 @@
 
 			<div class="p_rate-block">
 				<div class="p_rate-label">Рейтинг активности</div>
-				<div class="p_rate data-in" id="pRate">0</div>
+				<div class="p_rate data-in" id="pRate">
+					@yield('rate')
+						</div>
 			</div>
 
 		</div>
