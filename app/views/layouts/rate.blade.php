@@ -2,11 +2,15 @@
 	@foreach($u_rate as $k => $v)
 		<tr>
 			<td class="r-t_ava">
-				<img src="{{ $v->ava_sm }}" alt="">
+				<a href="{{ route('profile', $v->login) }}">
+					<img src="{{ $v->ava_sm }}" alt="">
+				</a>
 			</td>
 
 			<td class="r-t_name">
-				<span>{{ $v->name }}</span>
+				<a href="{{ route('profile', $v->login) }}">
+					<span>{{ $v->name }}</span>
+				</a>
 			</td>
 
 			<td class="r-t_rate">

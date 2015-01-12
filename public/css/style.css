@@ -534,6 +534,10 @@ body{
 .r-t_name{
 	color:#5b8199;
 }
+.r-t_name a{
+	text-decoration: none;
+	color:inherit;
+}
 .r-t_rate{
 	border-left:1px solid #f2f4f6;
 	text-align: center;
@@ -752,6 +756,10 @@ body{
 	color:#5b8199;
 	margin:0 0 2px 0;
 	font-size: 14px;
+}
+.w-p_c_header a{
+	text-decoration: none;
+	color:inherit;
 }
 .w-p_c_date{
 	color:#b2bbbf;

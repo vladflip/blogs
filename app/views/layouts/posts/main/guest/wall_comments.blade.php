@@ -16,7 +16,9 @@
 			</div>
 			<div class="w-p_c-c">
 				<div class="w-p_c_header">
-					{{ $val->user->name }}
+					<a href="{{ route('profile', $val->user->login) }}">
+						{{ $val->user->name }}
+					</a>
 				</div>
 				<div class="w-p_c_date">
 					{{ $val->created_at->day.'.'.$val->created_at->month.'.'.$val->created_at->year }}
@@ -60,7 +62,9 @@
 				</div>
 				<div class="w-p_c-c">
 					<div class="w-p_c_header">
-						{{ $val->user->name }}
+						<a href="{{ route('profile', $val->user->login) }}">
+							{{ $val->user->name }}
+						</a>
 					</div>
 					<div class="w-p_c_date">
 						{{ $val->created_at->day.'.'.$val->created_at->month.'.'.$val->created_at->year }}
