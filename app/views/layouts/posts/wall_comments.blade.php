@@ -116,5 +116,5 @@
 {{-- ------------------------------------ --}}
 
 @if(count($v->comments)>3)
-	<div class="load-more-comments">Загрузить коменты</div>
+	<div class="load-more-comments" onclick="load_more_comments(this)">Загрузить коменты</div>
 @endif

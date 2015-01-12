@@ -79,7 +79,9 @@ class UserController extends BaseController{
 		if(!$user = User::whereLogin($login)->first()){
 				App::abort(404);
 			}
+
 		if(Auth::check()){
+
 			$authUser = Auth::user();
 			if(intval($authUser->id)===$user->id){
 
@@ -101,7 +103,6 @@ class UserController extends BaseController{
 				} else {
 					return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
 				}
-				
 			} else {	
 				$authUser = Auth::user();
 
