@@ -81,7 +81,7 @@ Route::get('/p', function(){
 
 Route::post('/add-post', ['before' => 'csrf', 'as' => 'add_post', 'uses' => 'PostController@create']);
 
-Route::get('/post{id}',['as' => 'post', 'uses' => 'PostController@get_post'])
+Route::get('/пост{id}',['as' => 'post', 'uses' => 'PostController@get_post'])
 	->where('id','[0-9]+');
 
 Route::get('/like-post', ['as' => 'like_post', 'uses' => 'PostController@like']);

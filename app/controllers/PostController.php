@@ -46,27 +46,26 @@ class PostController extends BaseController {
 
 	public function get_post($id){
 		if(Auth::check()){
-			$authUser = Auth::user();
-			if($authUser->isReady())
-				return View::make('post')->with('post', 
+			if(Auth::user()->isReady())
+				return View::make('inner_post')->with('post', 
 								Post::with(array('comments'=>function($q){
 
 									$q->with('user')
 										->with('likes')
 										->orderBy('id', 'DESC');
 
-								}))->find($id))->with('authUser', $authUser);
+								}))->find($id));
 			else
-				return View::make('guest_post')->with('post', 
+				return View::make('guest_inner_post')->with('post', 
 								Post::with(array('comments'=>function($q){
 
 									$q->with('user')
 										->with('likes')
 										->orderBy('id', 'DESC');
 
-								}))->find($id))->with('auth', true);
+								}))->find($id));
 		} else
-			return View::make('guest_post')->with('post', 
+			return View::make('guest_inner_post')->with('post', 
 									Post::with(array('comments'=>function($q){
 
 										$q->with('user')
