@@ -788,6 +788,17 @@ body{
 	-o-user-select: none;
 	user-select: none;
 }
+.submit-comment{
+	display:none;
+	width:90px;
+	text-align: center;
+	padding:8px 15px;
+	background-color:#5b8199;
+	cursor:pointer;
+	border-radius: 5px;
+	font-size: 13px;
+	color:#eee;
+}
 
 .clear-fix{
 	clear:both;
