@@ -3,9 +3,11 @@
 <head>
 	@section('head')
 		<meta charset="UTF-8">
-		<title>Blogs</title>
+		<meta name="description" content="блоги патриотки, социальная сеть молодежной женской организации, блог молодежной женской организации, патриотки, блог, блоги">
+		<title>Блоги | Патриотки</title>
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="author" href="http://vk.com/vlad.flip">
 		<script src="js/inc.js"></script>
 	@show
 </head>
