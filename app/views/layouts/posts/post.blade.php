@@ -15,7 +15,9 @@
 </div>
 
 <div class="w-p_header">
-	{{ $v->header }}
+	<a href="{{ route('post', $v->id) }}">
+		{{ $v->header }}
+	</a>
 </div>
 
 <div class="w-p_content">

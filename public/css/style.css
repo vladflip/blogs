@@ -707,6 +707,10 @@ body{
 	letter-spacing: 2px;
 	margin:0 0 5px 0;
 }
+.w-p_header a{
+	text-decoration: none;
+	color:inherit;
+}
 .w-p_content{
 	font-size: 15px;
 	margin:0 0 5px 0;
