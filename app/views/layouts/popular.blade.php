@@ -6,7 +6,9 @@
 		@if($i<5)
 			<tr>
 				<td class="p-t_head">
-					<span>{{ $v['header'] }}</span>
+					<a href="{{ route('post', $v['id']) }}">
+						<span>{{ $v['header'] }}</span>
+					</a>
 				</td>
 
 				<td class="p-t_count">

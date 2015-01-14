@@ -80,3 +80,18 @@
 		{{-- ----------------------------------------------- --}}
 	</div>
 @stop
+
+@section('footer')
+	@parent
+	<script>
+		function load_more_comments(el){
+			el.parentNode.getElementsByClassName('load-more-comments-block')[0].style.display = 'block';
+			el.style.display = 'none';
+		}
+
+		function readmore_post(el){
+			el.style.display = 'none';
+			el.parentNode.getElementsByClassName('s2')[0].style.display = '';
+		}
+	</script>
+@stop

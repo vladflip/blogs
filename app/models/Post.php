@@ -24,7 +24,7 @@ class Post extends Eloquent{
 		$cnt = array();
 
 		for($i=0;$i<count($arr);$i++){
-			$arr2[] = array('header' => $arr[$i]->header, 'cnt' => count($arr[$i]->likes));
+			$arr2[] = array('header' => $arr[$i]->header, 'cnt' => count($arr[$i]->likes), 'id' => $arr[$i]->id);
 			$header[] = $arr[$i]->header;
 			$cnt[] = count($arr[$i]->likes);
 		}

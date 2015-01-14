@@ -569,6 +569,10 @@ body{
 	font-size: 15px;
 	color:#5b8199;
 }
+.p-t_head a{
+	text-decoration: none;
+	color:inherit;
+}
 
 
 /*----------------------------POPULAR NEWS BLOCK*/
@@ -794,98 +798,6 @@ body{
 	float:left;
 }
 /*****************************************WALL*/
-
-
-/********************************************inner-post*/
-
-.inner-post,
-.comments-block{
-	padding:0 80px;
-}
-
-/************************************comments*/
-
-.comments-block{
-	margin:0 0 30px 0;
-}
-
-.add-comment{
-	position:relative;
-}
-.restriction-comment{
-	padding:20px 0;
-	text-align: center;
-	background-color:#e0e0e0;
-	color:#666;
-}
-
-.c-ava,
-.a-c_in{
-	display:inline-block;
-}
-.c-ava{
-	border-radius: 5px;
-	width:50px;
-	height:50px;
-	overflow:hidden;
-	position:absolute;
-	top:0;
-}
-.c-ava a{
-	width:50px;
-	height:50px;
-	display:block;
-}
-.a-c_in{
-	margin:0 0 0 70px;
-}
-.a-c_in textarea{
-	border:2px solid #bbb;
-	border-radius: 5px;
-	resize:none;
-	outline:none;
-	color:#777;
-	font-family: Century Gothic, sans-serif;
-	font-size: 15px;
-	letter-spacing: 1px;
-	padding:4px 7px;
-}
-
-.submit-comment{
-	display:none;
-	width:90px;
-	text-align: center;
-	padding:8px 15px;
-	background-color:#5b8199;
-	cursor:pointer;
-	border-radius: 5px;
-	font-size: 13px;
-	color:#ddd;
-}
-.comment{
-	position:relative;
-	margin:30px 0 0 70px;
-	min-height:80px;
-
-	-webkit-transition: height .3s ease;
-	   -moz-transition: height .3s ease;
-	    -ms-transition: height .3s ease;
-	     -o-transition: height .3s ease;
-	        transition: height .3s ease;
-}
-.guest-post .comment{
-	margin:30px 0 0 0;
-}
-.c_c{
-	margin:0 0 0 70px;
-}
-
-.c_c-content{
-	white-space: pre;
-}
-/************************************comments*/
-
-/********************************************INNER-POST*/
 
 .disabled{
 	cursor:auto;
