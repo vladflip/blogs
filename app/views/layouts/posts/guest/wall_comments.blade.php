@@ -11,13 +11,9 @@
 		<div class="w-p_c-block">
 			<hr>
 			<div class="w-p_c_ava">
-				@if($user->id===$val->user->id)
+				<a href="{{ route('profile', $val->user->login) }}">
 					<img src="{{ $val->user->ava_sm }}" alt="">
-				@else
-					<a href="{{ route('profile', $val->user->login) }}">
-						<img src="{{ $val->user->ava_sm }}" alt="">
-					</a>
-				@endif
+				</a>
 			</div>
 			<div class="w-p_c-c">
 				<div class="w-p_c_header">
@@ -53,7 +49,7 @@
 <?php
 	$i = 0;
 ?>
-<div class="load-more-comments-block"  style="display:none">
+<div class="load-more-comments-block" style="display:none">
 	@foreach ($v->comments as $key => $val)
 
 		@if($i>=3)
@@ -61,13 +57,9 @@
 			<div class="w-p_c-block">
 				<hr>
 				<div class="w-p_c_ava">
-					@if($user->id===$val->user->id)
+					<a href="{{ route('profile', $val->user->login) }}">
 						<img src="{{ $val->user->ava_sm }}" alt="">
-					@else
-						<a href="{{ route('profile', $val->user->login) }}">
-							<img src="{{ $val->user->ava_sm }}" alt="">
-						</a>
-					@endif
+					</a>
 				</div>
 				<div class="w-p_c-c">
 					<div class="w-p_c_header">

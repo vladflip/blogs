@@ -17,7 +17,7 @@
 		{{-- add comment --}}
 
 			<div class="w-p_comments-block">
-				@include('layouts.posts.main.guest.wall_comments')
+				@include('layouts.posts.guest.wall_comments')
 			</div>
 
 		{{-- add comment --}}

@@ -4,7 +4,9 @@
 
 	<div class="w-posts-main">
 		<h2 style="margin:0">Записи</h2>
+
 		@include('layouts.posts.main.guest.wall_posts')
+		
 		<div class="clear-fix"></div>
 	</div>
 

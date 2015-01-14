@@ -20,7 +20,7 @@
 		{{-- add comment --}}
 
 			<div class="w-p_comments-block">
-				@include('layouts.posts.main.wall_comments')
+				@include('layouts.posts.wall_comments')
 			</div>
 
 		{{-- add comment --}}
