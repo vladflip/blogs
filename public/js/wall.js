@@ -233,32 +233,49 @@ if (!String.prototype.trim) {
 }
 
 
-function edit_post(h, id, el){
-	var head = el.parentNode.parentNode.getElementsByClassName('w-p_header')[0];
-	var content = el.parentNode.parentNode.getElementsByClassName('w-p_content')[0];
-	$(head).hide();
-	$(content).hide();
+function delete_post(h, id, el){
+	var toDel = el.parentNode.parentNode;
 
-
-	// ==========================================
-		var	inn = content.innerHTML;
-		var main = document.createElement('div');
-		main.classList.add('w-p_edit-post');
-
-		var eHead = document.createElement('textarea');
-		eHead.classList.add('w-p_e-p_header');
-		eHead.value = head.innerHTML.trim().replace(/\s{2,}/g, '');
-
-		var eContent = document.createElement('textarea');
-		eContent.classList.add('w-p_e-p_content');
-			inn = inn.trim();
-			inn = inn.replace(/<br\s*\/?>/mg,"\n");
-		eContent.value = inn;
-
-		main.appendChild(eHead);
-		main.appendChild(eContent);
-	// ==========================================
-
-	head.parentNode.insertBefore(main, head);
-
+	ajax('post', 'delete-post', {hash:h, id:id}, function(r){
+		// console.log(r);
+		toDel.parentNode.removeChild(toDel);
+	});
 }
+
+function delete_comment(h, id, el){
+	var toDel = el.parentNode.parentNode;
+
+	ajax('post', 'delete-comment', {hash:h, id:id}, function(r){
+		toDel.parentNode.removeChild(toDel);
+	});
+}
+
+// function edit_post(h, id, el){
+// 	var head = el.parentNode.parentNode.getElementsByClassName('w-p_header')[0];
+// 	var content = el.parentNode.parentNode.getElementsByClassName('w-p_content')[0];
+// 	$(head).hide();
+// 	$(content).hide();
+
+
+// 	// ==========================================
+// 		var	inn = content.innerHTML;
+// 		var main = document.createElement('div');
+// 		main.classList.add('w-p_edit-post');
+
+// 		var eHead = document.createElement('textarea');
+// 		eHead.classList.add('w-p_e-p_header');
+// 		eHead.value = head.innerHTML.trim().replace(/\s{2,}/g, '');
+
+// 		var eContent = document.createElement('textarea');
+// 		eContent.classList.add('w-p_e-p_content');
+// 			inn = inn.trim();
+// 			inn = inn.replace(/<br\s*\/?>/mg,"\n");
+// 		eContent.value = inn;
+
+// 		main.appendChild(eHead);
+// 		main.appendChild(eContent);
+// 	// ==========================================
+
+// 	head.parentNode.insertBefore(main, head);
+
+// }

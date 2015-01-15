@@ -29,6 +29,29 @@ class CommentController extends BaseController {
 										->with('user', Auth::user());
 	}
 
+	public function delete(){
+		$d = json_decode(Input::get('data'));
+		if(md5($d->id.Auth::id())===$d->hash){
+			$comment = Comment::find($d->id);
+			if($comment->user_id == Auth::id()){
+				$user = User::find($comment->user_id);
+				$user->rate -= 2;
+
+				// decrease rate from likes
+				foreach ($comment->likes as $k => $v) {
+					if($v->id != $comment->user_id){
+						$user->rate--;
+					}
+				}
+				$user->save();
+
+				$comment->delete();
+
+			}
+		}
+
+	}
+
 	public function create_wall_comment(){
 				
 

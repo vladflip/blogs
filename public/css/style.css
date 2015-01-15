@@ -730,6 +730,7 @@ body{
 
 /*****************comment*/
 
+
 .w-p_a-c-input{
 	padding:10px;
 	border-radius: 5px;
@@ -747,11 +748,48 @@ body{
 	     -o-transition: height .3s ease;
 	        transition: height .3s ease;
 }
+
+.w-p_c-block{
+	position:relative;
+}
 .w-p_c-block hr{
 	border:1px solid #ddd;
 	border-top:0;
 	margin:10px 0;
 }
+
+.w-p_c_edit-delete{
+	opacity:0;
+	position:absolute;
+	right:5px;
+	top:10px;
+
+	-webkit-transition: opacity .3s ease;
+	   -moz-transition: opacity .3s ease;
+	    -ms-transition: opacity .3s ease;
+	     -o-transition: opacity .3s ease;
+	        transition: opacity .3s ease;
+}
+.w-p_c_edit-delete div{
+	width:11px;
+	height:11px;
+	margin:0 10px 0 0;
+	position:relative;
+	z-index:3;
+	cursor:pointer;
+	display:inline-block;
+}
+.w-p_c_e-d_edit{
+	background:url(../img/edit_post.gif);
+}
+.w-p_c_e-d_delete{
+	background:url(../img/delete_post.gif);
+}
+.w-p_c-block:hover > .w-p_c_edit-delete{
+	opacity:1;
+}
+
+
 
 .w-p_c_ava{
 	float:left;

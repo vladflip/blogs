@@ -148,6 +148,41 @@ class PostController extends BaseController {
 		}
 	}
 
+	public function delete(){
+		$d = json_decode(Input::get('data'));
+		if(md5($d->id.Auth::id())===$d->hash){
+			$post = Post::find($d->id);
+			if($post->user_id == Auth::id()){
+				$user = User::find($post->user_id);
+				$user->rate -= 3;
+
+				// decrease rate from likes
+				foreach ($post->likes as $k => $v) {
+					if($v->id != $post->user_id){
+						$user->rate--;
+					}
+				}
+
+				//decrease rate from comments and its likes
+				foreach ($post->comments as $k => $v) {
+					if($v->user_id == $post->user_id){ // if its own comments
+						$user->rate -= 2;
+
+						foreach ($v->likes as $key => $val) {
+							if($val->id != $v->user_id){
+								$user->rate--;
+							}
+						}
+					}
+				}
+
+				$user->save();
+
+				$post->delete();
+			}
+		}
+	}
+
 	public function like(){
 		$d = json_decode(Input::get('data'));
 		

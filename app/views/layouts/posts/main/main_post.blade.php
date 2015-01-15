@@ -1,7 +1,7 @@
 @if(Auth::id()==$v->user->id)
 	<div class="w-p_edit-delete">
-		<!-- <div class="w-p_e-d_edit" onclick="edit_post('{{ md5($v->id.Auth::id()) }}', {{ $v->id }}, this)"></div> -->
-		<div class="w-p_e-d_delete" onclick=""></div>
+		<div class="w-p_e-d_delete" 
+			onclick="delete_post('{{ md5($v->id.Auth::id()) }}', {{ $v->id }}, this)"></div>
 	</div>
 @endif
 

@@ -46,6 +46,7 @@ Route::post('/submit-login', ['before' => 'csrf','as' => 'submit_login', 'uses' 
 // *********************************************** POSTs
 
 Route::post('/creat-post', ['as' => 'create_post', 'uses' => 'PostController@create']);
+Route::post('/delete-post', ['as' => 'delete_post', 'uses' => 'PostController@delete']);
 
 Route::get('/p', function(){
 	// Post::create([
@@ -94,6 +95,7 @@ Route::post('/load-more-posts-main', ['as' => 'load_more_posts_main', 'uses' => 
 // *********************************************COMMENTS
 
 Route::post('/add-comment', ['as' => 'add_comment', 'uses' => 'CommentController@create']);
+Route::post('/delete-comment', ['as' => 'add_comment', 'uses' => 'CommentController@delete']);
 
 Route::get('/like-comment', ['as' => 'like_comment', 'uses' => 'CommentController@like']);
 Route::get('/dislike-comment', ['as' => 'dislike_comment', 'uses' => 'CommentController@dislike']);

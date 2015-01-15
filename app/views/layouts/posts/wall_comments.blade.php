@@ -24,6 +24,15 @@
 	@if($i<3)
 
 		<div class="w-p_c-block">
+
+			@if(Auth::id()==$val->user->id)
+				<div class="w-p_c_edit-delete">
+					<div class="w-p_c_e-d_delete" 
+						onclick="delete_comment('{{ md5($val->id.Auth::id()) }}', {{ $val->id }}, this)">
+					</div>
+				</div>
+			@endif
+
 			<hr>
 			<div class="w-p_c_ava">
 				<a href="{{ route('profile', $val->user->login) }}">
