@@ -1,3 +1,11 @@
+@if(Auth::id()==$user->id)
+	<div class="w-p_c_edit-delete">
+		<div class="w-p_c_e-d_delete" 
+			onclick="delete_comment('{{ md5($comment->id.$user->id) }}', {{ $comment->id }}, this)">
+		</div>
+	</div>
+@endif
+
 <hr>
 <div class="w-p_c_ava">
 	<img src="{{ $user->ava_sm }}" alt="">

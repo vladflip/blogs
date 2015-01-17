@@ -92,7 +92,7 @@ Route::post('/load-more-posts', ['as' => 'load_more_posts', 'uses' => 'PostContr
 Route::post('/load-more-posts-main', ['as' => 'load_more_posts_main', 'uses' => 'PostController@load_more_main']);
 
 
-// *********************************************COMMENTS
+// ********************************************* COMMENTS
 
 Route::post('/add-comment', ['as' => 'add_comment', 'uses' => 'CommentController@create']);
 Route::post('/delete-comment', ['as' => 'add_comment', 'uses' => 'CommentController@delete']);
@@ -101,6 +101,11 @@ Route::get('/like-comment', ['as' => 'like_comment', 'uses' => 'CommentControlle
 Route::get('/dislike-comment', ['as' => 'dislike_comment', 'uses' => 'CommentController@dislike']);
 Route::post('/create-wall-comment', ['as' => 'create_wall_comment', 'uses' => 'CommentController@create_wall_comment']);
 Route::post('/load-more-comments', ['as' => 'load_more_comments', 'uses' => 'CommentController@load_more']);
+
+// ********************************************* MESSAGES
+
+Route::get('/сообщения', ['as' => 'messages', 'uses' => 'MessageController@index']);
+
 
 Route::get('/{login}', ['as' => 'profile', 'uses' => 'UserController@profile'])
 ->where('login', '[^-]+');

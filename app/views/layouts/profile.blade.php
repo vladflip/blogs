@@ -23,12 +23,6 @@
 	</div>
 	<div class="p_file-read" id="pFileRead">
 		<div class="p_section-pane" id="pSecitonPane">
-			<div class="img-par" id="imgPar">
-				Загрузить фото!
-			</div>
-			<div class="j-crop" id="jCrop">
-				
-			</div>
 			<div class="p_ava-btns-par" id="pAvaBtns">
 				<div class="p_submit-ava" id="pSubmitAva">
 					Применить!
@@ -36,6 +30,12 @@
 				<div class="p_undo-ava" id="pUndoAva">
 					Отменить!
 				</div>
+			</div>
+			<div class="img-par" id="imgPar">
+				Загрузить фото!
+			</div>
+			<div class="j-crop" id="jCrop">
+				
 			</div>
 		</div>
 	</div>
@@ -55,7 +55,7 @@
 				<div class="p_rate-label">Рейтинг активности</div>
 				<div class="p_rate data-in" id="pRate">
 					@yield('rate')
-						</div>
+				</div>
 			</div>
 
 		</div>

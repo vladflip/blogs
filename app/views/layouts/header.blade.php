@@ -6,16 +6,37 @@
 				<img src="img/logo.png" alt="">
 			</div>
 			<div class="h_menu">
-				<li><a href="{{ route('home') }}">Главная лента</a></li>
 				<li>
-					<a href="{{ Auth::user()->login ? route('profile', Auth::user()->login) 
+					<a href="{{ route('home') }}">
+						Главная лента
+					</a>
+				</li>
+				<li>
+					<a href="{{ Auth::user()->login ? 
+						route('profile', Auth::user()->login) 
 						: route('reg_profile', Auth::user()->id) }}">
 						Мой профиль
 					</a>
 				</li>
-				<li><a href="">Мои Сообщения</a></li>
-				<li><a href="">Настройки</a></li>
-				<li id="logOut">Выйти</li>
+				<li>
+					<a href="{{ route('messages') }}">
+						Мои Сообщения
+						@set('cnt_msgs', Message::where('to_user', '=', Auth::id())
+											->where('status', '=', 0)->count());
+						@if($cnt_msgs)
+							({{ $cnt_msgs }})
+						@endif
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						Настройки
+					</a>
+				</li>
+				<li id="logOut">
+					Выйти
+				</li>
 			</div>
 			<div class="clear-fix"></div>
 		</div>

@@ -7,11 +7,15 @@
 		<div class="w-p_user-block">
 
 		<div class="w-p_user-ava">
-			<img src="{{ $post->user->ava_sm }}" alt="">
+			<a href="{{ route('profile', $post->user->login) }}">
+				<img src="{{ $post->user->ava_sm }}" alt="">
+			</a>
 		</div>
 
 		<div class="w-p_user-name">
-			{{ $post->user->name }}
+			<a href="{{ route('profile', $post->user->login) }}">
+				{{ $post->user->name }}
+			</a>
 		</div>
 
 		</div>

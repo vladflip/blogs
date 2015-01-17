@@ -2,32 +2,32 @@
 
 class CommentController extends BaseController {
 
-	public function create(){
+	// public function create(){
 
-		$d = json_decode(Input::get('data'));
+	// 	$d = json_decode(Input::get('data'));
 
-		if($d->val === '') return 'non';
+	// 	if($d->val === '') return 'non';
 		
-		if(md5($d->id.csrf_token())!==$d->hash){
-			return 'fuck';
-		}
-		$r = htmlentities(trim($d->val));
-		$r = preg_replace('/[\r\n]{2,}/mu', '<br><br>', $r);
-		$r = preg_replace('/[\r\n]{1}/mu', '<br>', $r);
-		$r = preg_replace('/[\s]{2,}/mu', ' ', $r);
+	// 	if(md5($d->id.csrf_token())!==$d->hash){
+	// 		return 'fuck';
+	// 	}
+	// 	$r = htmlentities(trim($d->val));
+	// 	$r = preg_replace('/[\r\n]{2,}/mu', '<br><br>', $r);
+	// 	$r = preg_replace('/[\r\n]{1}/mu', '<br>', $r);
+	// 	$r = preg_replace('/[\s]{2,}/mu', ' ', $r);
 		
-		$comment = Comment::create([
-				'content' => $r,
-				'user_id' => Auth::id(),
-				'post_id' => $d->id
-			]);
+	// 	$comment = Comment::create([
+	// 			'content' => $r,
+	// 			'user_id' => Auth::id(),
+	// 			'post_id' => $d->id
+	// 		]);
 
-		$comment->user->rate += 2;
-		$comment->user->save();
+	// 	$comment->user->rate += 2;
+	// 	$comment->user->save();
 
-		return View::make('create_comment')->with('cmt', $comment)
-										->with('user', Auth::user());
-	}
+	// 	return View::make('create_comment')->with('fuck', 'fuck')
+	// 									->with('user', Auth::user());
+	// }
 
 	public function delete(){
 		$d = json_decode(Input::get('data'));
@@ -62,7 +62,6 @@ class CommentController extends BaseController {
 		if(md5($d->id.csrf_token())!==$d->hash){
 			return 'fuck';
 		}
-		// return 'asdf';
 		
 
 		$r = htmlentities(trim($d->val));

@@ -27,9 +27,6 @@
 		<div class="popular-news-block">
 			<div class="p-n_header">
 				<h2>Популярные</h2>
-				<span>
-					<a href="">все</a>
-				</span>
 			</div>
 			<div class="p-n_content">
 				@include('layouts.popular')
@@ -39,9 +36,9 @@
 
 	@if(count($posts)===5)
 
-	<div class="loadmore_post_main" onclick="load_more_main(this)">
-		Загрузить еще
-	</div>
+		<div class="loadmore_post_main" onclick="load_more_main(this)">
+			Загрузить еще
+		</div>
 
 	@endif
 
