@@ -18,6 +18,30 @@ function check_for_allow(){
 	})
 }
 
+// -------------------------------------------
+// Write message
+
+(function(){
+	var el = document.getElementById('pWriteMsg');
+	var panel = new popUp();
+
+	var form = document.getElementById('writeMsg');
+
+	form.onmousedown = function(e){
+		e.stopPropagation();
+	}
+
+	el.onclick = function(){
+		panel.open();
+		panel.pop.appendChild(form);
+		form.style.display = 'block';
+	}
+})();
+
+// Write message
+// -------------------------------------------
+
+
 function el(id){
 	var self = this;
 	var timer;

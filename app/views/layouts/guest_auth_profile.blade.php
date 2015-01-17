@@ -7,6 +7,15 @@
 @stop
 
 @section('body')
+
+	<div class="write-msg-block" id="writeMsg">
+		{{ Form::open(['route' => 'send_message', 'class' => 'write-msg-from']) }}
+			{{ Form::textArea('message', null, ['autocomplete' => 'off', 'class' => 'send-message-input']) }}
+			<input type="hidden" name="receiver" value="{{ $user->id }}">
+			{{ Form::submit() }}
+		{{ Form::close() }}
+	</div>
+
 	<div class="profile">
 
 		<div class="p_user-ava-block">
@@ -19,6 +28,10 @@
 					<img id="avaEl" src="{{ 'img/q_mark.png' }}" alt="">	
 				@endif
 
+			</div>
+
+			<div class="p_write-msg" id="pWriteMsg">
+				Написать сообщение
 			</div>
 
 			<div class="p_rate-block">
@@ -113,6 +126,29 @@
 			el.style.display = 'none';
 			el.parentNode.getElementsByClassName('s2')[0].style.display = '';
 		}
+
+		// -------------------------------------------
+		// Write message
+
+		(function(){
+			var el = document.getElementById('pWriteMsg');
+			var panel = new popUp();
+
+			var form = document.getElementById('writeMsg');
+
+			form.onmousedown = function(e){
+				e.stopPropagation();
+			}
+
+			el.onclick = function(){
+				panel.open();
+				panel.pop.appendChild(form);
+				form.style.display = 'block';
+			}
+		})();
+
+		// Write message
+		// -------------------------------------------
 	</script>
 
 	<script src="js/jquery.js"></script>

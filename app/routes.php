@@ -105,6 +105,7 @@ Route::post('/load-more-comments', ['as' => 'load_more_comments', 'uses' => 'Com
 // ********************************************* MESSAGES
 
 Route::get('/сообщения', ['as' => 'messages', 'uses' => 'MessageController@index']);
+Route::post('/send-message', ['before' => 'csrf', 'as' => 'send_message', 'uses' => 'MessageController@send']);
 
 
 Route::get('/{login}', ['as' => 'profile', 'uses' => 'UserController@profile'])

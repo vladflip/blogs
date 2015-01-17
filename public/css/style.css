@@ -336,6 +336,30 @@ body{
 	background-color:#FB3E3E;
 }
 
+/************************ write msg*/
+
+.write-msg-block{
+	display:none;
+	margin:200px 0 0 0;
+}
+.send-message-input{
+	width:400px;
+	height:200px;
+}
+.p_write-msg{
+	background-color:#bfced6;
+	width:200px;
+	border-radius: 5px;
+	margin:5px 0 0 0;
+	cursor:pointer;
+	font-size: 16px;
+	padding:10px 0;
+	color:#fff;
+	text-align: center;
+}
+
+/************************ write msg*/
+
 /************************rate*/
 .p_rate-block{
 	background-color:#e7ecef;
