@@ -34,12 +34,11 @@ function comment(el){
 		var self = this;
 		e.stopPropagation();
 		var btn = this.parentNode.getElementsByClassName('submit-comment')[0];
+
 		$(btn).fadeIn();
 
 		document.onclick = function(){
-			self.value = '';
-			$(self).trigger('autosize.resize');
-			$(btn).fadeOut();
+				$(btn).fadeOut();
 		}
 	}
 }
@@ -234,12 +233,44 @@ if (!String.prototype.trim) {
 
 
 function delete_post(h, id, el){
-	var toDel = el.parentNode.parentNode;
+	var e = event || window.event;
 
-	ajax('post', 'delete-post', {hash:h, id:id}, function(r){
-		// console.log(r);
-		toDel.parentNode.removeChild(toDel);
-	});
+	e.stopPropagation();
+
+	var post = el.parentNode.parentNode;
+	var con = post.getElementsByClassName('w-p_remove-container')[0];
+
+	var yes = con.getElementsByClassName('w-p_rm-yes')[0];
+	var no = con.getElementsByClassName('w-p_rm-no')[0];
+
+	con.fadeIn();
+
+	document.onclick = function(){
+		con.fadeOut();
+
+		this.onclick = null;
+	}
+
+	yes.onclick = function(){
+		var e = event || window.event;
+		e.stopPropagation();
+		con.fadeOut();
+		
+		ajax('post', 'delete-post', {hash:h, id:id}, function(r){
+			// console.log(r);
+			post.parentNode.removeChild(post);
+		});
+
+		this.onclick = null;
+	}
+
+	no.onclick = function(){
+		var e = event || window.event;
+		e.stopPropagation();
+		con.fadeOut();
+
+		this.onclick = null;
+	}
 }
 
 function delete_comment(h, id, el){

@@ -25,6 +25,18 @@
 
 		{{-- add comment --}}
 		{{-- ----------------------------------------------- --}}
+
+		<div class="w-p_remove-container">
+			<h2 class="w-p_rm-header">Точно удалить пост?</h2>
+
+			<div class="w-p_rm-btns">
+
+				<div class="w-p_rm-yes">Да :(</div>
+
+				<div class="w-p_rm-no">Ой, нет :)</div>
+
+			</div>
+		</div>
 	</div>
 
 @endforeach
