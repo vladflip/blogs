@@ -1,4 +1,4 @@
-@if(Auth::id()==$v->user->id)
+@if(Auth::check() && Auth::id()==$v->user->id)
 	<div class="w-p_edit-delete">
 		<div class="w-p_e-d_delete" 
 			onclick="delete_post('{{ md5($v->id.Auth::id()) }}', {{ $v->id }}, this)"></div>
