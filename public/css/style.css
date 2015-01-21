@@ -920,6 +920,99 @@ body{
 }
 /*****************************************WALL*/
 
+/****************************************** message*/
+
+.m-b_p-in,
+.m-b_p-out{
+	color:#5b8199;
+	float:left;
+	width:450px;
+	padding:10px 0;
+	font-size: 18px;
+	text-align: center;
+	cursor:pointer;
+	background-color:#fff;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.m-b_p-in{
+
+}
+.m-b_p-out{
+
+}
+.m-b_p-choisen{
+	background-color:#3eade2;
+	border:1px solid #3eade2;
+	color:#fff;
+
+}
+.m-b_p-disabled{
+	border:1px solid #3eade2;
+}
+
+
+.m-b_received-table,
+.m-b_sent-table{
+	opacity:1;
+	width:100%;
+	border-left:1px solid #3eade2;
+	border-right:1px solid #3eade2;
+	border-bottom:1px solid #3eade2;
+	border-collapse: collapse;
+	background-color:#fff;
+}
+.m-b_sent-table{
+	display:none;
+}
+.message-raw td{
+	border-bottom:1px solid #3eade2;
+	padding:15px;
+}
+.ms_ava{
+	width:50px;
+}
+.ms_ava img{
+	display:block;
+}
+.ms_name{
+	text-align: center;
+	width:150px;
+	color:#555;
+}
+.ms_name a{
+	color:inherit;
+	text-decoration: none;
+}
+.ms_msg{
+	width:600px;
+	color:#555;
+}
+.ms_reply{
+	font-size: 14px;
+	cursor:pointer;
+	color:#5b8199;
+}
+.ms_reply:hover{
+	background-color:#3eade2;
+	color:#fff;
+
+	-webkit-transition: all .3s ease;
+	   -moz-transition: all .3s ease;
+	    -ms-transition: all .3s ease;
+	     -o-transition: all .3s ease;
+	        transition: all .3s ease;
+}
+/****************************************** MESSAGE*/
+
 .disabled{
 	cursor:auto;
 }

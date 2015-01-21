@@ -11,17 +11,22 @@ class MessageController extends BaseController {
 		// 		'status' => 0
 		// 	]);
 
-		$msgs = Message::with('receiver')
-			->where('to_user', '=', Auth::id())
+		$in = Message::where('to_user', '=', Auth::id())
+			->orderBy('id', 'DESC')
 			->get();
 
-		foreach($msgs as $k => $v){
+		$out = Message::where('from_user', '=', Auth::id())
+			->orderBy('id', 'DESC')
+			->get();
+		
+
+		foreach($in as $k => $v){
 			$v->status = 1;
 			$v->save();
 		}
 
 
-		return View::make('messages')->with('msgs', $msgs);
+		return View::make('messages')->with('in', $in)->with('out', $out);
 	}
 
 	public function send(){
