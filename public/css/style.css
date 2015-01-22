@@ -1011,6 +1011,9 @@ body{
 	     -o-transition: all .3s ease;
 	        transition: all .3s ease;
 }
+.unread{
+	background-color:#eef0f1;
+}
 /****************************************** MESSAGE*/
 
 .disabled{

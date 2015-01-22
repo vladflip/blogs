@@ -57,7 +57,7 @@
 
 				@foreach($out as $k => $v)
 						
-					<tr class="message-raw">
+					<tr class="message-raw @if($v->status == 0){{ 'unread' }}@endif">
 						<td class="ms_ava">
 							<a href="{{ route('profile', $v->receiver->login) }}">
 								<img src="{{ $v->receiver->ava_sm }}" alt="">
