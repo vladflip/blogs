@@ -82,6 +82,10 @@ function el(id){
 				if(r!=='non'){
 					self.load.success();
 					check_for_allow();
+
+					if(id == 'pLogin'){
+						window.history.pushState(null, el.value, el.value);
+					}
 				}
 				else
 					self.load.fail();
@@ -107,6 +111,8 @@ var edit_me = new (function(){
 
 	this.f.pAge = new el('pAge');
 
+	this.f.pLogin = new el('pLogin');
+
 	// this.f.pBDay = new el('pBDay');
 
 	this.f.pTown = new el('pTown');
@@ -120,71 +126,71 @@ var edit_me = new (function(){
 
 // ************************** login
 
-(function(){
-	var el = document.getElementById('pLogin');
-	var pen = el.getElementsByClassName('edit-pen')[0];
+// (function(){
+// 	var el = document.getElementById('pLogin');
+// 	var pen = el.getElementsByClassName('edit-pen')[0];
 
 
-	var load = new loadAnim('#pLoginPopUp');
-	var lpop = document.getElementById('pLoginPopUp');
-	var input = lpop.getElementsByTagName('input')[1];
-	var form = document.getElementById('editLoginForm');
-	var submit = document.getElementById('sbmtLogin');
+// 	var load = new loadAnim('#pLoginPopUp');
+// 	var lpop = document.getElementById('pLoginPopUp');
+// 	var input = lpop.getElementsByTagName('input')[1];
+// 	var form = document.getElementById('editLoginForm');
+// 	var submit = document.getElementById('sbmtLogin');
 
-	var timer;
+// 	var timer;
 
-	pen.onclick = function(){
-		var pop = new popUp(function(){
-			input.value = '';
-			load.reset();
-		});
+// 	pen.onclick = function(){
+// 		var pop = new popUp(function(){
+// 			input.value = '';
+// 			load.reset();
+// 		});
 
-		pop.pop.appendChild(lpop);
-		lpop.style.display = 'block';
-		pop.open();
-		input.focus();
-	}
+// 		pop.pop.appendChild(lpop);
+// 		lpop.style.display = 'block';
+// 		pop.open();
+// 		input.focus();
+// 	}
 
-	lpop.onmousedown = function(e){
-		e.stopPropagation();
-	}
+// 	lpop.onmousedown = function(e){
+// 		e.stopPropagation();
+// 	}
 
-	var edit = function(){
-		clearInterval(timer);
-		submit.onclick = function(){
-			return false;
-		}
-		var el = input;
-		if(el.value === ''){
-			load.reset();
-			return;
-		}
+// 	var edit = function(){
+// 		clearInterval(timer);
+// 		submit.onclick = function(){
+// 			return false;
+// 		}
+// 		var el = input;
+// 		if(el.value === ''){
+// 			load.reset();
+// 			return;
+// 		}
 
-		var obj = {};
+// 		var obj = {};
 
-		load.load();
-		obj['login'] = el.value;
-		timer = setTimeout(function(){
-			ajax('post', 'edit-login', obj, function(r){
-				if(r==='non'){
-					load.fail();
-					submit.classList.remove('enabled');
-					submit.classList.add('disabled');
-				}
-				else{
-					submit.onclick = function(){
-						form.submit();	
-					}
-					submit.classList.remove('disabled');
-					submit.classList.add('enabled');
-					load.success();
-				}
-			});
-		}, 600);
-	}
+// 		load.load();
+// 		obj['login'] = el.value;
+// 		timer = setTimeout(function(){
+// 			ajax('post', 'edit-login', obj, function(r){
+// 				if(r==='non'){
+// 					load.fail();
+// 					submit.classList.remove('enabled');
+// 					submit.classList.add('disabled');
+// 				}
+// 				else{
+// 					submit.onclick = function(){
+// 						form.submit();	
+// 					}
+// 					submit.classList.remove('disabled');
+// 					submit.classList.add('enabled');
+// 					load.success();
+// 				}
+// 			});
+// 		}, 600);
+// 	}
 
-	input.onkeyup = edit;
-})();
+// 	input.onkeyup = edit;
+// })();
 
 // ************************** LOGIN
 // 

@@ -13,7 +13,9 @@
 @stop
 
 @section('login')
-	<span>{{{ $user->login or 'логин' }}}</span>
+
+	<input type="text" value="{{ $user->login or 'логин' }}">
+	{{-- <span>{{{ $user->login or 'логин' }}}</span> --}}
 @stop
 
 @section('name')

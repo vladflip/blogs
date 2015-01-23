@@ -408,11 +408,12 @@ body{
 	outline:none;
 }
 .data-in input::selection{
-	background-color:#5b8199;
-	color:#fff;
+	background-color:#fff7a8;
+	color:#444;
 }
 .data-in input::-moz-selection{
-	background-color:#00ACE4;
+	background-color:#fff7a8;
+	color:#444;
 }
 /*************************************login-block*/
 /*******************************change-block*/

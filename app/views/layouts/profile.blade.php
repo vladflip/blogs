@@ -8,7 +8,7 @@
 
 @section('body')
 
-	<div class="p_login-pop-up" id="pLoginPopUp">
+	<!-- <div class="p_login-pop-up" id="pLoginPopUp">
 		<div class="p_login-p-p-caption">Использовать только _, ., англ и рус символы</div>
 		<div class="p_login-input-block">
 			{{ Form::open(['route' => 'submit_login', 'id' => 'editLoginForm']) }}
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="p_submit-login disabled" id="sbmtLogin">Поменять!</div>
-	</div>
+	</div> -->
 
 	<div class="write-msg-block" id="writeMsg">
 		{{ Form::open(['route' => 'send_message', 'class' => 'write-msg-from']) }}
@@ -79,9 +79,15 @@
 			<ul class="p_info-list">
 
 				<li>
-					<div class="p_login" id="pLogin">
+					<div class="p_login data-in" id="pLogin">
 						@yield('login')
-						<div class="edit-pen"></div>
+						<div class="load-icons">
+							<img src="img/load.gif" alt="" class="load">
+							<img src="img/fail.png" alt="" class="fail">
+							<img src="img/success.png" alt="" class="success">
+							<div class="edit-pen"></div>
+						</div>
+						<!-- <div class="edit-pen"></div> -->
 					</div>
 				</li>
 				

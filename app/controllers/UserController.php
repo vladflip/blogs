@@ -53,18 +53,96 @@ class UserController extends BaseController{
 
 
 	public function reg_profile($id){
-		if(!$user = User::find($id))
-			return 404;
+		// if(!$user = User::find($id))
+		// 	return 404;
 
-		if(Auth::id()===$user->id){
-			if(Auth::user()->isReady()){
-				return View::make('owners_profile')->with('user', Auth::user());	
-			} else {
-				return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
+		// if(Auth::id()===$user->id){
+		// 	if(Auth::user()->isReady()){
+		// 		return View::make('owners_profile')->with('user', Auth::user());	
+		// 	} else {
+		// 		return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
+		// 	}
+		// } else {
+		// 	return View::make('guest_profile')->with('user', $user);
+		
+			if(!$user = User::find($id)){
+				App::abort(404);
 			}
-		} else {
-			return View::make('guest_profile')->with('user', $user);
-		}
+
+			if(Auth::check()){
+
+				$authUser = Auth::user();
+				if(intval($authUser->id)===$user->id){
+
+					if($authUser->isReady()){
+						return View::make('owners_profile')
+						->with('user', User::with(['posts'=>function($q){
+
+										$q->with('likes')
+
+											->with(['comments' => function($q2){
+												$q2->with('likes')
+													->with('user')
+													->orderBy('id', 'DESC');
+											}])
+											->orderBy('id', 'DESC')
+											->take(5);
+
+									}])->find($user->id));
+					} else {
+						return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
+					}
+				} else {	
+					$authUser = Auth::user();
+
+					if($authUser->isReady()){
+						return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
+							->with('user', User::with(['posts'=>function($q){
+
+												$q->with('likes')
+
+													->with(['comments' => function($q2){
+														$q2->with('likes')
+															->with('user')
+															->orderBy('id', 'DESC');
+													}])
+													->orderBy('id', 'DESC')
+													->take(5);
+
+											}])->find($user->id));
+					} else {
+						return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
+							->with('user', User::with(['posts'=>function($q){
+
+												$q->with('likes')
+
+													->with(['comments' => function($q2){
+														$q2->with('likes')
+															->with('user')
+															->orderBy('id', 'DESC');
+													}])
+													->orderBy('id', 'DESC')
+													->take(5);
+
+											}])->find($user->id))->with('not_ready', true);
+					}
+				}
+			}
+			else if(Auth::guest())
+				return View::make('guest_profile')
+						->with('user', User::with(['posts'=>function($q){
+
+										$q->with('likes')
+
+											->with(['comments' => function($q2){
+												$q2->with('likes')
+													->with('user')
+													->orderBy('id', 'DESC');
+											}])
+											->orderBy('id', 'DESC')
+											->take(5);
+
+									}])->find($user->id));
 	}
 
 	public function check_for_allow(){
@@ -380,9 +458,15 @@ class UserController extends BaseController{
 					return $d;
 				}
 
+				if($column!=='non' && $column === 'login'){
+					if(preg_match_all('/[^0-9a-zа-я\.\_]|^[^0-9a-zа-я]|[^0-9a-zа-я]$/u', $data['data'])){
+						return 'non';
+					}
+				}
+
 				$user[$column] = htmlentities($data['data']);
 				$user->save();
-
+				echo 'ok';
 		} else return 'non';
 	}
 
