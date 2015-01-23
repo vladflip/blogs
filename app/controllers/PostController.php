@@ -40,7 +40,7 @@ class PostController extends BaseController {
 
 			$p->user->rate += 3;
 			$p->user->save();
-			return Redirect::to(Auth::user()->login);
+			return Redirect::to(Auth::user()->url());
 		}
 	}
 

@@ -52,7 +52,7 @@ class UserController extends BaseController{
 	}
 
 
-	public function reg_profile($id){
+	public function profile_id($id){
 		// if(!$user = User::find($id))
 		// 	return 404;
 

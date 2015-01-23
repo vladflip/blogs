@@ -37,13 +37,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function isReady(){
-		if($this->name && $this->login 
-				&& $this->age && $this->town && $this->ava_xl && $this->ava_sm)
+		if($this->name && $this->age && $this->town && $this->ava_xl && $this->ava_sm)
 			return true;
 		else return false;
 	}
 
 	public function messages(){
 		return $this->hasMany('Message', 'to_user');
+	}
+
+	public function url(){
+		return $this->login ? route('profile', $this->login) : route('profile_id', $this->id);
 	}
 }

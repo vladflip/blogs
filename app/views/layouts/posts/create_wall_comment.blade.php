@@ -8,11 +8,15 @@
 
 <hr>
 <div class="w-p_c_ava">
-	<img src="{{ $user->ava_sm }}" alt="">
+	<a href="{{ $user->url() }}">
+		<img src="{{ $user->ava_sm }}" alt="">
+	</a>
 </div>
 <div class="w-p_c-c">
 	<div class="w-p_c_header">
-		{{ $user->name }}
+		<a href="{{ $user->url() }}">
+			{{ $user->name }}
+		</a>
 	</div>
 	<div class="w-p_c_date">
 		{{ $comment->created_at->day.'.'.$comment->created_at->month.'.'.$comment->created_at->year }}

@@ -35,13 +35,13 @@
 
 			<hr>
 			<div class="w-p_c_ava">
-				<a href="{{ route('profile', $val->user->login) }}">
+				<a href="{{ $val->user->url() }}">
 					<img src="{{ $val->user->ava_sm }}" alt="">
 				</a>
 			</div>
 			<div class="w-p_c-c">
 				<div class="w-p_c_header">
-					<a href="{{ route('profile', $val->user->login) }}">
+					<a href="{{ $val->user->url() }}">
 						{{ $val->user->name }}
 					</a>
 				</div>
@@ -81,13 +81,13 @@
 			<div class="w-p_c-block">
 				<hr>
 				<div class="w-p_c_ava">
-					<a href="{{ route('profile', $val->user->login) }}">
+					<a href="{{ $val->user->url() }}">
 						<img src="{{ $val->user->ava_sm }}" alt="">
 					</a>
 				</div>
 				<div class="w-p_c-c">
 					<div class="w-p_c_header">
-						<a href="{{ route('profile', $val->user->login) }}">
+						<a href="{{ $val->user->url() }}">
 							{{ $val->user->name }}
 						</a>
 					</div>

@@ -10,7 +10,7 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
 
 Route::post('/forget', ['as' => 'forget', 'before' => 'csrf', 'uses' => 'UserController@forget']);
 
-Route::get('/id{id}',['as' => 'reg_profile', 'uses' => 'UserController@reg_profile'])
+Route::get('/id{id}',['as' => 'profile_id', 'uses' => 'UserController@profile_id'])
 	->where('id','[0-9]+');
 
 Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);

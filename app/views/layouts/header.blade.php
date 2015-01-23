@@ -14,7 +14,7 @@
 				<li>
 					<a href="{{ Auth::user()->login ? 
 						route('profile', Auth::user()->login) 
-						: route('reg_profile', Auth::user()->id) }}">
+						: route('profile_id', Auth::user()->id) }}">
 						Мой профиль
 					</a>
 				</li>

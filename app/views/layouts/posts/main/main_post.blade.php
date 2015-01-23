@@ -8,13 +8,13 @@
 <div class="w-p_user-block">
 
 	<div class="w-p_user-ava">
-		<a href="{{ route('profile', $v->user->login) }}">
+		<a href="{{ $v->user->url() }}">
 			<img src="{{ $v->user->ava_sm }}" alt="">
 		</a>
 	</div>
 
 	<div class="w-p_user-name">
-		<a href="{{ route('profile', $v->user->login) }}">
+		<a href="{{ $v->user->url() }}">
 			{{ $v->user->name }}
 		</a>
 	</div>

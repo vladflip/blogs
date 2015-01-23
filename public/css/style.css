@@ -143,6 +143,16 @@ body{
 	top:30%;
 	left:40%;
 }
+.sign-up-form .load-icons{
+	position:absolute;
+	width:35px;
+	height:35px;
+	right:2px;
+	top:3px;
+}
+.sign-up-form .load-icons img{
+	max-height:35px;
+}
 
 .sign-up-form input,
 .login-form input{
@@ -181,7 +191,21 @@ body{
 	border-color:#2daae1;
 }
 
-
+.oauth{
+	background-color:#5185cc;
+	color:#fff;
+	border-radius: 5px;
+	cursor:pointer;
+	text-align: center;
+	padding:10px 0;
+	margin:40px 0 0 0;
+	font-size: 15px;
+	font-family: Century Gothic, sans-serif;
+}
+.oauth a{
+	text-decoration: none;
+	color:inherit;
+}
 /**********************************************profile*/
 
 .loadmore_post_main{
