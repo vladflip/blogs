@@ -737,12 +737,16 @@ body{
 	color:#5b8199;
 	font-size: 14px;
 	margin:0 0 5px 0;
+	display:inline-block;
 }
 .w-p_user-name a{
 	color:#5b8199;
 	font-size: 14px;
 	margin:0 0 5px 0;
 	text-decoration: none;
+}
+.w-p_user-name:hover a{
+	text-decoration: underline;
 }
 .w-p_date{
 	color:#b2bbbf;
@@ -755,10 +759,14 @@ body{
 	font-size: 18px;
 	letter-spacing: 2px;
 	margin:0 0 5px 0;
+	display:inline-block;
 }
 .w-p_header a{
 	text-decoration: none;
 	color:inherit;
+}
+.w-p_header:hover a{
+	text-decoration: underline;
 }
 .w-p_content{
 	font-size: 15px;
@@ -768,6 +776,7 @@ body{
 
 .w-p_like{
 	cursor:pointer;
+	display:inline-block;
 
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -823,6 +832,9 @@ body{
 
 /*****************comment*/
 
+.w-p_c-c{
+	margin:0 0 0 70px;
+}
 
 .w-p_a-c-input{
 	padding:10px;
@@ -844,6 +856,7 @@ body{
 
 .w-p_c-block{
 	position:relative;
+	cursor:pointer;
 }
 .w-p_c-block hr{
 	border:1px solid #ddd;
@@ -899,19 +912,29 @@ body{
 .w-p_c_header a{
 	text-decoration: none;
 	color:inherit;
+	display:inline-block;
+}
+.w-p_c_header:hover a{
+	text-decoration: underline;
+}
+.w-p_c_content{
+	font-size: 15px;
+}
+
+.w-p_date-like{
+	margin:0 0 0 70px;
 }
 .w-p_c_date{
 	color:#b2bbbf;
 	font-size: 12px;
 	margin:0 0 6px 0;
-}
-.w-p_c_content{
-	font-size: 15px;
+	display:inline-block;
 }
 .w-p_c_like{
 	text-align: right;
 	cursor:pointer;
 	clear:both;
+	float:right;
 
 	-webkit-user-select: none;
 	-moz-user-select: none;

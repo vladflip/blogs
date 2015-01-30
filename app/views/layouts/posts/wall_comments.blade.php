@@ -45,22 +45,25 @@
 						{{ $val->user->name }}
 					</a>
 				</div>
-				<div class="w-p_c_date">
-					{{ $val->created_at->day.'.'.$val->created_at->month.'.'.$val->created_at->year }}
-				</div>
 				<div class="w-p_c_content">
 					{{ $val->content }}
 				</div>
 			</div>
-
-			<div class="w-p_c_like" onclick="like_comment('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this)">
-				@if($val->likes->contains(Auth::id()))
-					<img src="img/liked.png" alt="" onclick="return false;">
-				@else
-					<img src="img/not_liked.png" alt="" onclick="return false;">
-				@endif
-				<span class="cnt_likes">{{ count($val->likes) }}</span>
+			
+			<div class="w-p_date-like">
+				<div class="w-p_c_date">
+					{{ $val->created_at->day.'.'.$val->created_at->month.'.'.$val->created_at->year }}
+				</div>
+				<div class="w-p_c_like" onclick="like_comment('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this)">
+					@if($val->likes->contains(Auth::id()))
+						<img src="img/liked.png" alt="" onclick="return false;">
+					@else
+						<img src="img/not_liked.png" alt="" onclick="return false;">
+					@endif
+					<span class="cnt_likes">{{ count($val->likes) }}</span>
+				</div>
 			</div>
+			
 			<div class="clear-fix"></div>
 		</div>
 
@@ -91,21 +94,23 @@
 							{{ $val->user->name }}
 						</a>
 					</div>
-					<div class="w-p_c_date">
-						{{ $val->created_at->day.'.'.$val->created_at->month.'.'.$val->created_at->year }}
-					</div>
 					<div class="w-p_c_content">
 						{{ $val->content }}
 					</div>
 				</div>
 
-				<div class="w-p_c_like" onclick="like_comment('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this)">
-					@if($val->likes->contains(Auth::id()))
-						<img src="img/liked.png" alt="" onclick="return false;">
-					@else
-						<img src="img/not_liked.png" alt="" onclick="return false;">
-					@endif
-					<span class="cnt_likes">{{ count($val->likes) }}</span>
+				<div class="w-p_date-like">
+					<div class="w-p_c_date">
+						{{ $val->created_at->day.'.'.$val->created_at->month.'.'.$val->created_at->year }}
+					</div>
+					<div class="w-p_c_like" onclick="like_comment('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this)">
+						@if($val->likes->contains(Auth::id()))
+							<img src="img/liked.png" alt="" onclick="return false;">
+						@else
+							<img src="img/not_liked.png" alt="" onclick="return false;">
+						@endif
+						<span class="cnt_likes">{{ count($val->likes) }}</span>
+					</div>
 				</div>
 				<div class="clear-fix"></div>
 			</div>
