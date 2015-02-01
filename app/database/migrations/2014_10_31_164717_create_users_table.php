@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration {
 			$t->string('email',100);
 			$t->string('name')->nullable();
 			$t->string('password',64);
+			$t->boolean('confirmed')->default(0);
+			$t->string('confirmation_code')->nullable();
 			$t->rememberToken();
 			$t->string('ava_xl',255);
 			$t->string('ava_sm',255);

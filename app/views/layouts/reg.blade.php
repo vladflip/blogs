@@ -1,6 +1,6 @@
 {{ Form::open(array('route' => 'login', 'method' => 'post','class' => 'login-form')) }}
 
-		{{ Form::text('login', null, ['placeholder' => 'Логин']) }}
+		{{ Form::text('login', null, ['placeholder' => 'Email']) }}
 		{{ Form::password('password', ['placeholder' => 'Пароль']) }}
 		{{ Form::submit('Войти',['class' => 'submit']) }}
 

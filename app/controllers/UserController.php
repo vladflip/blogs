@@ -14,20 +14,27 @@ class UserController extends BaseController{
 		$val = Validator::make($data, $rules);
 
 		if($val->fails())
-			return $val ->messages();
+			return $val->messages();
 		else {
+			$confirmation_code = md5(str_random(30));
+
 			$user = User::create([
 								'email' => $data['email'],
-								'password' => Hash::make($data['password'])
-								]);
-			// credentials
-			$cred = [
-					'email' => $data['email'],
-					'password' => $data['password']
-				];
-			Auth::attempt($cred, true);
+								'password' => Hash::make($data['password']),
+								'confirmation_code' => $confirmation_code
+							]);
+			
+			// Auth::attempt([
+			// 			'email' => $data['email'],
+			// 			'password' => $data['password']
+			// 		], true);
 
-			return Redirect::to('id'.$user->id);
+			Mail::send('emails.verify', ['code' => $confirmation_code], function($message) use ($user){
+				$message->to($user->email)
+					->subject('МЖА - вы не робот');
+			});
+
+			// return Redirect::to('id'.$user->id);
 		}
 	}
 
