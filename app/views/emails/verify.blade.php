@@ -6,6 +6,8 @@
 </head>
 <body>
 	Докажите что вы не робот :)
-	<a href=""></a>
+	<a href="{{ home_url() . /register/verify/ . $code }}">
+		Нажмите сюда
+	</a>
 </body>
 </html>
