@@ -30,10 +30,10 @@ class UserController extends BaseController{
 			// 		], true);
 
 			Mail::send('emails.verify', ['code' => $confirmation_code], function($message) use ($user){
-				$message->to($user->email)
+				$message->to($user->email, 'asdf')
 					->subject('МЖА - вы не робот');
 			});
-
+			echo $user->email;
 			// return Redirect::to('id'.$user->id);
 		}
 	}
