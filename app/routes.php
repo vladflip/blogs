@@ -41,6 +41,8 @@ Route::post('/edit-profile', ['as' => 'edit_profile', 'uses' => 'UserController@
 Route::post('/edit-login', ['as' => 'edit_login', 'uses' => 'UserController@edit_login']);
 Route::post('/submit-login', ['before' => 'csrf','as' => 'submit_login', 'uses' => 'UserController@submit_login']);
 
+Route::get('/register/verify/{code}', ['as' => 'verify_email', 'uses' => 'UserController@verify']);
+
 
 
 // *********************************************** POSTs

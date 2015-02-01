@@ -23,13 +23,17 @@
 		<div class="p_submit-login disabled" id="sbmtLogin">Поменять!</div>
 	</div> -->
 
-	<div class="write-msg-block" id="writeMsg">
-		{{ Form::open(['route' => 'send_message', 'class' => 'write-msg-from']) }}
-			{{ Form::textArea('message', null, ['autocomplete' => 'off', 'class' => 'send-message-input']) }}
-			<input type="hidden" name="receiver" value="{{ $user->id }}">
-			{{ Form::submit() }}
-		{{ Form::close() }}
-	</div>
+	@if(!isset($not_ready))
+		<div class="write-msg-block" id="writeMsg">
+			{{ Form::open(['route' => 'send_message', 'class' => 'write-msg-from']) }}
+				{{ Form::textArea('message', null, ['autocomplete' => 'off', 'class' => 'send-message-input']) }}
+				<input type="hidden" name="receiver" value="{{ $user->id }}">
+				{{ Form::submit() }}
+			{{ Form::close() }}
+		</div>
+	@else
+		<div id="writeMsg"></div>
+	@endif
 
 	<div class="p_file-read" id="pFileRead">
 		<div class="p_section-pane" id="pSecitonPane">
@@ -61,9 +65,13 @@
 				@yield('ava_xl')
 			</div>
 
-			<div class="p_write-msg" id="pWriteMsg">
-				Написать сообщение
-			</div>
+			@if(!isset($not_ready))
+				<div class="p_write-msg" id="pWriteMsg">
+					Написать сообщение
+				</div>
+			@else
+				<div id="pWriteMsg"></div>
+			@endif
 
 			<div class="p_rate-block">
 				<div class="p_rate-label">Рейтинг активности</div>

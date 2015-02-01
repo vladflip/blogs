@@ -37,7 +37,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function isReady(){
-		if($this->name && $this->age && $this->town && $this->ava_xl && $this->ava_sm)
+		if($this->name && $this->age && $this->town && $this->ava_xl && $this->ava_sm && $this->confirmed)
 			return true;
 		else return false;
 	}

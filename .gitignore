@@ -1,6 +1,8 @@
 /bootstrap/compiled.php
 /vendor
 /public/img
+*.sublime-project
+*.sublime-workspace
 composer.phar
 composer.lock
 .env.*.php

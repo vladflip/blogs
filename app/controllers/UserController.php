@@ -23,21 +23,41 @@ class UserController extends BaseController{
 								'password' => Hash::make($data['password']),
 								'confirmation_code' => $confirmation_code
 							]);
-			
-			// Auth::attempt([
-			// 			'email' => $data['email'],
-			// 			'password' => $data['password']
-			// 		], true);
+			Auth::attempt([
+						'email' => $data['email'],
+						'password' => $data['password']
+					], true);
 
 			Mail::send('emails.verify', ['code' => $confirmation_code], function($message) use ($user){
-				$message->to($user->email, 'asdf')
+				$message->to($user->email, 'МЖА')
 					->subject('МЖА - вы не робот');
 			});
-			echo $user->email;
-			// return Redirect::to('id'.$user->id);
+
+			$start = strrpos($user->email, '@');
+			$email = substr($user->email, $start + 1);
+
+			return View::make('emails.check_your_mail')->with('email', $email);		
 		}
 	}
 
+	public function verify($code){
+		if( ! $code){
+			throw new InvalidConfirmationCodeException;
+		}
+
+		$user = User::whereConfirmationCode($code)->first();
+
+		if( ! $user){
+			throw new InvalidConfirmationCodeException;
+		}
+
+		$user->confirmed = 1;
+		$user->confirmation_code = null;
+
+		$user->save();
+
+		return Redirect::to('id'.$user->id);
+	}
 
 	public function ajax_check_email(){
 
