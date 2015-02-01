@@ -23,12 +23,12 @@
 
 	@if($i<3)
 
-		<div class="w-p_c-block">
+		<div class="w-p_c-block" onclick="reply_comment('{{ md5($val->id.$v->id) }}', {{ $val->id }}, this, event)">
 
 			@if(Auth::id()==$val->user->id)
 				<div class="w-p_c_edit-delete">
 					<div class="w-p_c_e-d_delete" 
-						onclick="delete_comment('{{ md5($val->id.Auth::id()) }}', {{ $val->id }}, this)">
+						onclick="delete_comment('{{ md5($val->id.Auth::id()) }}', {{ $val->id }}, this, event)">
 					</div>
 				</div>
 			@endif
@@ -40,7 +40,7 @@
 				</a>
 			</div>
 			<div class="w-p_c-c">
-				<div class="w-p_c_header">
+				<div class="w-p_c_header" onclick="event.stopPropagation()">
 					<a href="{{ $val->user->url() }}">
 						{{ $val->user->name }}
 					</a>
@@ -54,7 +54,7 @@
 				<div class="w-p_c_date">
 					{{ $val->created_at->day.'.'.$val->created_at->month.'.'.$val->created_at->year }}
 				</div>
-				<div class="w-p_c_like" onclick="like_comment('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this)">
+				<div class="w-p_c_like" onclick="like_comment('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this, event)">
 					@if($val->likes->contains(Auth::id()))
 						<img src="img/liked.png" alt="" onclick="return false;">
 					@else
@@ -81,7 +81,16 @@
 
 		@if($i>=3)
 
-			<div class="w-p_c-block">
+			<div class="w-p_c-block" onclick="reply_comment('{{ md5($val->id.$v->id) }}', {{ $val->id }}, this, event)">
+
+				@if(Auth::id()==$val->user->id)
+					<div class="w-p_c_edit-delete">
+						<div class="w-p_c_e-d_delete" 
+							onclick="delete_comment('{{ md5($val->id.Auth::id()) }}', {{ $val->id }}, this, event)">
+						</div>
+					</div>
+				@endif
+
 				<hr>
 				<div class="w-p_c_ava">
 					<a href="{{ $val->user->url() }}">
@@ -89,7 +98,7 @@
 					</a>
 				</div>
 				<div class="w-p_c-c">
-					<div class="w-p_c_header">
+					<div class="w-p_c_header" onclick="event.stopPropagation()">
 						<a href="{{ $val->user->url() }}">
 							{{ $val->user->name }}
 						</a>
@@ -103,7 +112,7 @@
 					<div class="w-p_c_date">
 						{{ $val->created_at->day.'.'.$val->created_at->month.'.'.$val->created_at->year }}
 					</div>
-					<div class="w-p_c_like" onclick="like_comment('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this)">
+					<div class="w-p_c_like" onclick="like_comment('{{ md5($val->id.$val->id) }}', {{ $val->id }}, this, event)">
 						@if($val->likes->contains(Auth::id()))
 							<img src="img/liked.png" alt="" onclick="return false;">
 						@else

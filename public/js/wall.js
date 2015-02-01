@@ -38,7 +38,28 @@ function comment(el){
 		$(btn).fadeIn();
 
 		document.onclick = function(){
-				$(btn).fadeOut();
+			$(btn).fadeOut();
+		}
+
+		if(this.dataset.name){
+			this.value = this.dataset.name;
+		}
+	}
+
+	this.input.onblur = function(){
+		if(a = this.value.replace(this.dataset.name, '') == ''){
+			this.value = '';
+			delete this.dataset.name;
+			delete this.dataset.to;
+			delete this.dataset.h;
+		}
+	}
+
+	this.input.onkeyup = function(){
+		if(this.value.indexOf(this.dataset.name) !== 0){
+			delete this.dataset.name;
+			delete this.dataset.to;
+			delete this.dataset.h;
 		}
 	}
 }
@@ -80,27 +101,39 @@ var wall = (function(){
 	
 	function add(h, id, el){
 		var input = el.parentNode.getElementsByTagName('textarea')[0];
-		var target = input.value
+		var target = input.value;
+		
 		if(target === '') return;
+
+		var send =  {
+				id: id, 
+				hash : h, 
+				val: target
+			};
+
+		if(input.dataset.to && input.dataset.h){
+			send.h = input.dataset.h;
+			send.to = input.dataset.to;
+		}
 
 		var cmt = el.parentNode.parentNode.parentNode;
 		
 		var n = document.createElement('div');
 			n.className = 'w-p_c-block';
 			
-		ajax('post', 'create-wall-comment', {id: id, hash : h, val: target}, function(r){
+		ajax('post', 'create-wall-comment', send, function(r){
 
-			if(r!=='non'){
-				n.innerHTML = r;
-				if(cmt.children[1])
-					cmt.insertBefore(n, cmt.children[1]);
-				else
-					cmt.appendChild(n);
+				if(r!=='non'){
+					n.innerHTML = r;
+					if(cmt.children[1])
+						cmt.insertBefore(n, cmt.children[1]);
+					else
+						cmt.appendChild(n);
 
 
-				input.value = '';
-				$(input).trigger('autosize.resize');
-			}
+					input.value = '';
+					$(input).trigger('autosize.resize');
+				}
 			
 		});
 	}
@@ -136,23 +169,26 @@ var wall = (function(){
 })();
 
 
-function like_comment(h, id, e){
+function like_comment(h, id, el, event){
+	var e = event || window.event;
 
-	var img = e.getElementsByTagName('img')[0];
-	var cnt = parseInt(e.getElementsByClassName('cnt_likes')[0].innerHTML);
+	e.stopPropagation();
+
+	var img = el.getElementsByTagName('img')[0];
+	var cnt = parseInt(el.getElementsByClassName('cnt_likes')[0].innerHTML);
 		if(isNaN(cnt)) return;
 
 	if(img.src.indexOf('not_liked')!==-1){
 		img.src = 'img/liked.png';
 		img.style.display = '';
-		e.getElementsByClassName('cnt_likes')[0].innerHTML = cnt + 1;
+		el.getElementsByClassName('cnt_likes')[0].innerHTML = cnt + 1;
 
 		ajax('get', 'like-comment', {hash:h, id:id}, function(r){
 			console.log(r);
 		});
 	} else {
 		img.src = 'img/not_liked.png';
-		e.getElementsByClassName('cnt_likes')[0].innerHTML = cnt - 1;
+		el.getElementsByClassName('cnt_likes')[0].innerHTML = cnt - 1;
 
 		ajax('get', 'dislike-comment', {hash:h, id:id}, function(r){
 			console.log(r);
@@ -162,22 +198,22 @@ function like_comment(h, id, e){
 }
 
 
-function like_post(h, id, e){
+function like_post(h, id, el){
 
-	var img = e.getElementsByTagName('img')[0];
-	var cnt = parseInt(e.getElementsByClassName('cnt_likes')[0].innerHTML);
+	var img = el.getElementsByTagName('img')[0];
+	var cnt = parseInt(el.getElementsByClassName('cnt_likes')[0].innerHTML);
 		if(isNaN(cnt)) return;
 
 	if(img.src.indexOf('not_liked')!==-1){
 		img.src = 'img/liked.png';
-		e.getElementsByClassName('cnt_likes')[0].innerHTML = cnt + 1;
+		el.getElementsByClassName('cnt_likes')[0].innerHTML = cnt + 1;
 
 		ajax('get', 'like-post', {hash:h, id:id}, function(r){
 			console.log(r);
 		})
 	} else {
 		img.src = 'img/not_liked.png';
-		e.getElementsByClassName('cnt_likes')[0].innerHTML = cnt - 1;
+		el.getElementsByClassName('cnt_likes')[0].innerHTML = cnt - 1;
 
 		ajax('get', 'dislike-post', {hash:h, id:id}, function(r){
 			console.log(r);
@@ -227,7 +263,7 @@ function load_more_comments(el){
 
 if (!String.prototype.trim) {
   String.prototype.trim = function () {
-    return this.replace(/^\s+|\s+$/g, '');
+	return this.replace(/^\s+|\s+$/g, '');
   };
 }
 
@@ -273,11 +309,41 @@ function delete_post(h, id, el){
 	}
 }
 
-function delete_comment(h, id, el){
+function delete_comment(h, id, el, event){
+
+	var e = event || window.event;
+
+	e.stopPropagation();
+
 	var toDel = el.parentNode.parentNode;
 
 	ajax('post', 'delete-comment', {hash:h, id:id}, function(r){
 		toDel.parentNode.removeChild(toDel);
+	});
+}
+
+function reply_comment(to, id, el, event){
+
+	var e = event || window.event;
+
+	e.stopPropagation();
+
+	var self = this;
+
+	var input = el.parentNode.parentNode.getElementsByClassName('w-p_a-c-input')[0];
+	var name = el.getElementsByClassName('w-p_c_header')[0].children[0].innerHTML;
+
+	input.dataset.name = name.replace(/\s{2,}/g, '') + ', ';
+	input.value = input.dataset.name;
+
+	input.dataset.h = to;
+	input.dataset.to = id;
+
+	$('html, body').animate({
+		scrollTop: $(input).offset().top - 50
+	}, 300, 'swing', function(){
+		input.focus();
+		input.click();
 	});
 }
 

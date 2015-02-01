@@ -771,6 +771,7 @@ body{
 .w-p_content{
 	font-size: 15px;
 	margin:0 0 5px 0;
+	color:#333;
 	word-wrap:break-word;
 }
 
@@ -879,7 +880,6 @@ body{
 .w-p_c_edit-delete div{
 	width:11px;
 	height:11px;
-	margin:0 10px 0 0;
 	position:relative;
 	z-index:3;
 	cursor:pointer;
@@ -906,6 +906,7 @@ body{
 }
 .w-p_c_header{
 	color:#5b8199;
+	display:inline-block;
 	margin:0 0 2px 0;
 	font-size: 14px;
 }
@@ -919,6 +920,7 @@ body{
 }
 .w-p_c_content{
 	font-size: 15px;
+	color:#333;
 }
 
 .w-p_date-like{
@@ -935,6 +937,7 @@ body{
 	cursor:pointer;
 	clear:both;
 	float:right;
+	color:#5b8199;
 
 	-webkit-user-select: none;
 	-moz-user-select: none;

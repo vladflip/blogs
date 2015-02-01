@@ -25,7 +25,7 @@ class UserController extends BaseController{
 					'email' => $data['email'],
 					'password' => $data['password']
 				];
-			Auth::attempt($cred);
+			Auth::attempt($cred, true);
 
 			return Redirect::to('id'.$user->id);
 		}
