@@ -6,7 +6,7 @@
 </head>
 <body>
 	Докажите что вы не робот :)
-	<a href="{{ URL::to('/') . '/register/verify/' . $code }}">
+	<a href="{{ URL::to('/') . '/register/verify/' . $code }}" target="_blank">
 		Нажмите сюда
 	</a>
 </body>
