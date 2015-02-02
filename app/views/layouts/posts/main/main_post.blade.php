@@ -11,6 +11,9 @@
 		<a href="{{ $v->user->url() }}">
 			<img src="{{ $v->user->ava_sm }}" alt="">
 		</a>
+		@if($v->user->online())
+			<div class="online">онлайн</div>
+		@endif
 	</div>
 
 	<div class="w-p_user-name">

@@ -413,6 +413,11 @@ body{
 	text-align: center;
 	border-radius: 5px;
 }
+.online{
+	color:#5b8199;
+	font-size: 12px;
+	text-align: center;
+}
 /************** AVA BLOCK*/
 
 /*********************************info*/
