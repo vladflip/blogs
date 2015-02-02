@@ -514,7 +514,7 @@ body{
 .p_info-list li{
 	margin:0 0 10px 0;
 }
-.p_info-list li:nth-child(2)>div{
+.p_info-list li:first-child>div{
 	display:inline-block;
 }
 .p_age-block input{

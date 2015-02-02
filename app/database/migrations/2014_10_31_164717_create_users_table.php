@@ -13,13 +13,16 @@ class CreateUsersTable extends Migration {
 		Schema::create(self::TABLE_NAME, function($t){
 			$t->increments('id');
 
-			$t->string('login',45)->nullable();
+			// $t->string('login',45)->nullable();
 			$t->string('email',100);
 			$t->string('name')->nullable();
 			$t->string('password',64);
 
 			$t->boolean('confirmed')->default(0);
 			$t->string('confirmation_code')->nullable();
+
+			$t->boolean('notify_msg')->default(1);
+			$t->boolean('notify_cmt')->default(1);
 
 			$t->dateTime('new_logged_in');
 			$t->dateTime('last_logged_in');
@@ -38,7 +41,7 @@ class CreateUsersTable extends Migration {
 			$t->tinyInteger('mod_flag');
 			$t->timestamps();
 
-			$t->unique('login');
+			// $t->unique('login');
 			$t->unique('email');
 			$t->index('rate');
 		});

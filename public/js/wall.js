@@ -129,13 +129,11 @@ var wall = (function(){
 						cmt.insertBefore(n, cmt.children[1]);
 					else
 						cmt.appendChild(n);
-
-
-					input.value = '';
-					$(input).trigger('autosize.resize');
 				}
-			
 		});
+
+		input.value = '';
+		$(input).trigger('autosize.resize');
 	}
 
 	function load_more_posts(){

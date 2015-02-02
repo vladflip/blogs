@@ -2,7 +2,7 @@
 
 class Comment extends Eloquent{
 
-	protected $fillable = ['post_id','user_id','mod_flag', 'content'];
+	protected $fillable = ['post_id','user_id','mod_flag', 'content', 'parent_id'];
 
 	public function user(){
 		return $this->belongsTo('User', 'user_id');

@@ -13,6 +13,7 @@ class CreateCommentsTable extends Migration {
 			$t->increments('id');
 			$t->integer('post_id')->unsigned();
 			$t->integer('user_id')->unsigned();
+			$t->integer('parent_id')->unsigned();
 			$t->text('content');
 			$t->tinyInteger('mod_flag');
 

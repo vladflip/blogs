@@ -63,19 +63,32 @@ class CommentController extends BaseController {
 			return 'fuck';
 		}
 		
-
 		$r = htmlentities(trim($d->val));
 		$r = preg_replace('/[\r\n]{2,}/mu', '<br><br>', $r);
 		$r = preg_replace('/[\r\n]{1}/mu', '<br>', $r);
 		$r = preg_replace('/[\s]{2,}/mu', ' ', $r);
+
 		$comment = Comment::create([
 				'content' => $r,
 				'user_id' => Auth::id(),
 				'post_id' => $d->id
 			]);
 
+		if(isset($d->to) && isset($d->h)){
+			if(!is_numeric($d->to))
+				return 'fuck';
+
+			if(md5($d->to.$d->id)===$d->h){
+				$cmt = Comment::find($d->to);
+				if($cmt->post_id == $d->id) {
+					$comment->parent_id = $d->to;
+				}
+			}
+		}
+
 		$comment->user->rate += 2;
 		$comment->user->save();
+		$comment->save();
 
 		return View::make('layouts.posts.create_wall_comment')->with('comment', $comment)
 										->with('user', Auth::user());

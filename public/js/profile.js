@@ -111,7 +111,7 @@ var edit_me = new (function(){
 
 	this.f.pAge = new el('pAge');
 
-	this.f.pLogin = new el('pLogin');
+	// this.f.pLogin = new el('pLogin');
 
 	// this.f.pBDay = new el('pBDay');
 

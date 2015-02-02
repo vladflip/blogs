@@ -90,7 +90,7 @@
 
 			<ul class="p_info-list">
 
-				<li>
+				<!-- <li>
 					<div class="p_login data-in" id="pLogin">
 						@yield('login')
 						<div class="load-icons">
@@ -99,9 +99,8 @@
 							<img src="img/success.png" alt="" class="success">
 							<div class="edit-pen"></div>
 						</div>
-						<!-- <div class="edit-pen"></div> -->
 					</div>
-				</li>
+				</li> -->
 				
 				<li>
 					<div class="p_name-block">
