@@ -50,6 +50,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->login ? route('profile', $this->login) : route('profile_id', $this->id);
 	}
 
+	public function email_provider(){
+			$start = strrpos($this->email, '@');
+			$email = substr($this->email, $start + 1);
+			return $email;
+	}
+
 	public function online(){
 		if($this->last_logged_in->diffInMinutes(Carbon::now()) < 30)
 			return true;

@@ -33,10 +33,7 @@ class UserController extends BaseController{
 					->subject('МЖА - вы не робот');
 			});
 
-			$start = strrpos($user->email, '@');
-			$email = substr($user->email, $start + 1);
-
-			return View::make('emails.check_your_mail')->with('email', $email);		
+			return Redirect::to('id'.$user->id);		
 		}
 	}
 

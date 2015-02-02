@@ -1,7 +1,9 @@
-@if(!isset($not_ready))
+@if( ! $user->confirmed)
 
+	Докажите что вы <a href="http://{{ $user->email_provider() }}">не робот</a> :)
+
+@elseif(!isset($not_ready))
 	@include('layouts.posts.add_post')
-
 @else
 	<span>Вы не можете писать посты</span>
 @endif
