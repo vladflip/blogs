@@ -5,7 +5,7 @@
 @elseif(!isset($not_ready))
 	@include('layouts.posts.add_post')
 @else
-	<span>Вы не можете писать посты</span>
+	<span>Вы не можете писать посты пока не заполните профиль</span>
 @endif
 
 

@@ -28,10 +28,7 @@ class UserController extends BaseController{
 						'password' => $data['password']
 					], true);
 
-			Mail::send('emails.verify', ['code' => $confirmation_code], function($message) use ($user){
-				$message->to($user->email, 'МЖА')
-					->subject('МЖА - вы не робот');
-			});
+			$user->verify($confirmation_code);
 
 			return Redirect::to('id'.$user->id);		
 		}
