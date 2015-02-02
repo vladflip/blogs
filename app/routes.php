@@ -74,7 +74,9 @@ Route::get('/p', function(){
 	// echo $u->isReady();
 	
 	// echo md5('25'.csrf_token());
-	echo preg_match_all('/[^а-я\.]/u', 'привет');
+	// echo preg_match_all('/[^а-я\.]/u', 'привет');
+
+	echo new \Carbon\Carbon();
 });
 
 // Event::listen('illuminate.query', function($query)

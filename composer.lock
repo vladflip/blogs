@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eb7258f58b5dd0c9db1e3b9d1de3478b",
+    "hash": "72d06324ef8164eadf699bd2be92cb63",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -199,12 +199,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "b91b0d63488f9a295815af082f987e4773d2843c"
+                "reference": "949d4909d24f9656877ac38f8c90aecbf0a65091"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/b91b0d63488f9a295815af082f987e4773d2843c",
-                "reference": "b91b0d63488f9a295815af082f987e4773d2843c",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/949d4909d24f9656877ac38f8c90aecbf0a65091",
+                "reference": "949d4909d24f9656877ac38f8c90aecbf0a65091",
                 "shasum": ""
             },
             "require": {
@@ -247,7 +247,7 @@
                 "thumbnail",
                 "watermark"
             ],
-            "time": "2014-12-29 11:58:35"
+            "time": "2015-01-29 08:44:26"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -1792,6 +1792,7 @@
         "simonardejr/bladeset": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }

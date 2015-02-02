@@ -8,7 +8,8 @@
 		"laravel/framework": "4.2.*",
 		"intervention/image": "dev-master",
 		"fzaninotto/faker": "1.4.*",
-		"simonardejr/bladeset": "dev-master"
+		"simonardejr/bladeset": "dev-master",
+		"nesbot/Carbon": "*"
 	},
 	"autoload": {
 		"classmap": [
