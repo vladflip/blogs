@@ -28,7 +28,7 @@ class UserController extends BaseController{
 						'password' => $data['password']
 					], true);
 
-			$user->verify($confirmation_code);
+			$user->verify();
 
 			return Redirect::to('id'.$user->id);		
 		}

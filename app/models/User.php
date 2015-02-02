@@ -65,8 +65,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return array(static::CREATED_AT, static::UPDATED_AT, 'last_logged_in', 'new_logged_in');
 	}
 
-	public function verify($code){
-		Mail::send('emails.verify', ['code' => $code], function($message) {
+	public function verify(){
+		Mail::send('emails.verify', ['code' => $this->confirmation_code], function($message) {
 				$message->to($this->email, 'МЖА')
 					->subject('МЖА - вы не робот');
 			});
