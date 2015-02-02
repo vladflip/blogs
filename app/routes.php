@@ -75,8 +75,8 @@ Route::get('/p', function(){
 	
 	// echo md5('25'.csrf_token());
 	// echo preg_match_all('/[^а-я\.]/u', 'привет');
-
-	echo new \Carbon\Carbon();
+	// echo C
+	// print_r( new \DateTime('2015-02-02 00:59:21'));
 });
 
 // Event::listen('illuminate.query', function($query)
@@ -114,3 +114,13 @@ Route::post('/send-message', ['before' => 'csrf', 'as' => 'send_message', 'uses'
 
 Route::get('/{login}', ['as' => 'profile', 'uses' => 'UserController@profile'])
 ->where('login', '[^-]+');
+
+Event::listen('auth.login', function($user){
+
+	$user->last_logged_in = new Carbon();
+
+	$user->new_logged_in = new Carbon();
+
+	$user->save();
+
+});

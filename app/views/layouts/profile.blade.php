@@ -79,6 +79,10 @@
 					@yield('rate')
 				</div>
 			</div>
+			
+			@if(Auth::user()->online())
+				<div class="p_online-block">онлайн</div>
+			@endif
 
 		</div>
 

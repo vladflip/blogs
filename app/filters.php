@@ -13,7 +13,14 @@
 
 App::before(function($request)
 {
-	//
+	if (Auth::user()) {
+		$user = Auth::user();
+		$now = Carbon::now();
+		$user->last_logged_in = $user->new_logged_in->toDateTimeString();
+		$user->new_logged_in = $now;
+		$user->save();
+	}
+
 });
 
 

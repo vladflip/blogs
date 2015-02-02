@@ -49,4 +49,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function url(){
 		return $this->login ? route('profile', $this->login) : route('profile_id', $this->id);
 	}
+
+	public function online(){
+		if($this->last_logged_in->diffInMinutes(Carbon::now()) < 30)
+			return true;
+	}
+
+	public function getDates(){
+		return array(static::CREATED_AT, static::UPDATED_AT, 'last_logged_in', 'new_logged_in');
+	}
+
+	// public function notify($what){
+
+	// }
 }

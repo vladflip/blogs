@@ -45,6 +45,10 @@
 				</div>
 			</div>
 
+			@if($user->online())
+				<div class="p_online-block">онлайн</div>
+			@endif
+
 		</div>
 
 		<div class="p_user-info">
