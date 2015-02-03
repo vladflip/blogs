@@ -11,6 +11,9 @@ class MessageController extends BaseController {
 		// 		'status' => 0
 		// 	]);
 
+		if( ! Auth::check())
+			return View::make('messages_guest');
+
 		$in = Message::where('to_user', '=', Auth::id())
 			->orderBy('id', 'DESC')
 			->get();

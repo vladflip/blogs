@@ -517,11 +517,13 @@ body{
 .p_info-list li:first-child>div{
 	display:inline-block;
 }
+.p_age,
 .p_age-block input{
 	color:#bbb;
 }
 
 /******************************************NAME AGE BLOCK*/
+.p_town,
 .p_town input{
 	color:#bbb;
 }
