@@ -4,7 +4,6 @@
 	@section('head')
 		<meta charset="UTF-8">
 		<meta name="description" content="блоги патриотки, социальная сеть молодежной женской организации, блог молодежной женской организации, патриотки, блог, блоги">
-		<meta name="_token" content="{{ csrf_token() }}" >
 		<title>Блоги | Патриотки</title>
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
