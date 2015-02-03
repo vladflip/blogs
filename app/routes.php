@@ -89,10 +89,10 @@ Route::get('/p', function(){
 	// echo User::whereId(Auth::id())->select('id', 'name')->first();
 });
 
-Event::listen('illuminate.query', function($query)
-{
-    var_dump($query);
-});
+// Event::listen('illuminate.query', function($query)
+// {
+//     var_dump($query);
+// });
 
 Route::post('/add-post', ['before' => 'csrf', 'as' => 'add_post', 'uses' => 'PostController@create']);
 
