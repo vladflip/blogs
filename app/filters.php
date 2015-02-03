@@ -108,3 +108,35 @@ Route::filter('csrf', function()
 // 		App::abort('404');
 // 	}
 // });
+
+
+/*
+* -------------------------------------
+* 	Profile for not authorized users
+* -------------------------------------
+* 	Owners Profile
+* -------------------------------------
+* 	Guest Authorization profile
+* -------------------------------------
+*/
+View::composer(['guest_profile', 
+				'owners_profile', 
+				'layouts.guest_auth_profile'], 
+	function($v){
+		$data = $v->getData();
+
+		$v->with('user', User::with(['posts' => function($q){
+
+			$q->with('likes')
+
+			->with(['comments' => function($q2){
+				$q2->with('likes')
+					->with('user')
+					->orderBy('id', 'DESC');
+			}])
+
+			->orderBy('id', 'DESC')
+			->take(5);
+
+		}])->find($data['id']));
+	});

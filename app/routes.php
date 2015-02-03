@@ -2,7 +2,10 @@
 
 
 // ******************************************* USERs
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
+Route::get('/', [
+	'as' => 'home', 
+	'uses' => 'HomeController@home'
+]);
 
 // Route::get('/ex', function(){
 // 	print_r(Session::all());

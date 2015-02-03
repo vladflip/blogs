@@ -101,96 +101,36 @@ class UserController extends BaseController{
 
 
 	public function profile_id($id){
-		// if(!$user = User::find($id))
-		// 	return 404;
 
-		// if(Auth::id()===$user->id){
-		// 	if(Auth::user()->isReady()){
-		// 		return View::make('owners_profile')->with('user', Auth::user());	
-		// 	} else {
-		// 		return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
-		// 	}
-		// } else {
-		// 	return View::make('guest_profile')->with('user', $user);
-		
-			if(!$user = User::find($id)){
-				App::abort(404);
-			}
+		if(!$user = User::find($id)){
+			App::abort(404);
+		}
 
-			if(Auth::check()){
+		if(Auth::check()){
 
-				$authUser = Auth::user();
-				if(intval($authUser->id)===$user->id){
+			$authUser = Auth::user();
 
-					if($authUser->isReady()){
-						return View::make('owners_profile')
-						->with('user', User::with(['posts'=>function($q){
+			if(intval($authUser->id)===$user->id){
 
-										$q->with('likes')
-
-											->with(['comments' => function($q2){
-												$q2->with('likes')
-													->with('user')
-													->orderBy('id', 'DESC');
-											}])
-											->orderBy('id', 'DESC')
-											->take(5);
-
-									}])->find($user->id));
-					} else {
-						return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
-					}
-				} else {	
-					$authUser = Auth::user();
-
-					if($authUser->isReady()){
-						return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
-							->with('user', User::with(['posts'=>function($q){
-
-												$q->with('likes')
-
-													->with(['comments' => function($q2){
-														$q2->with('likes')
-															->with('user')
-															->orderBy('id', 'DESC');
-													}])
-													->orderBy('id', 'DESC')
-													->take(5);
-
-											}])->find($user->id));
-					} else {
-						return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
-							->with('user', User::with(['posts'=>function($q){
-
-												$q->with('likes')
-
-													->with(['comments' => function($q2){
-														$q2->with('likes')
-															->with('user')
-															->orderBy('id', 'DESC');
-													}])
-													->orderBy('id', 'DESC')
-													->take(5);
-
-											}])->find($user->id))->with('not_ready', true);
-					}
+				if($authUser->isReady()){
+					return View::make('owners_profile')->with('id', $user->id);
+				} else {
+					return View::make('owners_profile')->with('id', $user->id)->with('not_ready', false);
 				}
+
+			} else {	
+
+				if($authUser->isReady()){
+					return View::make('layouts.guest_auth_profile')->with('id', $user->id);
+				} else {
+					return View::make('layouts.guest_auth_profile')->with('id', $user->id)->with('not_ready', true);
+				}
+
 			}
-			else if(Auth::guest())
-				return View::make('guest_profile')
-						->with('user', User::with(['posts'=>function($q){
+		}
+		else if(Auth::guest())
+			return View::make('guest_profile')->with('id', $user->id);
 
-										$q->with('likes')
-
-											->with(['comments' => function($q2){
-												$q2->with('likes')
-													->with('user')
-													->orderBy('id', 'DESC');
-											}])
-											->orderBy('id', 'DESC')
-											->take(5);
-
-									}])->find($user->id));
 	}
 
 	public function check_for_allow(){
@@ -199,87 +139,6 @@ class UserController extends BaseController{
 		} else {
 			return 'not ready';
 		}
-	}
-
-	public function profile($login){
-		if(!$user = User::whereLogin($login)->first()){
-				App::abort(404);
-			}
-
-		if(Auth::check()){
-
-			$authUser = Auth::user();
-			if(intval($authUser->id)===$user->id){
-
-				if($authUser->isReady()){
-					return View::make('owners_profile')
-					->with('user', User::with(['posts'=>function($q){
-
-									$q->with('likes')
-
-										->with(['comments' => function($q2){
-											$q2->with('likes')
-												->with('user')
-												->orderBy('id', 'DESC');
-										}])
-										->orderBy('id', 'DESC')
-										->take(5);
-
-								}])->find($user->id));
-				} else {
-					return View::make('owners_profile')->with('user', Auth::user())->with('not_ready', false);
-				}
-			} else {	
-				$authUser = Auth::user();
-
-				if($authUser->isReady()){
-					return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
-						->with('user', User::with(['posts'=>function($q){
-
-											$q->with('likes')
-
-												->with(['comments' => function($q2){
-													$q2->with('likes')
-														->with('user')
-														->orderBy('id', 'DESC');
-												}])
-												->orderBy('id', 'DESC')
-												->take(5);
-
-										}])->find($user->id));
-				} else {
-					return View::make('layouts.guest_auth_profile')->with('authUser', $authUser)
-						->with('user', User::with(['posts'=>function($q){
-
-											$q->with('likes')
-
-												->with(['comments' => function($q2){
-													$q2->with('likes')
-														->with('user')
-														->orderBy('id', 'DESC');
-												}])
-												->orderBy('id', 'DESC')
-												->take(5);
-
-										}])->find($user->id))->with('not_ready', true);
-				}
-			}
-		}
-		else if(Auth::guest())
-			return View::make('guest_profile')
-					->with('user', User::with(['posts'=>function($q){
-
-									$q->with('likes')
-
-										->with(['comments' => function($q2){
-											$q2->with('likes')
-												->with('user')
-												->orderBy('id', 'DESC');
-										}])
-										->orderBy('id', 'DESC')
-										->take(5);
-
-								}])->find($user->id));
 	}
 
 	public function login(){

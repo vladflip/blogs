@@ -68,33 +68,33 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function verify(){
-		Mail::send('emails.verify', ['code' => $this->confirmation_code], function($message) {
-				$message->to($this->email, 'МЖА')
-					->subject('МЖА - вы не робот');
-			});
+		// Mail::send('emails.verify', ['code' => $this->confirmation_code], function($message) {
+		// 		$message->to($this->email, 'МЖА')
+		// 			->subject('МЖА - вы не робот');
+		// 	});
 	}
 
 	public function notify($what){
-		if( ! $this->online()){
+		// if( ! $this->online()){
 
-			switch($what){
+		// 	switch($what){
 
-				case 'msg':
-					Mail::send('emails.notify', ['user' => $this], function($message) {
-						$message->to($this->email, 'МЖА')
-							->subject('Новое сообщение!');
-					});
-				break;
+		// 		case 'msg':
+		// 			Mail::send('emails.notify', ['user' => $this], function($message) {
+		// 				$message->to($this->email, 'МЖА')
+		// 					->subject('Новое сообщение!');
+		// 			});
+		// 		break;
 
-				case 'cmt':
-					Mail::send('emails.notify', ['user' => $this], function($message) {
-						$message->to($this->email, 'МЖА')
-							->subject('Новый комментарий!');
-					});
-				break;
+		// 		case 'cmt':
+		// 			Mail::send('emails.notify', ['user' => $this], function($message) {
+		// 				$message->to($this->email, 'МЖА')
+		// 					->subject('Новый комментарий!');
+		// 			});
+		// 		break;
 
-			}
+		// 	}
 
-		}
+		// }
 	}
 }
