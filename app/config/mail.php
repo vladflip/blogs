@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'fuck@f.f', 'name' => 'fuck'),
+	'from' => array('address' => 'info@patriotki.rf', 'name' => 'Поддержка'),
 
 	/*
 	|--------------------------------------------------------------------------

@@ -83,6 +83,8 @@ Route::get('/p', function(){
 	// echo preg_match_all('/[^а-я\.]/u', 'привет');
 	// echo C
 	// print_r( new \DateTime('2015-02-02 00:59:21'));
+
+	echo Post::whereId('1')->select('header', 'id')->first();
 });
 
 // Event::listen('illuminate.query', function($query)

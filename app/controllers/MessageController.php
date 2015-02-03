@@ -25,7 +25,6 @@ class MessageController extends BaseController {
 			$v->save();
 		}
 
-
 		return View::make('messages')->with('in', $in)->with('out', $out);
 	}
 
@@ -46,7 +45,7 @@ class MessageController extends BaseController {
 					'from_user' => Auth::id(),
 					'status' => 0
 				]);
-			$user->notify('msg');
+			$user->notify('msg', $user);
 		}
 		return Redirect::back();
 		

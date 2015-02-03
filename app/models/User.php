@@ -74,13 +74,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			});
 	}
 
-	public function notify($what){
+	public function notify($what, $where){
 		if( ! $this->online()){
 
 			switch($what){
 
 				case 'msg':
-					Mail::send('emails.notify', ['user' => $this], function($message) {
+					Mail::send('emails.notify_msg', ['user' => $this, 'from' => $where], function($message) {
 						$message
 						->to($this->email, $this->name)
 						->subject('Новое сообщение!');
@@ -88,7 +88,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				break;
 
 				case 'cmt':
-					Mail::send('emails.notify', ['user' => $this], function($message) {
+					Mail::send('emails.notify_cmt', ['user' => $this, 'post' => $where], function($message) {
 						$message
 						->to($this->email, $this->name)
 						->subject('Новый комментарий!');

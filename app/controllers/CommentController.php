@@ -82,7 +82,7 @@ class CommentController extends BaseController {
 				$cmt = Comment::with('user')->find($d->to);
 				if($cmt->post_id == $d->id) {
 					$comment->parent_id = $d->to;
-					$cmt->user->notify('cmt');
+					$cmt->user->notify('cmt', Post::whereId('1')->select('header', 'id')->first());
 				}
 			}
 		}
