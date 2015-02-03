@@ -3,7 +3,7 @@
 class AdminController extends BaseController {
 
 	public function index(){
-		
+		return 'admin';
 	}
 
 }
