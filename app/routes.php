@@ -134,3 +134,7 @@ Event::listen('auth.login', function($user){
 	$user->save();
 
 });
+
+// ------------------------------------------------ ADMIN
+
+Route::get('/admin', 'AdminController@index');
