@@ -46,7 +46,7 @@ Route::post('/submit-login', ['before' => 'csrf','as' => 'submit_login', 'uses' 
 
 Route::get('/register/verify/{code}', ['as' => 'verify_email', 'uses' => 'UserController@verify']);
 
-Route::get('/настройки', ['as' => 'settings', 'uses' => 'UserController@settings']);
+Route::get('/настройки', ['before' => 'csrf', 'as' => 'settings', 'uses' => 'UserController@settings']);
 Route::post('/change_settings', ['before' => 'csrf', 'as' => 'change_settings', 'uses' => 'UserController@change_settings']);
 
 
@@ -108,12 +108,13 @@ Route::post('/load-more-posts-main', ['as' => 'load_more_posts_main', 'uses' => 
 
 // ********************************************* COMMENTS
 
-Route::post('/add-comment', ['as' => 'add_comment', 'uses' => 'CommentController@create']);
+// Route::post('/add-comment', ['before' => 'csrf', 'as' => 'add_comment', 'uses' => 'CommentController@create']);
 Route::post('/delete-comment', ['as' => 'add_comment', 'uses' => 'CommentController@delete']);
 
 Route::get('/like-comment', ['as' => 'like_comment', 'uses' => 'CommentController@like']);
 Route::get('/dislike-comment', ['as' => 'dislike_comment', 'uses' => 'CommentController@dislike']);
-Route::post('/create-wall-comment', ['as' => 'create_wall_comment', 'uses' => 'CommentController@create_wall_comment']);
+
+Route::post('/create-wall-comment', ['before' => 'csrf', 'as' => 'create_wall_comment', 'uses' => 'CommentController@create_wall_comment']);
 Route::post('/load-more-comments', ['as' => 'load_more_comments', 'uses' => 'CommentController@load_more']);
 
 // ********************************************* MESSAGES

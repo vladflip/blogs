@@ -117,6 +117,19 @@ function ajax(method, url, data, callback, headers){
 	var x = getXmlHttp();
 
 	// _________open
+	// -------------------------
+		var els = document.getElementsByTagName('meta');
+		var csrf = '';
+
+		for(var i=0; i<els.length; i++){
+			if(els[i].hasAttribute('name') && els[i].hasAttribute('content')){
+				if(els[i].getAttribute('name') == '_token'){
+					csrf = els[i].getAttribute('content');
+				}
+			}
+		}
+	// -------------------------
+
 		
 		if(method.toUpperCase() === 'GET'){
 			var data = JSON.stringify(data);
@@ -128,6 +141,8 @@ function ajax(method, url, data, callback, headers){
 					callback(x.responseText);
 				}
 			}
+			x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+			x.setRequestHeader('X-CSRF-Token', csrf);
 
 			x.send(null);
 
@@ -147,26 +162,12 @@ function ajax(method, url, data, callback, headers){
 			}
 			if(!headers)
 				x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
+			
+			x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+			x.setRequestHeader('X-CSRF-Token', csrf);
+			
 			x.send(data);
-		} else if(method.toUpperCase() === 'PUT') {
-			if(!headers)
-			var data = 'data=' + JSON.stringify(data);
 
-			x.open(method, url, true);
-
-			x.onreadystatechange = function(){
-				if(x.readyState === 4){
-					if(x.status === 200){
-						if(callback)
-							callback(x.responseText);
-					}
-				}
-			}
-			if(!headers)
-				x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-			x.send(data);
 		}
 }
 
