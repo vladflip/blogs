@@ -34,7 +34,7 @@
 
 			<ul class="p_info-list">
 
-				<li>
+				<!-- <li>
 					<div class="p_login" id="pLogin">
 
 						<span>
@@ -42,7 +42,7 @@
 						</span>
 
 					</div>
-				</li>
+				</li> -->
 				
 				<li>
 					<div class="p_name-block">
