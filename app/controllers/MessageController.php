@@ -45,7 +45,7 @@ class MessageController extends BaseController {
 					'from_user' => Auth::id(),
 					'status' => 0
 				]);
-			$user->notify('msg', User::whereId($d['receiver'])->select('name', 'id')->first());
+			$user->notify('msg', User::whereId(Auth::id())->select('id', 'name')->first());
 		}
 		return Redirect::back();
 		

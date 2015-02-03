@@ -85,12 +85,14 @@ Route::get('/p', function(){
 	// print_r( new \DateTime('2015-02-02 00:59:21'));
 
 	// echo Post::whereId('1')->select('header', 'id')->first();
+
+	// echo User::whereId(Auth::id())->select('id', 'name')->first();
 });
 
-// Event::listen('illuminate.query', function($query)
-// {
-//     var_dump($query);
-// });
+Event::listen('illuminate.query', function($query)
+{
+    var_dump($query);
+});
 
 Route::post('/add-post', ['before' => 'csrf', 'as' => 'add_post', 'uses' => 'PostController@create']);
 
