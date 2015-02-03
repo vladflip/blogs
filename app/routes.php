@@ -84,7 +84,7 @@ Route::get('/p', function(){
 	// echo C
 	// print_r( new \DateTime('2015-02-02 00:59:21'));
 
-	echo Post::whereId('1')->select('header', 'id')->first();
+	// echo Post::whereId('1')->select('header', 'id')->first();
 });
 
 // Event::listen('illuminate.query', function($query)
