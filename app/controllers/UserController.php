@@ -53,6 +53,33 @@ class UserController extends BaseController{
 		return Redirect::to('id'.$user->id);
 	}
 
+	public function settings(){
+		$notify_msg = Auth::user()->notify_msg ? true : false;
+		$notify_cmt = Auth::user()->notify_cmt ? true : false;
+
+		return View::make('settings')
+		->with('notify_msg', $notify_msg)
+		->with('notify_cmt', $notify_cmt);
+	}
+
+	public function change_settings(){
+		$d = Input::all();
+
+		if(isset($d['notify_msg']))
+			Auth::user()->notify_msg = 1;
+		else
+			Auth::user()->notify_msg = 0;
+
+		if(isset($d['notify_cmt']))
+			Auth::user()->notify_cmt = 1;
+		else
+			Auth::user()->notify_cmt = 0;
+
+		Auth::user()->save();
+
+		return Redirect::route('settings');
+	}
+
 	public function ajax_check_email(){
 
 		$data = Input::get('data');

@@ -26,12 +26,12 @@
 						
 					<tr class="message-raw">
 						<td class="ms_ava">
-							<a href="{{ route('profile', $v->sender->login) }}">
+							<a href="{{ route('profile', $v->sender->id) }}">
 								<img src="{{ $v->sender->ava_sm }}" alt="">
 							</a>
 						</td>
 						<td class="ms_name">
-							<a href="{{ route('profile', $v->sender->login) }}">
+							<a href="{{ route('profile', $v->sender->id) }}">
 								{{ $v->sender->name }}
 							</a>
 						</td>
@@ -59,12 +59,12 @@
 						
 					<tr class="message-raw @if($v->status == 0){{ 'unread' }}@endif">
 						<td class="ms_ava">
-							<a href="{{ route('profile', $v->receiver->login) }}">
+							<a href="{{ route('profile', $v->receiver->id) }}">
 								<img src="{{ $v->receiver->ava_sm }}" alt="">
 							</a>
 						</td>
 						<td class="ms_name">
-							<a href="{{ route('profile', $v->receiver->login) }}">
+							<a href="{{ route('profile', $v->receiver->id) }}">
 								{{ $v->receiver->name }}
 							</a>
 						</td>

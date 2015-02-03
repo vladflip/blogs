@@ -39,13 +39,14 @@ class MessageController extends BaseController {
 			return 'fuck';
 		}
 
-		if(User::find($d['receiver'])){
+		if($user = User::find($d['receiver'])){
 			Message::create([
 					'msg' => $msg,
 					'to_user' => $d['receiver'],
 					'from_user' => Auth::id(),
 					'status' => 0
 				]);
+			$user->notify('msg');
 		}
 		return Redirect::back();
 		

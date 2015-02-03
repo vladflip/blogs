@@ -10,7 +10,7 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
 
 Route::post('/forget', ['as' => 'forget', 'before' => 'csrf', 'uses' => 'UserController@forget']);
 
-Route::get('/id{id}',['as' => 'profile_id', 'uses' => 'UserController@profile_id'])
+Route::get('/id{id}',['as' => 'profile', 'uses' => 'UserController@profile_id'])
 	->where('id','[0-9]+');
 
 Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
@@ -42,6 +42,9 @@ Route::post('/edit-login', ['as' => 'edit_login', 'uses' => 'UserController@edit
 Route::post('/submit-login', ['before' => 'csrf','as' => 'submit_login', 'uses' => 'UserController@submit_login']);
 
 Route::get('/register/verify/{code}', ['as' => 'verify_email', 'uses' => 'UserController@verify']);
+
+Route::get('/настройки', ['as' => 'settings', 'uses' => 'UserController@settings']);
+Route::post('/change_settings', ['before' => 'csrf', 'as' => 'change_settings', 'uses' => 'UserController@change_settings']);
 
 
 
@@ -112,8 +115,8 @@ Route::get('/сообщения', ['as' => 'messages', 'uses' => 'MessageControl
 Route::post('/send-message', ['before' => 'csrf', 'as' => 'send_message', 'uses' => 'MessageController@send']);
 
 
-Route::get('/{login}', ['as' => 'profile', 'uses' => 'UserController@profile'])
-->where('login', '[^-]+');
+// Route::get('/{login}', ['as' => 'profile', 'uses' => 'UserController@profile'])
+// ->where('login', '[^-]+');
 
 Event::listen('auth.login', function($user){
 

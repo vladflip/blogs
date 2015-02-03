@@ -68,9 +68,9 @@ class CommentController extends BaseController {
 		$r = preg_replace('/[\r\n]{1}/mu', '<br>', $r);
 		$r = preg_replace('/[\s]{2,}/mu', ' ', $r);
 
-		$comment = Comment::create([
+		$comment = new Comment([
 				'content' => $r,
-				'user_id' => Auth::id(),
+				'user_id' => Auth::user()->id,
 				'post_id' => $d->id
 			]);
 
@@ -79,9 +79,10 @@ class CommentController extends BaseController {
 				return 'fuck';
 
 			if(md5($d->to.$d->id)===$d->h){
-				$cmt = Comment::find($d->to);
+				$cmt = Comment::with('user')->find($d->to);
 				if($cmt->post_id == $d->id) {
 					$comment->parent_id = $d->to;
+					$cmt->user->notify('cmt');
 				}
 			}
 		}

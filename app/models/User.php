@@ -47,7 +47,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function url(){
-		return $this->login ? route('profile', $this->login) : route('profile_id', $this->id);
+		// return $this->login ? route('profile', $this->login) : route('profile_id', $this->id);
+		return route('profile', $this->id);
 	}
 
 	public function email_provider(){
@@ -59,6 +60,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function online(){
 		if($this->last_logged_in->diffInMinutes(Carbon::now()) < 30)
 			return true;
+		return false;
 	}
 
 	public function getDates(){
@@ -72,7 +74,27 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			});
 	}
 
-	// public function notify($what){
+	public function notify($what){
+		if( ! $this->online()){
 
-	// }
+			switch($what){
+
+				case 'msg':
+					Mail::send('emails.notify', ['user' => $this], function($message) {
+						$message->to($this->email, 'МЖА')
+							->subject('Новое сообщение!');
+					});
+				break;
+
+				case 'cmt':
+					Mail::send('emails.notify', ['user' => $this], function($message) {
+						$message->to($this->email, 'МЖА')
+							->subject('Новый комментарий!');
+					});
+				break;
+
+			}
+
+		}
+	}
 }

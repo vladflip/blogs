@@ -12,9 +12,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="{{ Auth::user()->login ? 
-						route('profile', Auth::user()->login) 
-						: route('profile_id', Auth::user()->id) }}">
+					<a href="{{ Auth::user()->url() }}">
 						Мой профиль
 					</a>
 				</li>
@@ -30,7 +28,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="{{ route('settings') }}">
 						Настройки
 					</a>
 				</li>
