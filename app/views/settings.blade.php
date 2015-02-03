@@ -23,7 +23,7 @@
 	
 		<br>
 
-		{{ Form::submit('Принять настройки') }}
+		{{ Form::submit('Принять настройки!') }}
 
 	{{ Form::close() }}
 @stop
