@@ -82,7 +82,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				case 'msg':
 					Mail::send('emails.notify', ['user' => $this], function($message) {
 						$message
-						->to($this->email, $user->name)
+						->to($this->email, $this->name)
 						->from('блоги.патриотки.рф', 'МЖА')
 						->subject('Новое сообщение!');
 					});
@@ -91,7 +91,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				case 'cmt':
 					Mail::send('emails.notify', ['user' => $this], function($message) {
 						$message
-						->to($this->email, $user->name)
+						->to($this->email, $this->name)
 						->from('блоги.патриотки.рф', 'МЖА')
 						->subject('Новый комментарий!');
 					});
