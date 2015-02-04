@@ -132,3 +132,17 @@ Event::listen('auth.login', function($user){
 	$user->save();
 
 });
+
+// ------------------------------------------------ ADMIN
+
+Route::group(['before' => 'admin.auth'], function(){
+
+	Route::get('/админ', function(){
+		return Redirect::to('/админ/посты');
+	});
+
+	Route::get('/админ/посты', 'AdminController@posts');
+
+	Route::get('/админ/юзеры', 'AdminController@users');
+
+});

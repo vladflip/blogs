@@ -63,15 +63,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return false;
 	}
 
+	public function isAdmin(){
+		if($this->admin)
+			return true;
+		return false;
+	}
+
 	public function getDates(){
 		return array(static::CREATED_AT, static::UPDATED_AT, 'last_logged_in', 'new_logged_in');
 	}
 
 	public function verify(){
-		Mail::send('emails.verify', ['code' => $this->confirmation_code], function($message) {
-				$message->to($this->email, 'МЖА')
-					->subject('МЖА - вы не робот');
-			});
+		// Mail::send('emails.verify', ['code' => $this->confirmation_code], function($message) {
+		// 		$message->to($this->email, 'МЖА')
+		// 			->subject('МЖА - вы не робот');
+		// 	});
 	}
 
 	public function notify($what, $where){

@@ -55,6 +55,12 @@ Route::filter('auth', function()
 	}
 });
 
+Route::filter('admin.auth', function(){
+
+	if(Auth::guest() || ! Auth::user()->isAdmin())
+		return 'вы не админ идите в попку';
+
+});
 
 Route::filter('auth.basic', function()
 {
