@@ -83,7 +83,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 					Mail::send('emails.notify_msg', ['user' => $this, 'from' => $where], function($message) {
 						$message
 						->to($this->email, $this->name)
-						->from('MJA@патриотки.рф', 'МЖА')
 						->subject('Новое сообщение!');
 					});
 				break;
@@ -92,7 +91,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 					Mail::send('emails.notify_cmt', ['user' => $this, 'post' => $where], function($message) {
 						$message
 						->to($this->email, $this->name)
-						->from('MJA@патриотки.рф', 'МЖА')
 						->subject('Новый комментарий!');
 					});
 				break;
