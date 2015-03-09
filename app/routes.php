@@ -92,12 +92,14 @@ Route::get('/p', function(){
 
 	// echo User::whereId(Auth::id())->select('id', 'name')->first();
 
-	Mail::send('emails.verify', ['code' => 'fuck'], function($message) {
-			$message
-				->from('info@patriotki.ru', 'МЖА | Блоги')
-				->to('vlad.flip.prg@gmail.com', 'Подтверждение email')
-				->subject('МЖА - вы не робот');
-		});
+	// Mail::send('emails.verify', ['code' => 'fuck'], function($message) {
+	// 		$message
+	// 			->from('info@patriotki.ru', 'МЖА | Блоги')
+	// 			->to('vlad.flip.prg@gmail.com', 'Подтверждение email')
+	// 			->subject('МЖА - вы не робот');
+	// 	});
+
+	mail('vlad.flip.prg@gmail.com', 'fuck', 'asdfl;asdf');
 });
 
 // Event::listen('illuminate.query', function($query)
