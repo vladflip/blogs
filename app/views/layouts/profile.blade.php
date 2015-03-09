@@ -2,26 +2,10 @@
 
 @section('head')
 	@parent
-	<meta name="_token" content="{{ csrf_token() }}" />
 	<link rel="stylesheet" href="css/jquery.Jcrop.min.css">
 @stop
 
 @section('body')
-
-	<!-- <div class="p_login-pop-up" id="pLoginPopUp">
-		<div class="p_login-p-p-caption">Использовать только _, ., англ и рус символы</div>
-		<div class="p_login-input-block">
-			{{ Form::open(['route' => 'submit_login', 'id' => 'editLoginForm']) }}
-				{{ Form::text('login', null, ['autocomplete' => 'off']) }}
-			{{ Form::close() }}
-			<div class="load-icons">
-				<img src="img/load.gif" alt="" class="load">
-				<img src="img/fail.png" alt="" class="fail">
-				<img src="img/success.png" alt="" class="success">
-			</div>
-		</div>
-		<div class="p_submit-login disabled" id="sbmtLogin">Поменять!</div>
-	</div> -->
 
 	@if(!isset($not_ready))
 		<div class="write-msg-block" id="writeMsg">
@@ -89,18 +73,6 @@
 		<div class="p_user-info">
 
 			<ul class="p_info-list">
-
-				<!-- <li>
-					<div class="p_login data-in" id="pLogin">
-						@yield('login')
-						<div class="load-icons">
-							<img src="img/load.gif" alt="" class="load">
-							<img src="img/fail.png" alt="" class="fail">
-							<img src="img/success.png" alt="" class="success">
-							<div class="edit-pen"></div>
-						</div>
-					</div>
-				</li> -->
 				
 				<li>
 					<div class="p_name-block">

@@ -63,6 +63,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return false;
 	}
 
+	public function isAdmin(){
+		return $this->admin;
+	}
+
+	public function banned(){
+		return $this->banned;
+	}
+
 	public function getDates(){
 		return array(static::CREATED_AT, static::UPDATED_AT, 'last_logged_in', 'new_logged_in');
 	}

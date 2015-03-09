@@ -38,7 +38,9 @@ class CreateUsersTable extends Migration {
 			// $t->date('birthday');
 			$t->string('town',60)->nullable();
 
-			$t->tinyInteger('mod_flag');
+			$t->boolean('admin')->default(0);
+			$t->boolean('banned')->default(0);
+
 			$t->timestamps();
 
 			// $t->unique('login');

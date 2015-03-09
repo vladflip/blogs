@@ -19,6 +19,9 @@ App::before(function($request)
 		$user->last_logged_in = $user->new_logged_in->toDateTimeString();
 		$user->new_logged_in = $now;
 		$user->save();
+
+		if($user->banned)
+			return Response::view('errors.ban');
 	}
 
 });
@@ -55,6 +58,12 @@ Route::filter('auth', function()
 	}
 });
 
+Route::filter('admin.auth', function(){
+
+	if(Auth::guest() || ! Auth::user()->isAdmin())
+		return 'вы не админ идите в попку';
+
+});
 
 Route::filter('auth.basic', function()
 {
@@ -90,10 +99,9 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
-	if (Session::token() != Input::get('_token'))
-	{
+	$token = Request::ajax() ? Request::header('X-CSRF-Token') : Input::get('_token');
+	if (Session::token() != $token)
 		throw new Illuminate\Session\TokenMismatchException;
-	}
 });
 
 /**

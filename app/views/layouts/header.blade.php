@@ -3,7 +3,7 @@
 
 		<div class="container">
 			<div class="h_logo">
-				<img src="img/logo.png" alt="">
+				<img src="{{ URL::asset('img/logo.png') }}" alt="">
 			</div>
 			<div class="h_menu">
 				<li>

@@ -1088,3 +1088,39 @@ body{
 .disabled{
 	cursor:auto;
 }
+
+/********************************************** ADMIN*/	
+
+.admin-header{
+	margin:20px auto;
+}
+.admin-table td:nth-child(4){
+	max-width: 355px;
+	word-wrap:break-word;
+}
+
+.admin-header a,
+.admin-table a,
+.admin-table span{
+	color:#5b8199;
+	text-decoration: none;
+	cursor:pointer;
+}
+
+.admin-header.posts td:first-child,
+.admin-header.posts td:first-child a,
+.admin-header.users td:last-child,
+.admin-header.users td:last-child a{
+	color:#fff;
+	background-color:#5b8199;
+}
+{
+	color:#fff;
+	background-color:#5b8199;
+}
+.admin-table .banned td,
+.admin-table .banned td span,
+.admin-table .banned td a{
+	background-color:#9999ff !important;
+	color:#fff;
+}
