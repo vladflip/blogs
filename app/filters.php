@@ -19,6 +19,9 @@ App::before(function($request)
 		$user->last_logged_in = $user->new_logged_in->toDateTimeString();
 		$user->new_logged_in = $now;
 		$user->save();
+
+		if($user->banned)
+			return Response::view('errors.ban');
 	}
 
 });

@@ -64,9 +64,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function isAdmin(){
-		if($this->admin)
-			return true;
-		return false;
+		return $this->admin;
+	}
+
+	public function banned(){
+		return $this->banned;
 	}
 
 	public function getDates(){
@@ -74,10 +76,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function verify(){
-		// Mail::send('emails.verify', ['code' => $this->confirmation_code], function($message) {
-		// 		$message->to($this->email, 'МЖА')
-		// 			->subject('МЖА - вы не робот');
-		// 	});
+		Mail::send('emails.verify', ['code' => $this->confirmation_code], function($message) {
+				$message->to($this->email, 'МЖА')
+					->subject('МЖА - вы не робот');
+			});
 	}
 
 	public function notify($what, $where){

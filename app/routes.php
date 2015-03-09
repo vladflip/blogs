@@ -50,7 +50,7 @@ Route::get('/check-for-allow-posting', ['as' => 'check_for_allow', 'uses' => 'Us
 
 Route::get('/register/verify/{code}', ['as' => 'verify_email', 'uses' => 'UserController@verify']);
 
-Route::get('/настройки', ['before' => 'csrf', 'as' => 'settings', 'uses' => 'UserController@settings']);
+Route::get('/настройки', [ 'as' => 'settings', 'uses' => 'UserController@settings']);
 Route::post('/change_settings', ['before' => 'csrf', 'as' => 'change_settings', 'uses' => 'UserController@change_settings']);
 
 
@@ -141,8 +141,20 @@ Route::group(['before' => 'admin.auth'], function(){
 		return Redirect::to('/админ/посты');
 	});
 
-	Route::get('/админ/посты', 'AdminController@posts');
+	Route::get('/админ/посты', ['uses' => 'AdminController@posts', 'as' => 'admin.posts']);
 
-	Route::get('/админ/юзеры', 'AdminController@users');
+	Route::get('/админ/юзеры', ['uses' => 'AdminController@users', 'as' => 'admin.users']);
 
+	Route::group(['before' => 'csrf'], function(){
+
+		Route::post('/admin-delete-post', 'AdminController@deletePost');
+
+		Route::post('/admin-ban-user', 'AdminController@banUser');
+
+	});
+});
+
+App::missing(function($exception)
+{
+    return Response::view('errors.404');
 });
