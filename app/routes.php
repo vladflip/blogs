@@ -94,7 +94,7 @@ Route::get('/p', function(){
 
 	Mail::send('emails.verify', ['code' => 'fuck'], function($message) {
 			$message
-				->from('info@patriotki.rf', 'МЖА | Блоги')
+				->from('info@patriotki.ru', 'МЖА | Блоги')
 				->to('vlad.flip.prg@gmail.com', 'Подтверждение email')
 				->subject('МЖА - вы не робот');
 		});
