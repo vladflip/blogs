@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'info@patriotki.rf', 'name' => 'Поддержка'),
+	'from' => array('address' => null, 'name' => null),
 
 	/*
 	|--------------------------------------------------------------------------
