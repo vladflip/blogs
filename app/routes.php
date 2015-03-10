@@ -98,7 +98,7 @@ Route::get('/p', function(){
 				->to('vlad.flip.prg@gmail.com', 'Подтверждение email')
 				->subject('МЖА - вы не робот');
 		});
-
+	echo 'fuck';
 	// mail('vlad.flip.prg@gmail.com', 'asdf', 'asdf');
 });
 
