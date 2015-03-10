@@ -92,7 +92,7 @@ Route::get('/p', function(){
 
 	// echo User::whereId(Auth::id())->select('id', 'name')->first();
 
-	Mail::send('emails.verify', ['code' => 'fuck'], function($message) {
+	echo Mail::send('emails.verify', ['code' => 'fuck'], function($message) {
 			$message
 				// ->from('info@patriotki.ru', 'МЖА | Блоги')
 				->to('vlad.flip.prg@gmail.com', 'Подтверждение email')
