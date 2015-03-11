@@ -15,7 +15,7 @@ class CreateCommentsTable extends Migration {
 			$t->integer('user_id')->unsigned();
 			$t->integer('parent_id')->unsigned();
 			$t->text('content');
-			$t->tinyInteger('mod_flag');
+			// $t->tinyInteger('mod_flag');
 
 			$t->foreign('post_id')->references('id')->on('posts')
 											->onDelete('cascade')

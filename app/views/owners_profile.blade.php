@@ -1,7 +1,7 @@
 @extends('layouts.profile')
 
 @section('ava_xl')
-	@if(!empty($user->ava_xl)&&file_exists($user->ava_xl))
+	@if(!empty($user->ava_xl))
 		<img id="avaEl" src="{{ $user->ava_xl }}" alt="">
 	@else
 		<img id="avaEl" src="{{ 'img/q_mark.png' }}" alt="">	

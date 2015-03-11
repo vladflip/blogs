@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration {
 
 			$t->string('header',255);
 			$t->text('content');
-			$t->tinyInteger('mod_flag');
+			// $t->tinyInteger('mod_flag');
 			$t->timestamps();
 
 			$t->foreign('user_id')->references('id')->on('users')
