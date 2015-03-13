@@ -14,6 +14,8 @@ class HomeController extends BaseController {
 
 				->orderBy('id','DESC')
 				->with('likes')
+				->with('images')
+				->with('user')
 				->take(5)->get())
 				->with('u_rate', User::take(5)->orderBy('rate', 'DESC')->get())
 				->with('popular', Post::getByLikes(5));
@@ -27,6 +29,8 @@ class HomeController extends BaseController {
 
 				->orderBy('id','DESC')
 				->with('likes')
+				->with('images')
+				->with('user')
 				->take(5)->get())
 				->with('u_rate', User::take(5)->orderBy('rate', 'DESC')->get())
 				->with('popular', Post::getByLikes(5));
@@ -40,6 +44,8 @@ class HomeController extends BaseController {
 
 				->orderBy('id','DESC')
 				->with('likes')
+				->with('images')
+				->with('user')
 				->take(5)->get())
 				->with('u_rate', User::take(5)->orderBy('rate', 'DESC')->get())
 				->with('popular', Post::getByLikes(5));

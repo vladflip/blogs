@@ -11,10 +11,11 @@ class CreatePostsImagesTable extends Migration {
 	{
 		Schema::create(self::TABLE_NAME, function($t){
 			$t->increments('id');
-			$t->integer('post_attach')->unsigned();
-			$t->string('uri');
+			$t->integer('post_id')->unsigned();
+			$t->string('src');
+			$t->string('src_sm');
 
-			$t->foreign('post_attach')->references('id')
+			$t->foreign('post_id')->references('id')
 											->on('posts')
 											->onDelete('cascade')
 											->onUpdate('no action');

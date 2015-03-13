@@ -58,8 +58,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function online(){
-		if($this->last_logged_in->diffInMinutes(Carbon::now()) < 30)
-			return true;
+		// if($this->last_logged_in->diffInMinutes(Carbon::now()) < 30)
+		// 	return true;
 		return false;
 	}
 

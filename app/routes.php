@@ -92,14 +92,21 @@ Route::get('/p', function(){
 
 	// echo User::whereId(Auth::id())->select('id', 'name')->first();
 
-	echo Mail::send('emails.verify', ['code' => 'fuck'], function($message) {
-			$message
-				// ->from('info@patriotki.ru', 'МЖА | Блоги')
-				->to('vlad.flip.prg@gmail.com', 'Подтверждение email')
-				->subject('МЖА - вы не робот');
-		});
-	echo 'fuck';
+	// echo Mail::send('emails.verify', ['code' => 'fuck'], function($message) {
+	// 		$message
+	// 			// ->from('info@patriotki.ru', 'МЖА | Блоги')
+	// 			->to('vlad.flip.prg@gmail.com', 'Подтверждение email')
+	// 			->subject('МЖА - вы не робот');
+	// 	});
+	// echo 'fuck';
 	// mail('vlad.flip.prg@gmail.com', 'asdf', 'asdf');
+
+	// $p = Post::find(2);
+	// $im = new PostImage(['src' => 'blabla']);
+
+	// echo $p;
+	// $im->post()->associate($p);
+	// $im->save();
 });
 
 // Event::listen('illuminate.query', function($query)

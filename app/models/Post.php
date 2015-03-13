@@ -16,6 +16,10 @@ class Post extends Eloquent{
 		return $this->belongsToMany('User', 'posts_likes', 'post_liked', 'user_liked');
 	}
 
+	public function images(){
+		return $this->hasMany('PostImage', 'post_id');
+	}
+
 	public static function getByLikes($n){
 		$arr = Post::with('likes')->has('likes')->get();
 		$arr2 = array();

@@ -46,5 +46,8 @@
 		</div>
 
 	@endforeach
+
+
+	@include('layouts.posts.grid')
 	
 @endif

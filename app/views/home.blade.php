@@ -48,7 +48,6 @@
 
 @section('footer')
 	@parent
-	<script src="js/jquery.js"></script>
 	<script src="js/jquery.autosize.min.js"></script>
 	<script src="js/wall.js"></script>
 @stop

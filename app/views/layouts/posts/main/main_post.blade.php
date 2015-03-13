@@ -69,4 +69,33 @@
 	@endif
 </div>
 
-<div class="w-p_images"></div>
+<?php
+	$opts = array(
+			['1'],
+			['2'],
+			['21','12'],
+			['22', '13', '31'],
+			['23', '32', '14', '41'],
+			['33', '42', '51', '15', '24'],
+			['25', '34', '52', '43'],
+			['35', '53'],
+			['45', '54'],
+			['55']
+		);
+	if(count($v->images)>0){
+		$c = count($v->images)-1;
+		$t = count($opts[$c]);
+		$r = rand(0, $t-1);
+		$l = $opts[$c][$r];
+	} else {
+		$l = 0;
+	}		
+?>
+
+<div class="w-p_images uncomplete-gallery" data-layout="{{ $l }}" data-image="post{{ $v->id }}">
+	@foreach($v->images as $img)
+
+		<img src="{{ $img->src_sm }}" data-highres="{{ $img->src }}">
+		
+	@endforeach
+</div>

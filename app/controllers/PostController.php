@@ -15,20 +15,24 @@ class PostController extends BaseController {
 		} else {
 
 
-			$str =  nl2br($d['content']);
+			$con =  nl2br(htmlentities(trim($d['content'])));
 
-			// return preg_replace('/[<br \/>]{3,}/mu', '<br>', $str);
+			$con =  preg_replace('/\\r\\n/mu', '', $con);
+			$con =  preg_replace('/(<br \/>)/mu', '<br>', $con);
+			$con =  preg_replace('/(<br>){3,}/mu', '<br><br>', $con);
 
 			$head = htmlentities(trim($d['header']));
-			$head = preg_replace('/[\n]{2,}/mu', '<br><br>', $head);
-			$head = preg_replace('/[\n]{1}/mu', '<br>', $head);
-			$head = preg_replace('/[\s]{2,}/mu', ' ', $head);
+			// $head = preg_replace('/[\n]{2,}/mu', '<br><br>', $head);
+			// $head = preg_replace('/[\n]{1}/mu', '<br>', $head);
+			// $head = preg_replace('/[\s]{2,}/mu', ' ', $head);
 
 
-			$con = htmlentities(trim($d['content']));
-			$con = preg_replace("/[\r\n]{2,}/mu", '<br><br>', $con);
-			// $con = preg_replace("/[\r\n]{1}/mu", '<br>', $con);
-			$con = preg_replace('/[\s]{2,}/mu', ' ', $con);
+			// $con = htmlentities(trim($d['content']));
+			// $con = preg_replace("/[\r\n]{2,}/mu", '<br><br>', $con);
+			// // $con = preg_replace("/[\r\n]{1}/mu", '<br>', $con);
+			// $con = preg_replace('/[\s]{2,}/mu', ' ', $con);
+
+			// var_dump($str);
 
 			// return explode(" ",$con);
 
@@ -40,6 +44,72 @@ class PostController extends BaseController {
 
 			$p->user->rate += 3;
 			$p->user->save();
+
+			if(Input::hasFile('imgs')){
+				$validTypes = array('image/png', 'image/jpg', 'image/jpeg');
+
+				$imgs = Input::file('imgs');
+
+				$src = 'img/id' . Auth::id() . '/asset/';
+
+				foreach ($imgs as $key => $val) {
+					if(array_search($val->getMimeType(), $validTypes)!==false){
+						$size = getimagesize($val);
+						$w = $size[0];
+						$h = $size[1];
+						if($w+$h > 7000){
+							return 'non';
+						} else {
+
+							$name = md5(
+									$val->getClientOriginalName() .
+									md5($val->getSize()) .
+									$val->getMimeType() .
+									time()
+								);
+							$name2 = md5(
+									$val->getClientOriginalName() .
+									$val->getSize() .
+									md5($val->getMimeType()) .
+									time()
+								);
+
+							$f1 = substr($name, -2) . '/';
+							$f2 = substr($name, -3) . '/';
+
+							$tsrc = $src . $f1 . $f2;
+
+							if (!file_exists($tsrc) && !is_dir($tsrc)) {
+								$t = mkdir($tsrc, 0777, true);
+							}
+
+							$path = $tsrc  . $name . '.' . 'jpg';
+
+							$path2 = $tsrc  . $name2 . '.' . 'jpg';
+
+							$img = Image::make($val);
+
+							$img->save( $path, 100 );
+
+							if($w>600){
+								$img->widen(600);
+							}
+
+							$img->save( $path2, 100 );
+
+							$pi = new PostImage([
+									'src' => $path,
+									'src_sm' => $path2
+								]);
+							$pi->post()->associate($p);
+							$pi->save();
+
+						}
+					} else {
+						return 'fuck';
+					}
+				}
+			}
 			return Redirect::to(Auth::user()->url());
 		}
 	}
@@ -86,6 +156,7 @@ class PostController extends BaseController {
 				User::with(['posts'=>function($q) use ($cnt){
 
 										$q->with('likes')
+											->with('images')
 
 											->with(['comments' => function($q2){
 												$q2->with('likes')
@@ -102,6 +173,7 @@ class PostController extends BaseController {
 				User::with(['posts'=>function($q) use ($cnt){
 
 										$q->with('likes')
+											->with('images')
 
 											->with(['comments' => function($q2){
 												$q2->with('likes')
@@ -128,6 +200,9 @@ class PostController extends BaseController {
 						->with('likes')
 						->with('user');
 				}])
+				
+				->with('images')
+				->with('user')
 
 				->orderBy('id','DESC')
 				->with('likes')
@@ -140,6 +215,9 @@ class PostController extends BaseController {
 						->with('likes')
 						->with('user');
 				}])
+
+				->with('images')
+				->with('user')
 
 				->orderBy('id','DESC')
 				->with('likes')

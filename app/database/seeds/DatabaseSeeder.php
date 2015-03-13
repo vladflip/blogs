@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('MessagesSeeder');
 
 		$this->call('LikesSeeder');
+
+		$this->call('PostImagesSeeder');
 	}
 
 }
@@ -171,5 +173,23 @@ class LikesSeeder extends Seeder{
 					'user_liked' => $i
 				]);
 		}	
+	}
+}
+
+class PostImagesSeeder extends Seeder{
+
+	public function run() {
+
+		$f = FF::get();
+
+		for ($i=1; $i < 11; $i++) { 
+			for ($j=1; $j < rand(1, 10); $j++) { 
+				PostImage::create([
+					'src' => $f->imageUrl(800, 400),
+					'src_sm' => $f->imageUrl(600, 200),
+					'post_id' => $i
+				]);
+			}
+		}
 	}
 }
