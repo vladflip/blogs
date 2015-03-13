@@ -185,7 +185,7 @@ class PostImagesSeeder extends Seeder{
 		for ($i=1; $i < 11; $i++) { 
 			for ($j=1; $j < rand(1, 10); $j++) { 
 				PostImage::create([
-					'src' => $f->imageUrl(800, 400),
+					'src' => $f->imageUrl(1200, 800),
 					'src_sm' => $f->imageUrl(600, 200),
 					'post_id' => $i
 				]);
