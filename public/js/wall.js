@@ -169,6 +169,7 @@ var wall = (function(){
 					var self = $(this);
 					self.photosetGrid({
 						highresLinks: true,
+						gutter: '3px',
 
 						onComplete: function(){
 							self.find('a').attr('data-lightbox', self.data('image') );
@@ -228,6 +229,7 @@ function load_more_main(el){
 					console.log($.fn);
 					self.photosetGrid({
 						highresLinks: true,
+						gutter: '3px',
 
 						onComplete: function(){
 							self.find('a').attr('data-lightbox', self.data('image') );
