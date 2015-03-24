@@ -20,6 +20,10 @@ class Post extends Eloquent{
 		return $this->hasMany('PostImage', 'post_id');
 	}
 
+	public static function attached() {
+		return self::whereAttached(1)->get();
+	}
+
 	public static function getByLikes($n){
 		$arr = Post::with('likes')->has('likes')->get();
 		$arr2 = array();

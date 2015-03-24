@@ -78,7 +78,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function verify(){
 		Mail::send('emails.verify', ['code' => $this->confirmation_code], function($message) {
 				$message
-					// ->from('info@patriotki.ru', 'МЖА | Блоги')
 					->to($this->email, 'Подтверждение email')
 					->subject('МЖА - вы не робот');
 			});
@@ -92,7 +91,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				case 'msg':
 					Mail::send('emails.notify_msg', ['user' => $this, 'from' => $where], function($message) {
 						$message
-						->from('info@patriotki.ru', 'МЖА | Блоги')
 						->to($this->email, $this->name)
 						->subject('Новое сообщение!');
 					});
@@ -101,7 +99,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 				case 'cmt':
 					Mail::send('emails.notify_cmt', ['user' => $this, 'post' => $where], function($message) {
 						$message
-						->from('info@patriotki.ru', 'МЖА | Блоги')
 						->to($this->email, $this->name)
 						->subject('Новый комментарий!');
 					});

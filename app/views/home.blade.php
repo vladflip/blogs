@@ -3,6 +3,13 @@
 @section('body')
 
 	<div class="w-posts-main">
+
+		<h2 style="margin:0">Top</h2>
+
+		<div class="top-posts">
+			@include('layouts.top')
+		</div>
+
 		<h2 style="margin:0">Записи</h2>
 
 		@include('layouts.posts.main.wall_posts')

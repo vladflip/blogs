@@ -1,61 +1,55 @@
-@extends('layouts.main')
+@extends('admin.admin')
 
-@section('head')
-	@parent
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-nr-min.css">
-	<script src="{{ URL::asset('js/jquery.js') }}"></script>
-@stop
+@section('table')
 
-@section('body')
-	
-	@include('admin.header')
+	<thead>
+		<tr>
+			<th>
+				Юзер
+			</th>
+			<th>
+				Посты
+			</th>
+			<th>
+				Комменты
+			</th>
+			<th>
+				Рейтинг
+			</th>
+			<th>
+				
+			</th>
+		</tr>
+	</thead>
 
-	<table class="pure-table pure-table-bordered pure-table-striped admin-table">
+	@foreach($users as $key => $val)
 
-		<thead>
-			<tr>
-				<th>
-					Юзер
-				</th>
-				<th>
-					Посты
-				</th>
-				<th>
-					Комменты
-				</th>
-				<th>
-					
-				</th>
-			</tr>
-		</thead>
+		<?php if($val->id == Auth::id()) continue; ?>
 
-		@foreach($users as $key => $val)
-	
-			<tr class="{{ $val->banned() ? 'banned' : '' }}">
-				<td>
-					<a href="{{ route('profile', $val->id) }}" target="_blank">{{ $val->name }}</a>
-				</td>
+		<tr class="{{ $val->banned() ? 'light' : '' }}">
+			<td>
+				<a href="{{ route('profile', $val->id) }}" target="_blank">{{ $val->name }}</a>
+			</td>
 
-				<td>
-					{{ $val->posts->count() }}
-				</td>
+			<td>
+				{{ $val->posts->count() }}
+			</td>
 
-				<td>
-					{{ $val->comments->count() }}
-				</td>
-				<td>
-					<span onclick="admin.banUser({{ $val->id }}, this)">
-						{{ $val->banned ? 'Разбан' : 'Бан' }}
-					</span>
-				</td>
-			</tr>
+			<td>
+				{{ $val->comments->count() }}
+			</td>
 
-		@endforeach
-	</table>
+			<td>
+				{{ $val->rate }}
+			</td>
 
-@stop
+			<td>
+				<span onclick="admin.banUser({{ $val->id }}, this)">
+					{{ $val->banned ? 'Разбан' : 'Бан' }}
+				</span>
+			</td>
+		</tr>
 
-@section('footer')
-	@parent
-	<script src="{{ URL::to('/') }}/js/admin.js"></script>
+	@endforeach
+
 @stop

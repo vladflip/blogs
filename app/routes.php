@@ -107,6 +107,7 @@ Route::get('/p', function(){
 	// echo $p;
 	// $im->post()->associate($p);
 	// $im->save();
+
 });
 
 // Event::listen('illuminate.query', function($query)

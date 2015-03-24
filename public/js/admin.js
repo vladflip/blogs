@@ -26,10 +26,10 @@ var admin = (function(){
 			ajax('post', 'http://localhost/blogs/public/admin-ban-user', {id:id}, function(r){
 				if(r == 'ok'){
 					if(ban){
-						$(el).parent().parent().removeClass('banned');
+						$(el).parent().parent().removeClass('light');
 						$(el).html('Бан');
 					} else {
-						$(el).parent().parent().addClass('banned');
+						$(el).parent().parent().addClass('light');
 						$(el).html('Разбан');
 					}
 				}
@@ -37,8 +37,13 @@ var admin = (function(){
 		}
 	}
 
+	var attach = function(id, el){
+		alert(id);
+	}
+
 	return {
 		deletePost : deletePost,
-		banUser : banUser
+		banUser : banUser,
+		attach : attach
 	}
 })();

@@ -50,10 +50,10 @@
 	<script src="js/jquery.autosize.input.js"></script>
 	<script src="js/jquery.autosize.min.js"></script>
 	<script src="js/profile.js"></script>
+	<script src="js/filereader.js"></script>
 
 	@if(!isset($not_ready))
 
-		<script src="js/filereader.js"></script>
 		<script src="js/add_post.js"></script>
 		
 	@endif

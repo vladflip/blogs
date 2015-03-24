@@ -643,6 +643,27 @@ body{
 
 /*----------------------------POPULAR NEWS BLOCK*/
 
+.top-posts{
+	padding:20px;
+	background-color:#fff;
+}
+
+.top-table{
+	border-collapse: collapse;
+}
+
+
+.top_head{
+	font-size: 18px;
+	color:#5b8199;
+	padding:5px;
+	font-weight: bold;
+}
+.top_head a{
+	text-decoration: none;
+	color:inherit;
+}
+
 /**********************************************PROFILE*/
 
 /*****************************************wall*/
@@ -1162,9 +1183,9 @@ body{
 	color:#fff;
 	background-color:#5b8199;
 }
-.admin-table .banned td,
-.admin-table .banned td span,
-.admin-table .banned td a{
+.admin-table .light td,
+.admin-table .light td span,
+.admin-table .light td a{
 	background-color:#9999ff !important;
 	color:#fff;
 }

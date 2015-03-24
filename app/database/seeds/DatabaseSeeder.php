@@ -106,9 +106,13 @@ class PostsSeeder extends Seeder{
 					'user_id' => $f->numberBetween(1, 9),
 					'header' => $f->sentence(5),
 					'content' => $f->paragraph(4),
+					'attached' => $i < 5 ? 1 : 0
 
 				]);
 		}
+
+
+
 	}
 
 }

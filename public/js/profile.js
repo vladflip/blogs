@@ -9,7 +9,7 @@ function check_for_allow(){
 			div.innerHTML = r;
 			wall.appendChild(div);
 
-			var script = document.createElement('script');
+			var script2 = document.createElement('script');
 			script.src = 'js/add_post.js';
 
 			document.body.appendChild(script);
